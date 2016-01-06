@@ -50,7 +50,10 @@ public class MainGame implements Screen {
             player.setVelocityY(2f);
         }else if(Gdx.input.isKeyPressed(Keys.S)){
             player.setVelocityY(-2f);
-        }
+        //}else if(Gdx.input.isKeyPressed(Keys.W)&&Gdx.input.isKeyPressed(Keys.D)){
+       //     player.setVelocityX(2f);
+        //    player.setVelocityY(2f);
+        //}
         
         
         
