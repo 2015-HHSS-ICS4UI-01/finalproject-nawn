@@ -32,7 +32,8 @@ public class World {
         blocks.add(new Block(96,32,16,16));
         blocks.add(new Block(112,32,16,16));
         blocks.add(new Block(128,96,16,16));
-        blocks.add(new Block(112,96,16,16));  
+        blocks.add(new Block(112,96,16,16));
+        //blocks.add(new Block(200,200,16,16));
     }
     
     public void update(float delta){
