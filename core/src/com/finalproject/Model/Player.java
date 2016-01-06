@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author lamonta
  */
-public class Mario extends Entity{
+public class Player extends Entity{
     private final float X_MAX_VEL = 2.0f;
     private final float Y_MAX_VEL = 4.0f;
     private final float DAMP = 0.9f;
@@ -31,7 +31,7 @@ public class Mario extends Entity{
     // animation state counter
     private float stateTime;
     
-    public Mario(float x, float y, float width, float height){
+    public Player(float x, float y, float width, float height){
         super(x,y,width,height);
         state = State.STANDING;
         velocity = new Vector2(0,0);
@@ -42,11 +42,15 @@ public class Mario extends Entity{
     
     
     public void update(float delta){
-        acceleration.y = -9.8f;
+        //acceleration.y = -9.8f;
         velocity.mulAdd(acceleration, delta);
         velocity.x = velocity.x*DAMP;
         if(velocity.x < 0.01f && velocity.x > -0.01f){
             velocity.x = 0;
+        }
+        velocity.y = velocity.y*DAMP;
+        if(velocity.y < 0.01f && velocity.y > -0.01f){
+            velocity.y = 0;
         }
         addToPosition(velocity.x,velocity.y);
         
@@ -71,13 +75,7 @@ public class Mario extends Entity{
         stateTime += delta;
     }
     
-    public void jump(){
-        if(state != State.JUMPING && velocity.y == 0){
-            velocity.y = Y_MAX_VEL;
-            state = State.JUMPING;
-            stateTime = 0;
-        }
-    }
+   
     
     public void setVelocityX(float x){
         velocity.x = x;

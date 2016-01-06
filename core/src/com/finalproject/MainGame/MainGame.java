@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.finalproject.Model.Block;
-import com.finalproject.Model.Mario;
+import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
 import com.finalproject.Screens.WorldRenderer;
 
@@ -25,7 +25,7 @@ import com.finalproject.Screens.WorldRenderer;
 public class MainGame implements Screen {
 
     private World theWorld;
-    private Mario player;
+    private Player player;
     private WorldRenderer renderer;
     
     public MainGame() {
@@ -46,11 +46,13 @@ public class MainGame implements Screen {
             player.setVelocityX(2f);
         }else if(Gdx.input.isKeyPressed(Keys.A)){
             player.setVelocityX(-2f);
+        }else if(Gdx.input.isKeyPressed(Keys.W)){
+            player.setVelocityY(2f);
+        }else if(Gdx.input.isKeyPressed(Keys.S)){
+            player.setVelocityY(-2f);
         }
         
-        if(Gdx.input.isKeyPressed(Keys.SPACE)){
-            player.jump();
-        }
+        
         
         player.update(deltaTime);
         
@@ -68,7 +70,7 @@ public class MainGame implements Screen {
                     // player is above the block
                     if(player.getY() > b.getY()){
                         player.addToPosition(0, overY);
-                        player.setState(Mario.State.STANDING);
+                        player.setState(Player.State.STANDING);
                     }else{
                         player.addToPosition(0, -overY);
                     }
@@ -86,8 +88,8 @@ public class MainGame implements Screen {
                         // above the block
                         if(player.getY() > b.getY()){
                             player.addToPosition(0, overY);
-                            if(player.getState() == Mario.State.JUMPING){
-                                player.setState(Mario.State.STANDING);
+                            if(player.getState() == Player.State.JUMPING){
+                                player.setState(Player.State.STANDING);
                             }
                         }else{
                             player.addToPosition(0, -overY);
