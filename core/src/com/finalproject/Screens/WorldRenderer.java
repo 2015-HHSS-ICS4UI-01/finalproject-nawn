@@ -58,6 +58,7 @@ public class WorldRenderer {
         
         // update the camera
         camera.position.x = Math.max(player.getX(), V_WIDTH/2);
+        camera.position.y = Math.max(player.getY(), V_HEIGHT/2);
         camera.update();
         
         // links the renderer to the camera
