@@ -2,11 +2,13 @@ package com.finalproject.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.finalproject.game.ZombiesMain;
+import com.finalproject.MainGame.MainGame;
+import com.finalproject.MainGame.MyGdxGame;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+                new LwjglApplication(new MyGdxGame(), config);
 		
 	}
 }
