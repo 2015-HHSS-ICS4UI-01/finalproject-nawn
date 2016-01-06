@@ -1,15 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.alimurra.Model;
+package com.finalproject.Model;
 
 import com.badlogic.gdx.utils.Array;
 
 /**
  *
- * @author alimu
+ * @author lamonta
  */
 public class World {
     private Array<Block> blocks;
@@ -22,8 +21,8 @@ public class World {
     }
     
     private void demoLevel(){
-        player = new Mario(100,100,16,32);
-        //blocks along the floor
+        player = new Mario(16,16,16,32);
+        // blocks along the floor
         for(int i = 0; i < 50; i++){
             Block b = new Block(i*16,0,16,16);
             blocks.add(b);
@@ -33,8 +32,7 @@ public class World {
         blocks.add(new Block(96,32,16,16));
         blocks.add(new Block(112,32,16,16));
         blocks.add(new Block(128,96,16,16));
-        blocks.add(new Block(112,96,16,16));
-        
+        blocks.add(new Block(112,96,16,16));  
     }
     
     public void update(float delta){

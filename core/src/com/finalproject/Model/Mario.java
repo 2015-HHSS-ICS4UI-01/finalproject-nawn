@@ -1,46 +1,45 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.alimurra.Model;
+package com.finalproject.Model;
 
 import com.badlogic.gdx.math.Vector2;
 
 /**
  *
- * @author alimu
+ * @author lamonta
  */
 public class Mario extends Entity{
-
     private final float X_MAX_VEL = 2.0f;
     private final float Y_MAX_VEL = 4.0f;
     private final float DAMP = 0.9f;
     
-    //state for Mario
+    // states for mario
     public enum State{
         STANDING, RUNNING, JUMPING
     }
     
-    //the actual state mario is in
+    // the actual state mario is in
     private State state;
-    //movement variables
+    // movement variables
     private Vector2 velocity;
     private Vector2 acceleration;
-    //facing
+    // facing
     private boolean isFacingLeft;
     
-    //animation state counter
+    // animation state counter
     private float stateTime;
     
-    public Mario(float x, float y, float width, float height) {
-        super(x, y, width, height);
+    public Mario(float x, float y, float width, float height){
+        super(x,y,width,height);
         state = State.STANDING;
         velocity = new Vector2(0,0);
         acceleration = new Vector2(0,0);
         isFacingLeft = false;
         stateTime = 0;
     }
+    
     
     public void update(float delta){
         acceleration.y = -9.8f;
@@ -50,6 +49,8 @@ public class Mario extends Entity{
             velocity.x = 0;
         }
         addToPosition(velocity.x,velocity.y);
+        
+        // moving to the left
         if(velocity.x < 0){
             isFacingLeft = true;
             if(state != State.RUNNING && state != State.JUMPING){
@@ -66,6 +67,7 @@ public class Mario extends Entity{
             state = State.STANDING;
             stateTime = 0;
         }
+        
         stateTime += delta;
     }
     
@@ -86,7 +88,7 @@ public class Mario extends Entity{
     }
     
     public void setState(State s){
-         if(state != s){
+        if(state != s){
             stateTime = 0;
         }
         state = s;
@@ -111,6 +113,4 @@ public class Mario extends Entity{
     public boolean isFacingLeft(){
         return isFacingLeft;
     }
-        
-    
 }

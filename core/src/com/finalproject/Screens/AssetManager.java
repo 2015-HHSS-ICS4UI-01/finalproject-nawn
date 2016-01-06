@@ -1,9 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Screens;
+package com.finalproject.Screens;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -13,7 +12,7 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  *
- * @author alimu
+ * @author lamonta
  */
 public class AssetManager {
     
@@ -28,8 +27,8 @@ public class AssetManager {
     public static void load(){
         atlas = new TextureAtlas("mario.pack");
         block = atlas.findRegion("stoneBlock");
-        marioStand = atlas.findRegion("stand");
         marioJump = atlas.findRegion("jump");
+        marioStand = atlas.findRegion("stand");
         marioStandL = new TextureRegion(marioStand);
         marioStandL.flip(true, false);
         
@@ -37,11 +36,9 @@ public class AssetManager {
         marioRun = new Animation(0.1f, run);
         
         run = atlas.findRegions("run");
-        marioRunL = new Animation(0.1f,run);
+        marioRunL = new Animation(0.1f, run);
         for(TextureRegion r: marioRunL.getKeyFrames()){
-            r.flip(true, false);
+            r.flip(true,false);
         }
-        
     }
-    
 }
