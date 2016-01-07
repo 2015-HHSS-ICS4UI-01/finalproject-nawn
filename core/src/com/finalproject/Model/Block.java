@@ -6,7 +6,7 @@ package com.finalproject.Model;
 
 /**
  *
- * @author lamonta
+ * @author vonhn
  */
 public class Block extends Entity{
     

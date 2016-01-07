@@ -104,9 +104,7 @@ public class MainGame implements Screen {
                         // above the block
                         if(player.getY() > b.getY()){
                             player.addToPosition(0, overY);
-                            if(player.getState() == Player.State.JUMPING){
-                                player.setState(Player.State.STANDING);
-                            }
+                            
                         }else{
                             player.addToPosition(0, -overY);
                         }

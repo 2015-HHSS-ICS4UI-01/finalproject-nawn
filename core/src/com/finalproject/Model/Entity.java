@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 /**
  *
- * @author lamonta
+ * @author vonhn
  */
 public abstract class Entity {
     private Rectangle bounds;

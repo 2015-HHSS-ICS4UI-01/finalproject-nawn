@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  *
- * @author lamonta
+ * @author Vonhn
  */
 public class Player extends Entity {
 
@@ -19,7 +19,7 @@ public class Player extends Entity {
     // states for mario
     public enum State {
 
-        STANDING, RUNNING, JUMPING
+        STANDING, RUNNING
     }
 
     // the actual state mario is in
@@ -58,28 +58,28 @@ public class Player extends Entity {
         // moving to the left
         if (velocity.x < 0) {
             isFacingLeft = true;
-            if (state != State.RUNNING && state != State.JUMPING) {
+            if (state != State.RUNNING ) {
                 stateTime = 0;
                 state = State.RUNNING;
             }
         //moving right
         } else if (velocity.x > 0) {
             isFacingLeft = false;
-            if (state != State.RUNNING && state != State.JUMPING) {
+            if (state != State.RUNNING ) {
                 stateTime = 0;
                 state = State.RUNNING;
             }
          //moving down
         } else if (velocity.y < 0) {
             isFacingDown = true;
-            if (state != State.RUNNING && state != State.JUMPING) {
+            if (state != State.RUNNING ) {
                 stateTime = 0;
                 state = State.RUNNING;
             }
          //moving up
         } else if (velocity.y > 0) {
             isFacingDown = false;
-            if (state != State.RUNNING && state != State.JUMPING) {
+            if (state != State.RUNNING ) {
                 stateTime = 0;
                 state = State.RUNNING;
             }

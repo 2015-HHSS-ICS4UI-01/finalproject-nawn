@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  *
- * @author lamonta
+ * @author vonhn
  */
 public class AssetManager {
     

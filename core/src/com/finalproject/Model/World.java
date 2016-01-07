@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  *
- * @author lamonta
+ * @author vonhn
  */
 public class World {
     private Array<Block> blocks;

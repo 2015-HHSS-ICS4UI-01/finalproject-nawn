@@ -17,7 +17,7 @@ import com.finalproject.Model.World;
 
 /**
  *
- * @author lamonta
+ * @author vonhn
  */
 public class WorldRenderer {
     // my games virtual width and height
@@ -84,8 +84,6 @@ public class WorldRenderer {
             }else{
                 batch.draw(AssetManager.marioRun.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
             }
-        }else if(player.getState() == Player.State.JUMPING){
-            batch.draw(AssetManager.marioJump, player.getX(), player.getY());
         }
         
         // finished listing things to draw
