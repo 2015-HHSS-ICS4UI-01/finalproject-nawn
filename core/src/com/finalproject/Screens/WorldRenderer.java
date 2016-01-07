@@ -74,15 +74,15 @@ public class WorldRenderer {
         // draw mario
         if(player.getState() == Player.State.STANDING){
             if(player.isFacingLeft()){
-                batch.draw(AssetManager.marioStandL, player.getX(), player.getY());
+                batch.draw(AssetManager.playerStandL, player.getX(), player.getY());
             }else{
-                batch.draw(AssetManager.marioStand, player.getX(), player.getY());
+                batch.draw(AssetManager.playerStand, player.getX(), player.getY());
             }
         }else if(player.getState() == Player.State.RUNNING){
             if(player.isFacingLeft()){
-                batch.draw(AssetManager.marioRunL.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
+                batch.draw(AssetManager.playerRunL.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
             }else{
-                batch.draw(AssetManager.marioRun.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
+                batch.draw(AssetManager.playerRun.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
             }
         }
         
