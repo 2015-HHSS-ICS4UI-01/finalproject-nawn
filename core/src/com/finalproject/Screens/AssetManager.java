@@ -31,6 +31,7 @@ public class AssetManager {
         playerStand = atlas.findRegion("stand");
         playerStandL = new TextureRegion(playerStand);
         playerStandL.flip(true, false);
+       
         
         Array<AtlasRegion> run = atlas.findRegions("run");
         playerRun = new Animation(0.1f, run);
