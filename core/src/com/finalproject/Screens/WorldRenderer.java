@@ -90,6 +90,8 @@ public class WorldRenderer {
                 //output his standing west picture
                 batch.draw(AssetManager.playerStandW, player.getX(), player.getY());
             }
+            
+            //commit
         } //check if hes running
         else if (player.getState() == Player.State.RUNNING) {
             //check if hes facing south
