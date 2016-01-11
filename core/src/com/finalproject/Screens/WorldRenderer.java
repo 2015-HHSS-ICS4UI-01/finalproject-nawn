@@ -59,8 +59,8 @@ public class WorldRenderer {
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // update the camera
-        camera.position.x = Math.max(player.getX(), V_WIDTH / 2);
-        camera.position.y = Math.max(player.getY(), V_HEIGHT / 2);
+        camera.position.x = Math.max(world.getPlayer().getX(), V_WIDTH / 2);
+        camera.position.y = Math.max(world.getPlayer().getY(), V_HEIGHT / 2);
         camera.update();
 
         // links the renderer to the camera
