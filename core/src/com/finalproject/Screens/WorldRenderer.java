@@ -25,6 +25,7 @@ public class WorldRenderer {
     // my games virtual width and height
     public final int V_WIDTH = 800;
     public final int V_HEIGHT = 600;
+    
 
     private World world;
     private Player player;
