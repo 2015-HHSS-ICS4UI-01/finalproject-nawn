@@ -1,5 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.finalproject.Model;
@@ -8,25 +9,22 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  *
- * @author Vonhn
+ * @author alimu
  */
-public class Player extends Entity {
+public class Zombie extends Entity {
 
     private final float X_MAX_VEL = 2.0f;
     private final float Y_MAX_VEL = 2.0f;
     private final float DAMP = 0.8f;
 
-    // states for mario
-    public enum State {
-        STANDING, RUNNING
-    }
-
-    // the actual state mario is in
-    private State state;
+    //make variables to communicate with other class
+    private World world;
+    private Player player;
+    
     // movement variables
     private Vector2 velocity;
     private Vector2 acceleration;
-    // facing
+    // initialize the directions that the zombie is facing
     private boolean isFacingWest;
     private boolean isFacingSouth;
     private boolean isFacingEast;
@@ -35,19 +33,24 @@ public class Player extends Entity {
     private boolean isFacingNE;
     private boolean isFacingSW;
     private boolean isFacingSE;
+    
+    private boolean isAlive;
     // animation state counter
     private float stateTime;
 
-    public Player(float x, float y, float width, float height) {
+    
+    public Zombie(float x, float y, float width, float height) {
         super(x, y, width, height);
-        state = State.STANDING;
+
+        
+
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 0);
-        //make north true so that the player will start by facing north
-        isFacingNorth = true;
+     
         isFacingWest = false;
         isFacingSouth = false;
         isFacingEast = false;
+        isFacingNorth = false;
         isFacingNE = false;
         isFacingNW = false;
         isFacingSE = false;
@@ -68,10 +71,11 @@ public class Player extends Entity {
             velocity.y = 0;
         }
         addToPosition(velocity.x, velocity.y);
-
-        // moving to the rught
-        if (velocity.x < 0) {
-            isFacingEast = true;
+        
+        //if he is moving to the right
+      // moving to the rught
+        if (velocity.x < 0 && velocity.y == 0) {
+            isFacingWest = true;
             isFacingSouth = false;
             isFacingEast = false;
             isFacingNorth = false;
@@ -79,12 +83,9 @@ public class Player extends Entity {
             isFacingNW = false;
             isFacingSE = false;
             isFacingSW = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
+       
             //moving right
-        } else if (velocity.x > 0) {
+        } else if (velocity.x > 0 && velocity.y == 0) {
             isFacingWest = false;
             isFacingSouth = false;
             isFacingNorth = false;
@@ -93,12 +94,9 @@ public class Player extends Entity {
             isFacingNW = false;
             isFacingSE = false;
             isFacingSW = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
+      
             //moving south
-        } else if (velocity.y < 0) {
+        } else if (velocity.y < 0 && velocity.x == 0) {
             isFacingSouth = true;
             isFacingWest = false;
             isFacingEast = false;
@@ -107,12 +105,9 @@ public class Player extends Entity {
             isFacingNW = false;
             isFacingSE = false;
             isFacingSW = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
+    
             //moving up
-        } else if (velocity.y > 0) {
+        } else if (velocity.y > 0 && velocity.x == 0) {
             isFacingNorth = true;
             isFacingWest = false;
             isFacingSouth = false;
@@ -121,10 +116,7 @@ public class Player extends Entity {
             isFacingNW = false;
             isFacingSE = false;
             isFacingSW = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
+
 
           //is running ne direction
         } else if (velocity.y > 0 && velocity.x > 0) {
@@ -136,10 +128,7 @@ public class Player extends Entity {
             isFacingNW = false;
             isFacingSE = false;
             isFacingSW = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
+      
             //if running in nw direction
         } else if (velocity.y > 0 && velocity.x < 0) {
             isFacingNW = true;
@@ -150,10 +139,7 @@ public class Player extends Entity {
             isFacingNE = false;
             isFacingSE = false;
             isFacingSW = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
+         
         //if running se
         } else if (velocity.y < 0 && velocity.x > 0) {
             isFacingSE = true;
@@ -164,10 +150,7 @@ public class Player extends Entity {
             isFacingNE = false;
             isFacingNW = false;
             isFacingSW = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
+      
            //if running sw
         } else if (velocity.y < 0 && velocity.x < 0) {
             isFacingSW = true;
@@ -178,18 +161,102 @@ public class Player extends Entity {
             isFacingNE = false;
             isFacingNW = false;
             isFacingSE = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
+          
+            } 
             //not moving
-        } else {
-            state = State.STANDING;
-            stateTime = 0;
-        }
-        stateTime += delta;
-    }
-
+        } 
+        //go towards player
+//        if (player.getX() > this.getX()) {
+//            isFacingEast = true;
+//            isFacingWest = false;
+//            isFacingSouth = false;
+//            isFacingNorth = false;
+//            isFacingNE = false;
+//            isFacingNW = false;
+//            isFacingSE = false;
+//            isFacingSW = false;
+//            stateTime = 0;
+//        }//zombie facing West
+//        else if (player.getX() < this.getX()) {
+//            isFacingWest = true;
+//            isFacingSouth = false;
+//            isFacingEast = false;
+//            isFacingNorth = false;
+//            isFacingNE = false;
+//            isFacingNW = false;
+//            isFacingSE = false;
+//            isFacingSW = false;
+//            stateTime = 0;
+//        }//zombie facing North
+//        else if (player.getY() > this.getY()) {
+//            isFacingWest = false;
+//            isFacingSouth = false;
+//            isFacingEast = false;
+//            isFacingNorth = true;
+//            isFacingNE = false;
+//            isFacingNW = false;
+//            isFacingSE = false;
+//            isFacingSW = false;
+//            stateTime = 0;
+//        }//zombie facing South
+//        else if (player.getY() < this.getY()) {
+//            isFacingWest = false;
+//            isFacingSouth = true;
+//            isFacingEast = false;
+//            isFacingNorth = false;
+//            isFacingNE = false;
+//            isFacingNW = false;
+//            isFacingSE = false;
+//            isFacingSW = false;
+//            stateTime = 0;
+//        }//zombie facing NE
+//        else if (player.getX() > this.getX() && player.getY() > this.getY()) {
+//            isFacingWest = false;
+//            isFacingSouth = false;
+//            isFacingEast = false;
+//            isFacingNorth = false;
+//            isFacingNE = true;
+//            isFacingNW = false;
+//            isFacingSE = false;
+//            isFacingSW = false;
+//            stateTime = 0;
+//        }//zombie facing NW
+//        else if (player.getX() < this.getX() && player.getY() > this.getY()) {
+//            isFacingWest = false;
+//            isFacingSouth = false;
+//            isFacingEast = false;
+//            isFacingNorth = false;
+//            isFacingNE = false;
+//            isFacingNW = true;
+//            isFacingSE = false;
+//            isFacingSW = false;
+//            stateTime = 0;
+//        }//zombie facing SW
+//        else if (player.getX() < this.getX() && player.getY() < this.getY()) {
+//            isFacingWest = false;
+//            isFacingSouth = false;
+//            isFacingEast = false;
+//            isFacingNorth = false;
+//            isFacingNE = false;
+//            isFacingNW = false;
+//            isFacingSE = false;
+//            isFacingSW = true;
+//            stateTime = 0;
+//        }//zombie facing SE
+//        else if (player.getX() > this.getX() && player.getY() < this.getY()) {
+//            isFacingWest = false;
+//            isFacingSouth = false;
+//            isFacingEast = false;
+//            isFacingNorth = false;
+//            isFacingNE = false;
+//            isFacingNW = false;
+//            isFacingSE = true;
+//            isFacingSW = false;
+//            stateTime = 0;
+//        }
+//       
+    
+    
     public void setVelocityX(float x) {
         velocity.x = x;
     }
@@ -198,23 +265,12 @@ public class Player extends Entity {
         velocity.y = y;
     }
 
-    public void setState(State s) {
-        if (state != s) {
-            stateTime = 0;
-        }
-        state = s;
-    }
-
     public float getVelocityX() {
         return velocity.x;
     }
 
     public float getVelocityY() {
         return velocity.y;
-    }
-
-    public State getState() {
-        return state;
     }
 
     public float getStateTime() {
@@ -251,6 +307,10 @@ public class Player extends Entity {
 
     public boolean isFacingSW() {
         return isFacingSW;
+    }
+    
+    public boolean isAlive(){
+        return isAlive;
     }
 
 }

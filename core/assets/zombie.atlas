@@ -1,0 +1,201 @@
+
+zombie.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+soldier_walking_ne1
+  rotate: false
+  xy: 1, 231
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+soldier_walking_ne2
+  rotate: false
+  xy: 1, 183
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+soldier_walking_nw1
+  rotate: false
+  xy: 49, 231
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+soldier_walking_nw2
+  rotate: false
+  xy: 1, 135
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+soldier_walking_se1
+  rotate: false
+  xy: 49, 183
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+soldier_walking_se2
+  rotate: false
+  xy: 97, 231
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+soldier_walking_sw1
+  rotate: false
+  xy: 1, 87
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+soldier_walking_sw2
+  rotate: false
+  xy: 49, 135
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+zombie_ne
+  rotate: false
+  xy: 97, 184
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+zombie_nw
+  rotate: false
+  xy: 1, 40
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+zombie_se
+  rotate: false
+  xy: 49, 88
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+zombie_sw
+  rotate: false
+  xy: 97, 137
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+soldier_standing_left
+  rotate: false
+  xy: 145, 245
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_standing_north
+  rotate: false
+  xy: 1, 6
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_standing_right
+  rotate: false
+  xy: 145, 211
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_standing_south
+  rotate: false
+  xy: 144, 177
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_left1
+  rotate: false
+  xy: 144, 143
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_left2
+  rotate: false
+  xy: 35, 6
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_north1
+  rotate: false
+  xy: 144, 109
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_north2
+  rotate: false
+  xy: 97, 103
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_right1
+  rotate: false
+  xy: 96, 69
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_right2
+  rotate: false
+  xy: 48, 53
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_south1
+  rotate: false
+  xy: 82, 35
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_south2
+  rotate: false
+  xy: 69, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+zombie_left
+  rotate: false
+  xy: 116, 35
+  size: 31, 32
+  orig: 31, 32
+  offset: 0, 0
+  index: -1
+zombie_north
+  rotate: false
+  xy: 103, 2
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+zombie_right
+  rotate: false
+  xy: 130, 69
+  size: 31, 32
+  orig: 31, 32
+  offset: 0, 0
+  index: -1
+zombie_south
+  rotate: false
+  xy: 149, 36
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
