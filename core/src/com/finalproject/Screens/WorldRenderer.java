@@ -74,7 +74,7 @@ public class WorldRenderer {
         player.setState(Player.State.STANDING);
         
         //crosshair
-        //batch.draw(AssetManager.cross, Gdx.input.getX(), Gdx.input.getY());
+        batch.draw(AssetManager.cross, Gdx.input.getX(), Gdx.input.getY());
 
         //if the player is standing
         if (player.getState() == Player.State.STANDING) {

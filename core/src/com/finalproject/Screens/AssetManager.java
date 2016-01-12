@@ -76,7 +76,7 @@ public class AssetManager {
         zombieSE = atlas.findRegion("zombie_se");
         
         //crosshair 
-        cross = atlas.findRegion("Cross");
+        cross = atlas.findRegion("cross");
                 
 
         //make the animation of soldier walking north
