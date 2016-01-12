@@ -72,6 +72,9 @@ public class WorldRenderer {
 
         //initialize the starting state of the player
         player.setState(Player.State.STANDING);
+        
+        //crosshair
+        //batch.draw(AssetManager.cross, Gdx.input.getX(), Gdx.input.getY());
 
         //if the player is standing
         if (player.getState() == Player.State.STANDING) {

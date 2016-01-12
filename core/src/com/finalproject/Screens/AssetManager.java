@@ -43,6 +43,8 @@ public class AssetManager {
     public static TextureRegion zombieSE;
     public static TextureRegion zombieSW;
     
+    public static TextureRegion cross;
+    
     //initialize all the standing positions for the zombie
 //    public static Animation zombieW;
 //    public static Animation zombieE;
@@ -72,6 +74,10 @@ public class AssetManager {
         zombieNE = atlas.findRegion("zombie_nw");
         zombieSW = atlas.findRegion("zombie_sw");
         zombieSE = atlas.findRegion("zombie_se");
+        
+        //crosshair 
+        cross = atlas.findRegion("Cross");
+                
 
         //make the animation of soldier walking north
         Array<AtlasRegion> runNorth = atlas.findRegions("soldier_walking_north");
