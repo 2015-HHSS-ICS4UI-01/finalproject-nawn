@@ -171,6 +171,7 @@ public class WorldRenderer {
             batch.draw(AssetManager.zombieN, zombie.getX(), zombie.getY());
         }//if zombie is facing S
         else if(zombie.isFacingSouth()){
+            
             //draw the zombie S picture
             batch.draw(AssetManager.zombieS, zombie.getX(), zombie.getY());
         }//if zombie is facing E

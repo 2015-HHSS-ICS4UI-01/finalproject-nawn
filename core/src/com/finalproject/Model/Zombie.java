@@ -73,7 +73,7 @@ public class Zombie extends Entity {
         addToPosition(velocity.x, velocity.y);
         
         //if he is moving to the right
-      // moving to the rught
+      // moving to the right
         if (velocity.x < 0 && velocity.y == 0) {
             isFacingWest = true;
             isFacingSouth = false;
