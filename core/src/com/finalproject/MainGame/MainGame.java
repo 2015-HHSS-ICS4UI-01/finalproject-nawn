@@ -45,8 +45,8 @@ public class MainGame implements Screen {
     @Override
     // game loop
     public void render(float deltaTime) {
-        //System.out.println(Gdx.input.getX());
-        //System.out.println(Gdx.input.getY());
+        System.out.println(Gdx.input.getX()+"x");
+        System.out.println(Gdx.input.getY()+"y");
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
             player.setVelocityX(2f);
@@ -75,10 +75,13 @@ public class MainGame implements Screen {
         //if player more right than zombie move right
         if(player.getX() > zombie.getX()){
             zombie.setVelocityX(0.5f);
-        }else {
+        }else if(player.getX() < zombie.getX()) {
             //move left
             zombie.setVelocityX(-0.5f);
+        }else{
+            zombie.setVelocityX(0);
         }
+                
         
         //if player in ne position
         if(player.getY() > zombie.getY() && player.getX() > zombie.getX()){
@@ -101,16 +104,18 @@ public class MainGame implements Screen {
         //if player is higher than zombie move up
         if(player.getY() > zombie.getY()){
             zombie.setVelocityY(0.5f);
-        }else{
+        }else if(player.getVelocityY()<zombie.getY()){
             //move down
             zombie.setVelocityY(-0.5f);
+        }else{
+            zombie.setVelocityY(0);
         }
  
         zombie.update(deltaTime);
         player.update(deltaTime);    
         
         
-        //collisions
+        //collisions with blocks 
         // go through each block
         for (Block b : theWorld.getBlocks()) {
             // if player is hitting a block
@@ -151,6 +156,8 @@ public class MainGame implements Screen {
                 }
             }
         }
+        
+        
         // draw the screen
         renderer.render(deltaTime);
     }
