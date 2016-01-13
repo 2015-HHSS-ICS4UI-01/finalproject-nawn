@@ -46,8 +46,6 @@ public class MainGame implements Screen {
     @Override
     // game loop
     public void render(float deltaTime) {
-        //System.out.println(Gdx.input.getX()+"x");
-        //System.out.println(Gdx.input.getY()+"y");
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
             player.setVelocityX(2f);

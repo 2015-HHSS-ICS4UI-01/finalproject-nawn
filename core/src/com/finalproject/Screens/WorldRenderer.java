@@ -6,9 +6,12 @@ package com.finalproject.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.finalproject.Model.Block;
@@ -34,6 +37,9 @@ public class WorldRenderer {
     private Viewport viewport;
     private OrthographicCamera camera;
     private SpriteBatch batch;
+    
+    private int mouseX;
+    private int mouseY;
 
     public WorldRenderer(World w) {
         world = w;
@@ -52,6 +58,8 @@ public class WorldRenderer {
 
         // loads in the images
         AssetManager.load();
+        
+        Gdx.graphics.setCursor(Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("Cursor.png")), 0,0));
     }
 
     public void render(float delta) {
@@ -74,7 +82,14 @@ public class WorldRenderer {
         player.setState(Player.State.STANDING);
         
         //crosshair
-        batch.draw(AssetManager.cross, Gdx.input.getX(), Gdx.input.getY());
+        //Gdx.input.setCursorCatched(true);
+        
+        mouseX = (int) this.getMousePosInGameWorldx();
+        mouseY = (int) this.getMousePosInGameWorldy();
+       
+        
+        batch.draw(AssetManager.cross,mouseX-16,mouseY-15);
+        
 
         //if the player is standing
         if (player.getState() == Player.State.STANDING) {
@@ -210,4 +225,13 @@ public class WorldRenderer {
     public void resize(int width, int height) {
         viewport.update(width, height);
     }
+    
+    float getMousePosInGameWorldx() {
+ Vector3 n = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+ return n.x;
+}
+    float getMousePosInGameWorldy() {
+ Vector3 n = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+ return n.y;
+}
 }
