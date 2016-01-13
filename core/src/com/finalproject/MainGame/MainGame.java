@@ -169,6 +169,7 @@ public class MainGame implements Screen {
                     if (player.getY() > zombie.getY()) {
                      //   player.addToPosition(0, overY);
                     } else {
+                        
                        // player.addToPosition(0, -overY);
                     }
                     player.setVelocityY(0);
