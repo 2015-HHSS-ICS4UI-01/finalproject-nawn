@@ -9,6 +9,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -57,6 +58,8 @@ public class WorldRenderer {
 
         // loads in the images
         AssetManager.load();
+        
+        Gdx.graphics.setCursor(Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("Cursor.png")), 0,0));
     }
 
     public void render(float delta) {
@@ -80,8 +83,11 @@ public class WorldRenderer {
         
         //crosshair
         //Gdx.input.setCursorCatched(true);
+        
         mouseX = (int) this.getMousePosInGameWorldx();
         mouseY = (int) this.getMousePosInGameWorldy();
+       
+        
         batch.draw(AssetManager.cross,mouseX-16,mouseY-15);
         
 
