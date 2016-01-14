@@ -3,212 +3,212 @@ zombie.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-soldier_walking_ne1
-  rotate: false
-  xy: 1, 89
-  size: 46, 46
-  orig: 46, 46
-  offset: 0, 0
-  index: -1
-soldier_walking_ne2
-  rotate: false
-  xy: 1, 41
-  size: 46, 46
-  orig: 46, 46
-  offset: 0, 0
-  index: -1
-soldier_walking_nw1
-  rotate: false
-  xy: 49, 89
-  size: 46, 46
-  orig: 46, 46
-  offset: 0, 0
-  index: -1
-soldier_walking_nw2
-  rotate: false
-  xy: 49, 41
-  size: 46, 46
-  orig: 46, 46
-  offset: 0, 0
-  index: -1
-soldier_walking_se1
-  rotate: false
-  xy: 97, 89
-  size: 46, 46
-  orig: 46, 46
-  offset: 0, 0
-  index: -1
-soldier_walking_se2
-  rotate: false
-  xy: 97, 41
-  size: 46, 46
-  orig: 46, 46
-  offset: 0, 0
-  index: -1
-soldier_walking_sw1
-  rotate: false
-  xy: 145, 89
-  size: 46, 46
-  orig: 46, 46
-  offset: 0, 0
-  index: -1
-soldier_walking_sw2
-  rotate: false
-  xy: 145, 41
-  size: 46, 46
-  orig: 46, 46
-  offset: 0, 0
-  index: -1
 soldier_standing_left
   rotate: false
-  xy: 1, 7
+  xy: 1, 103
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 soldier_standing_north
   rotate: false
-  xy: 193, 103
+  xy: 1, 69
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 soldier_standing_right
   rotate: false
-  xy: 35, 7
+  xy: 35, 103
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 soldier_standing_south
   rotate: false
-  xy: 193, 69
+  xy: 1, 35
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 soldier_walking_left1
   rotate: false
-  xy: 227, 103
+  xy: 35, 69
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 soldier_walking_left2
   rotate: false
-  xy: 69, 7
+  xy: 69, 103
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_ne1
+  rotate: false
+  xy: 1, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_ne2
+  rotate: false
+  xy: 35, 35
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 soldier_walking_north1
   rotate: false
-  xy: 227, 69
+  xy: 69, 69
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 soldier_walking_north2
   rotate: false
-  xy: 261, 103
+  xy: 103, 103
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_nw1
+  rotate: false
+  xy: 35, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_nw2
+  rotate: false
+  xy: 69, 35
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 soldier_walking_right1
   rotate: false
-  xy: 103, 7
+  xy: 103, 69
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 soldier_walking_right2
   rotate: false
-  xy: 261, 69
+  xy: 137, 103
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_se1
+  rotate: false
+  xy: 69, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_se2
+  rotate: false
+  xy: 103, 35
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 soldier_walking_south1
   rotate: false
-  xy: 295, 103
+  xy: 137, 69
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 soldier_walking_south2
   rotate: false
-  xy: 137, 7
+  xy: 171, 103
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_sw1
+  rotate: false
+  xy: 103, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+soldier_walking_sw2
+  rotate: false
+  xy: 137, 35
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 zombie_left
   rotate: false
-  xy: 295, 69
+  xy: 171, 69
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-cross
-  rotate: false
-  xy: 193, 37
-  size: 32, 30
-  orig: 32, 30
-  offset: 0, 0
-  index: -1
 zombie_ne
   rotate: false
-  xy: 227, 35
+  xy: 205, 103
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 zombie_north
   rotate: false
-  xy: 261, 35
+  xy: 137, 1
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 zombie_nw
   rotate: false
-  xy: 295, 35
+  xy: 171, 35
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 zombie_right
   rotate: false
-  xy: 171, 3
+  xy: 205, 69
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 zombie_se
   rotate: false
-  xy: 205, 1
+  xy: 239, 103
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 zombie_south
   rotate: false
-  xy: 239, 1
+  xy: 171, 1
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 zombie_sw
   rotate: false
-  xy: 273, 1
+  xy: 205, 35
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
+cross
+  rotate: false
+  xy: 239, 71
+  size: 32, 30
+  orig: 32, 30
+  offset: 0, 0
+  index: -1
 bullet
   rotate: false
-  xy: 307, 23
+  xy: 205, 23
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
