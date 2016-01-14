@@ -119,7 +119,7 @@ public class Zombie extends Entity {
 
 
           //is running ne direction
-        } else if (velocity.y > 0 && velocity.x > 0) {
+        } else if (velocity.y > 0 && velocity.x > 0 && isFacingSE == false) {
             isFacingNE = true;
             isFacingWest = false;
             isFacingSouth = false;
@@ -130,7 +130,7 @@ public class Zombie extends Entity {
             isFacingSW = false;
       
             //if running in nw direction
-        } else if (velocity.y > 0 && velocity.x < 0) {
+        } else if (velocity.y > 0 && velocity.x < 0 && isFacingSW == false) {
             isFacingNW = true;
             isFacingWest = false;
             isFacingSouth = false;
@@ -141,7 +141,7 @@ public class Zombie extends Entity {
             isFacingSW = false;
          
         //if running se
-        } else if (velocity.y < 0 && velocity.x > 0) {
+        } else if (velocity.y < 0 && velocity.x > 0 && isFacingNE == false) {
             isFacingSE = true;
             isFacingWest = false;
             isFacingSouth = false;
