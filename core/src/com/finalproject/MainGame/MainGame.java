@@ -116,45 +116,45 @@ public class MainGame implements Screen {
         
         //collisions with blocks 
         // go through each block
-        for (Block b : theWorld.getBlocks()) {
-            // if player is hitting a block
-            if (player.isColliding(b)) {
-                // get overlapping amount
-                float overX = player.getOverlapX(b);
-                float overY = player.getOverlapY(b);
-
-                //just fixing y if not moving
-                if (player.getVelocityX() == 0) {
-                    // player is above the block
-                    if (player.getY() > b.getY()) {
-                        player.addToPosition(0, overY);
-                        player.setState(Player.State.STANDING);
-                    } else {
-                        player.addToPosition(0, -overY);
-                    }
-                    player.setVelocityY(0);
-                } else {
-                    // fix the smallest overlap
-                    if (overX < overY) {
-                        // left of the block
-                        if (player.getX() < b.getX()) {
-                            player.addToPosition(-overX, 0);
-                        } else {
-                            player.addToPosition(overX, 0);
-                        }
-                    } else {
-                        // above the block
-                        if (player.getY() > b.getY()) {
-                            player.addToPosition(0, overY);
-
-                        } else {
-                            player.addToPosition(0, -overY);
-                        }
-                        player.setVelocityY(0);
-                    }
-                }
-            }
-        }
+//        for (Block b : theWorld.getBlocks()) {
+//            // if player is hitting a block
+//            if (player.isColliding(b)) {
+//                // get overlapping amount
+//                float overX = player.getOverlapX(b);
+//                float overY = player.getOverlapY(b);
+//
+//                //just fixing y if not moving
+//                if (player.getVelocityX() == 0) {
+//                    // player is above the block
+//                    if (player.getY() > b.getY()) {
+//                        player.addToPosition(0, overY);
+//                        player.setState(Player.State.STANDING);
+//                    } else {
+//                        player.addToPosition(0, -overY);
+//                    }
+//                    player.setVelocityY(0);
+//                } else {
+//                    // fix the smallest overlap
+//                    if (overX < overY) {
+//                        // left of the block
+//                        if (player.getX() < b.getX()) {
+//                            player.addToPosition(-overX, 0);
+//                        } else {
+//                            player.addToPosition(overX, 0);
+//                        }
+//                    } else {
+//                        // above the block
+//                        if (player.getY() > b.getY()) {
+//                            player.addToPosition(0, overY);
+//
+//                        } else {
+//                            player.addToPosition(0, -overY);
+//                        }
+//                        player.setVelocityY(0);
+//                    }
+//                }
+//            }
+//        }
         
         if (player.isColliding(zombie)) {
                 // get overlapping amount
@@ -164,70 +164,70 @@ public class MainGame implements Screen {
                 //just fixing y if not moving
                 if (player.getVelocityX() == 0) {
                     // player is above the block
-                    if (player.getY() > zombie.getY()) {
-                     //   player.addToPosition(0, overY);
-                    } else {
+                    if (player.getY() > (32-zombie.getY())) {
+                        player.addToPosition(0, overY-32);
+                    } else if(player.getY() < zombie.getY()) {
                         
-                       // player.addToPosition(0, -overY);
+                        player.addToPosition(0, -overY);
                     }
                     player.setVelocityY(0);
                 } else {
                     // fix the smallest overlap
                     if (overX < overY) {
                         // left of the block
-                        if (player.getX() < zombie.getX()) {
+                        if (player.getX() > (32-zombie.getX())) {
+                            player.addToPosition((overX-32), 0);
+                        } else if(player.getX() < zombie.getX()) {
                             player.addToPosition(-overX, 0);
-                        } else {
-                          //  player.addToPosition(overX, 0);
                         }
                     } else {
                         // above the block
-                        if (player.getY() > zombie.getY()) {
-                            player.addToPosition(0, overY);
+                        if (player.getY() > (32-zombie.getY())) {
+                            player.addToPosition(0, (overY-32));
 
-                        } else {
-                           // player.addToPosition(0, -overY);
+                        } else if(player.getY() < zombie.getY()) {
+                            player.addToPosition(0, -overY);
                         }
                         player.setVelocityY(0);
                     }
                 }
             }
         
-        if (zombie.isColliding(player)) {
-                // get overlapping amount
-                float overX = zombie.getOverlapX(player);
-                float overY = zombie.getOverlapY(player);
-
-                //just fixing y if not moving
-                if (zombie.getVelocityX() == 0 && zombie.getVelocityY() == 0) {
-                    // player is above the block
-                    if (zombie.getY() > player.getY()) {
-                        zombie.addToPosition(0, overY);
-                    } else {
-                       // zombie.addToPosition(0, -overY);
-                    }
-                    zombie.setVelocityY(0);
-                } else {
-                    // fix the smallest overlap
-                    if (overX < overY) {
-                        // left of the block
-                        if (zombie.getX() < player.getX()) {
-                            zombie.addToPosition(-overX, 0);
-                        } else {
-                            zombie.addToPosition(overX, 0);
-                        }
-                    } else {
-                        // above the block
-                        if (zombie.getY() > player.getY()) {
-                            zombie.addToPosition(0, overY);
-
-                        } else {
-                            zombie.addToPosition(0, -overY);
-                        }
-                        zombie.setVelocityY(0);
-                    }
-                }
-            }
+//        if (zombie.isColliding(player)) {
+//                // get overlapping amount
+//                float overX = zombie.getOverlapX(player);
+//                float overY = zombie.getOverlapY(player);
+//
+//                //just fixing y if not moving
+//                if (zombie.getVelocityX() == 0 && zombie.getVelocityY() == 0) {
+//                    // player is above the block
+//                    if (zombie.getY() > player.getY()) {
+//                        zombie.addToPosition(0, overY);
+//                    } else {
+//                       // zombie.addToPosition(0, -overY);
+//                    }
+//                    zombie.setVelocityY(0);
+//                } else {
+//                    // fix the smallest overlap
+//                    if (overX < overY) {
+//                        // left of the block
+//                        if (zombie.getX() < player.getX()) {
+//                            zombie.addToPosition(-overX, 0);
+//                        } else {
+//                            zombie.addToPosition(overX, 0);
+//                        }
+//                    } else {
+//                        // above the block
+//                        if (zombie.getY() > player.getY()) {
+//                            zombie.addToPosition(0, overY);
+//
+//                        } else {
+//                            zombie.addToPosition(0, -overY);
+//                        }
+//                        zombie.setVelocityY(0);
+//                    }
+//                }
+//            }
         
         
         // draw the screen

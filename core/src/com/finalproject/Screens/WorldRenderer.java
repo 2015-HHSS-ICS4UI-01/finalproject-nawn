@@ -50,9 +50,10 @@ public class WorldRenderer {
         batch = new SpriteBatch();
 
         // move the x position of the camera
-        camera.position.x = V_WIDTH / 2f;
+        camera.position.x = world.getPlayer().getWidth() / 2f;
         // move the y position of the camera
-        camera.position.y = V_HEIGHT / 2f;
+        camera.position.y = world.getPlayer().getHeight() / 2f;
+        
         // update the camera
         camera.update();
 
