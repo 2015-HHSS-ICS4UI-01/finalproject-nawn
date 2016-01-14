@@ -162,28 +162,28 @@ public class MainGame implements Screen {
                 float overY = player.getOverlapY(zombie);
 
                 //just fixing y if not moving
-                if (player.getVelocityX() == 0) {
+                if (player.getVelocityX() == 0 && player.getVelocityY() == 0 ) {
                     // player is above the block
-                    if (player.getY() > (32-zombie.getY())) {
-                        player.addToPosition(0, overY-32);
+                    if (player.getY() > (zombie.getY())) {
+                        player.addToPosition(0, overY);
                     } else if(player.getY() < zombie.getY()) {
                         
-                        player.addToPosition(0, -overY);
+                        player.addToPosition(0, -overY );
                     }
                     player.setVelocityY(0);
                 } else {
                     // fix the smallest overlap
                     if (overX < overY) {
                         // left of the block
-                        if (player.getX() > (32-zombie.getX())) {
-                            player.addToPosition((overX-32), 0);
+                        if (player.getX() > (zombie.getX())) {
+                            player.addToPosition((overX), 0);
                         } else if(player.getX() < zombie.getX()) {
                             player.addToPosition(-overX, 0);
                         }
                     } else {
                         // above the block
-                        if (player.getY() > (32-zombie.getY())) {
-                            player.addToPosition(0, (overY-32));
+                        if (player.getY() > (zombie.getY())) {
+                            player.addToPosition(0, (overY));
 
                         } else if(player.getY() < zombie.getY()) {
                             player.addToPosition(0, -overY);
