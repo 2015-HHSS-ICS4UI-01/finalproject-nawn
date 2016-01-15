@@ -38,7 +38,7 @@ public class MainGame implements Screen {
         player = theWorld.getPlayer();
         renderer = new WorldRenderer(theWorld);
         zombie = theWorld.getZombie();
-        bullet = theWorld.getBullet();
+     //   bullet = theWorld.getBullet();
     }
 
     @Override
@@ -49,11 +49,11 @@ public class MainGame implements Screen {
     @Override
     // game loop
     public void render(float deltaTime) {
-        if(Gdx.input.isKeyPressed(Keys.SPACE)){
+       // if(Gdx.input.isKeyPressed(Keys.SPACE)){
            //Bullet bullet = new Bullet(player.getX(),player.getY(),16,16);
            //bullet.setVelocityX(2f);
            //bullet.update(deltaTime);
-        }
+       // }
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
             player.setVelocityX(2f);

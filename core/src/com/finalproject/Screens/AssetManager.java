@@ -42,7 +42,7 @@ public class AssetManager {
     public static TextureRegion zombieNE;
     public static TextureRegion zombieSE;
     public static TextureRegion zombieSW;
-    public static TextureRegion bullet;
+   // public static TextureRegion bullet;
     public static TextureRegion cross;
     
     //initialize all the standing positions for the zombie
@@ -74,7 +74,7 @@ public class AssetManager {
         zombieNE = atlas.findRegion("zombie_nw");
         zombieSW = atlas.findRegion("zombie_sw");
         zombieSE = atlas.findRegion("zombie_se");
-        bullet = atlas.findRegion("cross");
+      //  bullet = atlas.findRegion("cross");
         
         //crosshair 
         cross = atlas.findRegion("cross");

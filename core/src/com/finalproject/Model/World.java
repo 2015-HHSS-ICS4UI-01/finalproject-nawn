@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Array;
 public class World {
     
     private Array<Block> blocks;
-    private Bullet bullet;
+    //private Bullet bullet;
     private Player player;
     private Zombie[] zombies;
     private Zombie zombie;
@@ -26,7 +26,7 @@ public class World {
     private void demoLevel() {
         
         player = new Player(16, 16, 16, 16);
-        bullet = new Bullet(50,50,16,16);
+        //bullet = new Bullet(50,50,16,16);
 //        zombie = new Zombie(300, 300, 300, 300);
         for (int i = 0; i < 10; i++) {
             zombie = new Zombie(300,300,16,16);
@@ -49,9 +49,9 @@ public class World {
 
     }
     
-    public Bullet getBullet(){
-    return bullet;
-   }
+   // public Bullet getBullet(){
+   // return bullet;
+   //}
 
     public Player getPlayer() {
         return player;
