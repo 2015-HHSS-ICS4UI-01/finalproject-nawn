@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.finalproject.Model.Block;
+import com.finalproject.Model.Bullet;
 import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
 import com.finalproject.Model.Zombie;
@@ -33,6 +34,7 @@ public class WorldRenderer {
     private World world;
     private Player player;
     private Zombie zombie;
+    private Bullet bullet;
     
     private Viewport viewport;
     private OrthographicCamera camera;
@@ -45,6 +47,7 @@ public class WorldRenderer {
         world = w;
         player = world.getPlayer();
         zombie = world.getZombie();
+        bullet = world.getBullet();
         camera = new OrthographicCamera();
         viewport = new FitViewport(V_WIDTH, V_HEIGHT, camera);
         batch = new SpriteBatch();
@@ -89,10 +92,18 @@ public class WorldRenderer {
         
         mouseX = (int) this.getMousePosInGameWorldx();
         mouseY = (int) this.getMousePosInGameWorldy();
+        
+        bullet.setX(player.getX());
+        bullet.setY(player.getY());
        
         
         batch.draw(AssetManager.cross,mouseX-16,mouseY-15);
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+        batch.draw(AssetManager.bullet, bullet.getX(), bullet.getY());
+        bullet.setVelocityX(2f);
+        bullet.setVelocityY(2f);
         
+        }
 
         //if the player is standing
         if (player.getState() == Player.State.STANDING) {

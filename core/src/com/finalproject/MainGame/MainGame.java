@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.finalproject.Model.Block;
+import com.finalproject.Model.Bullet;
 import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
 import com.finalproject.Model.Zombie;
@@ -30,12 +31,14 @@ public class MainGame implements Screen {
     private Player player;
     private WorldRenderer renderer;
     private Zombie zombie;
+    private Bullet bullet;
     
     public MainGame() {
         theWorld = new World();
         player = theWorld.getPlayer();
         renderer = new WorldRenderer(theWorld);
         zombie = theWorld.getZombie();
+        bullet = theWorld.getBullet();
     }
 
     @Override
@@ -46,6 +49,11 @@ public class MainGame implements Screen {
     @Override
     // game loop
     public void render(float deltaTime) {
+        if(Gdx.input.isKeyPressed(Keys.SPACE)){
+           //Bullet bullet = new Bullet(player.getX(),player.getY(),16,16);
+           //bullet.setVelocityX(2f);
+           //bullet.update(deltaTime);
+        }
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
             player.setVelocityX(2f);
@@ -105,11 +113,11 @@ public class MainGame implements Screen {
             zombie.setVelocityY(0.5f);
         }else if(player.getVelocityY()<zombie.getY()){
             //move down
-            zombie.setVelocityY(-0.5f);
+           // zombie.setVelocityY(-0.5f);
         }else{
             zombie.setVelocityY(0);
         }
- 
+        
         zombie.update(deltaTime);
         player.update(deltaTime);    
         
@@ -189,6 +197,44 @@ public class MainGame implements Screen {
                             player.addToPosition(0, -overY);
                         }
                         player.setVelocityY(0);
+                    }
+                }
+            }
+        
+        //zombie colliding with player
+        if (zombie.isColliding(player)) {
+                // get overlapping amount
+                float overX = zombie.getOverlapX(player);
+                float overY = zombie.getOverlapY(player);
+
+                //just fixing y if not moving
+                if (zombie.getVelocityX() == 0 && zombie.getVelocityY() == 0 ) {
+                    // player is above the block
+                    if (zombie.getY() > (player.getY())) {
+                        zombie.addToPosition(0, overY);
+                    } else if(zombie.getY() < player.getY()) {
+                        
+                        zombie.addToPosition(0, -overY );
+                    }
+                    zombie.setVelocityY(0);
+                } else {
+                    // fix the smallest overlap
+                    if (overX < overY) {
+                        // left of the block
+                        if (zombie.getX() > (player.getX())) {
+                            zombie.addToPosition((overX), 0);
+                        } else if(zombie.getX() < player.getX()) {
+                            zombie.addToPosition(-overX, 0);
+                        }
+                    } else {
+                        // above the block
+                        if (zombie.getY() > (player.getY())) {
+                            zombie.addToPosition(0, (overY));
+
+                        } else if(zombie.getY() < player.getY()) {
+                            zombie.addToPosition(0, -overY);
+                        }
+                        zombie.setVelocityY(0);
                     }
                 }
             }

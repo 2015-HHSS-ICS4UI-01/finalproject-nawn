@@ -30,6 +30,14 @@ public abstract class Entity {
     public float getY() {
         return bounds.y;
     }
+    
+    public void setX(float x){
+        bounds.x = x;
+    }
+    
+    public void setY(float y){
+        bounds.y = y;
+    }
 
     public float getWidth() {
         return bounds.width;
