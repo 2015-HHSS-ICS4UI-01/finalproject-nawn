@@ -42,7 +42,7 @@ public class AssetManager {
     public static TextureRegion zombieNE;
     public static TextureRegion zombieSE;
     public static TextureRegion zombieSW;
-   // public static TextureRegion bullet;
+    public static TextureRegion bullet;
     public static TextureRegion cross;
     
     //initialize all the standing positions for the zombie
