@@ -15,8 +15,8 @@ public class Bullet extends Entity {
     
     
     
-    private int velocityx;
-    private int velocityy;
+    private float velocityx;
+    private float velocityy;
     
     
     
@@ -32,18 +32,18 @@ public class Bullet extends Entity {
     }
     
         public void update(float delta) {
-        super.setX(super.getX()+velocityx);
-        super.setY(super.getY()+velocityy);
+        
         
         }
     
-
+ public float getx(){
+     return super.getX();
+ }
+ 
+ public float gety(){
+     return super.getY();
+ }
+ 
         
-    public void setVelocityX(int x) {
-        velocityx = x;
-    }
-
-    public void setVelocityY(int y) {
-        velocityy = y;
-    }
+    
 }
