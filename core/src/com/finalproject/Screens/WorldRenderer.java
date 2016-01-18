@@ -19,6 +19,7 @@ import com.finalproject.Model.Bullet;
 import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
 import com.finalproject.Model.Zombie;
+import static com.finalproject.Screens.AssetManager.cross;
 
 /**
  *
@@ -88,10 +89,11 @@ public class WorldRenderer {
         player.setState(Player.State.STANDING);
         
         //crosshair
-        //Gdx.input.setCursorCatched(true);
+        
         
         mouseX = (int) this.getMousePosInGameWorldx();
         mouseY = (int) this.getMousePosInGameWorldy();
+        batch.draw(cross, mouseX, mouseY);
         
       //  bullet.setX(player.getX());
       //  bullet.setY(player.getY());
