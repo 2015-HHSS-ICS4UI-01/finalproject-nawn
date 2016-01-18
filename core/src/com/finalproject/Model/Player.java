@@ -37,7 +37,9 @@ public class Player extends Entity {
     private boolean isFacingSE;
     // animation state counter
     private float stateTime;
-
+    
+    private int health = 100;
+    
     public Player(float x, float y, float width, float height) {
         super(x, y, width, height);
         state = State.STANDING;
@@ -252,5 +254,12 @@ public class Player extends Entity {
     public boolean isFacingSW() {
         return isFacingSW;
     }
-
+    
+    public void setHealth(int x){
+        health = x;
+    }
+    
+    public int getHealth(){
+        return health;
+    }
 }

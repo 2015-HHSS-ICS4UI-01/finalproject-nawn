@@ -7,10 +7,12 @@ package com.finalproject.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -20,6 +22,7 @@ import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
 import com.finalproject.Model.Zombie;
 import static com.finalproject.Screens.AssetManager.cross;
+
 
 /**
  *
@@ -40,19 +43,23 @@ public class WorldRenderer {
     private Viewport viewport;
     private OrthographicCamera camera;
     private SpriteBatch batch;
-    
+    private ShapeRenderer shapeRenderer;
     private int mouseX;
     private int mouseY;
-
+    private int health;
+    
     public WorldRenderer(World w) {
         world = w;
         player = world.getPlayer();
         zombie = world.getZombie();
+        
+        health = world.getPlayer().getHealth();
+        
       //  bullet = world.getBullet();
         camera = new OrthographicCamera();
         viewport = new FitViewport(V_WIDTH, V_HEIGHT, camera);
         batch = new SpriteBatch();
-
+        shapeRenderer = new ShapeRenderer();
         // move the x position of the camera
         
         camera.position.x =  V_WIDTH / 2f;
@@ -78,13 +85,14 @@ public class WorldRenderer {
         camera.position.x = Math.max(world.getPlayer().getX(), V_WIDTH / 2);
         camera.position.y = Math.max(world.getPlayer().getY(), V_HEIGHT / 2);
         camera.update();
-
+        
+        shapeRenderer.setProjectionMatrix(camera.combined);
         // links the renderer to the camera
         batch.setProjectionMatrix(camera.combined);
-
+        
         // tells the renderer this is the list to draw
         batch.begin();
-
+         
         //initialize the starting state of the player
         player.setState(Player.State.STANDING);
         
@@ -106,7 +114,15 @@ public class WorldRenderer {
        // bullet.setVelocityY(2f);
         
       //  }
-
+        //health bar
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.GREEN);
+        shapeRenderer.rect(20, 550, 100, 20);
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.rect(20, 550, health, 20);
+        
+        
+     
         //if the player is standing
         if (player.getState() == Player.State.STANDING) {
             //check if hes facing south
@@ -164,7 +180,7 @@ public class WorldRenderer {
             }
         }
         
-        
+         
         
         //draw the zombie
         //if zombie facing N
@@ -236,6 +252,7 @@ public class WorldRenderer {
    
         // finished listing things to draw
         batch.end();
+        shapeRenderer.end();
     }
 
     public void resize(int width, int height) {
@@ -250,4 +267,6 @@ public class WorldRenderer {
  Vector3 n = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
  return n.y;
 }
+    
+  
 }

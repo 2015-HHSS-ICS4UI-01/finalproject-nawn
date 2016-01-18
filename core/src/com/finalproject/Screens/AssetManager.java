@@ -34,7 +34,7 @@ public class AssetManager {
     public static TextureRegion playerStandE;
     public static TextureRegion playerStandW;
 
-      public static TextureRegion zombieW;
+    public static TextureRegion zombieW;
     public static TextureRegion zombieE;
     public static TextureRegion zombieN;
     public static TextureRegion zombieS;

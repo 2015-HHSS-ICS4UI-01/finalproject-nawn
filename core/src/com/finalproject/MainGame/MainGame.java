@@ -33,12 +33,15 @@ public class MainGame implements Screen {
     private Zombie zombie;
     private Bullet bullet;
     
+   
+    
     public MainGame() {
         theWorld = new World();
         player = theWorld.getPlayer();
         renderer = new WorldRenderer(theWorld);
         zombie = theWorld.getZombie();
      //   bullet = theWorld.getBullet();
+       
     }
 
     @Override
@@ -166,6 +169,7 @@ public class MainGame implements Screen {
 //        }
         
         if (player.isColliding(zombie)) {
+            player.setHealth(player.getHealth()-10);
             zombie.setVelocityX(0);
             zombie.setVelocityY(0);
                 // get overlapping amount
@@ -183,7 +187,9 @@ public class MainGame implements Screen {
                     }
                     player.setVelocityY(0);
                     zombie.setVelocityY(0);
+                    
                 } else {
+                    player.setHealth(player.getHealth()-10);
                     // fix the smallest overlap
                     if (overX < overY) {
 
@@ -196,6 +202,8 @@ public class MainGame implements Screen {
                         }  
                         
                     } else {
+                        player.setHealth(player.getHealth()-10);
+                        
                         // above the block
                         if (player.getY() > (zombie.getY())) {
                             player.addToPosition(0, (overY));
