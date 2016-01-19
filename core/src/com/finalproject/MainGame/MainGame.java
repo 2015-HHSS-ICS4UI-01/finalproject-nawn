@@ -169,7 +169,7 @@ public class MainGame implements Screen {
 //                }
 //            }
 //        }
-        
+         
         if (player.isColliding(zombie)) {
             player.setHealth((int) (player.getHealth()-0.00001));
             zombie.setVelocityX(0);
