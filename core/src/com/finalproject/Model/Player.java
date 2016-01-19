@@ -38,7 +38,7 @@ public class Player extends Entity {
     // animation state counter
     private float stateTime;
     
-    private int health = 100;
+    private int health = 800;
     
     public Player(float x, float y, float width, float height) {
         super(x, y, width, height);
@@ -260,6 +260,11 @@ public class Player extends Entity {
     }
     
     public int getHealth(){
-        return health;
+        if(health > 0){
+            return health;
+        }else{
+            return 0;
+        }
+        
     }
 }

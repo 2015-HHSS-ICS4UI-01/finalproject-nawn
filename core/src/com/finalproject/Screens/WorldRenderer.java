@@ -116,11 +116,16 @@ public class WorldRenderer {
       //  }
         //health bar
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.GREEN);
-        shapeRenderer.rect(20, 550, 100, 20);
         shapeRenderer.setColor(Color.RED);
-        shapeRenderer.rect(20, 550, health, 20);
-        
+        shapeRenderer.rect(0, 580, 800, 20);
+        shapeRenderer.setColor(Color.GREEN);
+        if(player.getHealth() != 0){
+        shapeRenderer.rect(0, 580, player.getHealth(), 20);
+        }
+//        }else{ 
+//            //end game
+//        }
+                
         
      
         //if the player is standing

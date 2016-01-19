@@ -171,7 +171,7 @@ public class MainGame implements Screen {
 //        }
         
         if (player.isColliding(zombie)) {
-            player.setHealth(player.getHealth()-10);
+            player.setHealth((int) (player.getHealth()-0.00001));
             zombie.setVelocityX(0);
             zombie.setVelocityY(0);
                 // get overlapping amount
@@ -191,7 +191,7 @@ public class MainGame implements Screen {
                     zombie.setVelocityY(0);
                     
                 } else {
-                    player.setHealth(player.getHealth()-10);
+//                    player.setHealth(player.getHealth()-10);
                     // fix the smallest overlap
                     if (overX < overY) {
 
@@ -204,7 +204,7 @@ public class MainGame implements Screen {
                         }  
                         
                     } else {
-                        player.setHealth(player.getHealth()-10);
+//                        player.setHealth(player.getHealth()-10);
                         
                         // above the block
                         if (player.getY() > (zombie.getY())) {
