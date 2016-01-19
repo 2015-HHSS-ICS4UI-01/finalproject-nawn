@@ -22,6 +22,7 @@ import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
 import com.finalproject.Model.Zombie;
 import static com.finalproject.Screens.AssetManager.cross;
+import java.util.ArrayList;
 
 
 /**
@@ -37,7 +38,7 @@ public class WorldRenderer {
 
     private World world;
     private Player player;
-    private Zombie zombie;
+    private ArrayList<Zombie> zombie;
    // private Bullet bullet;
     
     private Viewport viewport;
@@ -51,7 +52,7 @@ public class WorldRenderer {
     public WorldRenderer(World w) {
         world = w;
         player = world.getPlayer();
-        zombie = world.getZombie();
+        zombie= world.getZombie();
         
         health = world.getPlayer().getHealth();
         
@@ -221,45 +222,48 @@ public class WorldRenderer {
 //            //draw the zombie SW picture
 //            batch.draw(AssetManager.zombieSW.getKeyFrame(zombie.getStateTime(), true), zombie.getX(), zombie.getY());
 //        }
-        if(zombie.isFacingNorth()){
+        for (int i = 0; i < world.getZombie().size() -1; i++) {
+            
+        
+        if(zombie.get(i).isFacingNorth()){
             //draw the zombie N picture
-            batch.draw(AssetManager.zombieN, zombie.getX(), zombie.getY());
+            batch.draw(AssetManager.zombieN, zombie.get(i).getX(), zombie.get(i).getY());
         }//if zombie is facing S
-        else if(zombie.isFacingSouth()){
+        else if(zombie.get(i).isFacingSouth()){
             
             //draw the zombie S picture
-            batch.draw(AssetManager.zombieS, zombie.getX(), zombie.getY());
+            batch.draw(AssetManager.zombieS, zombie.get(i).getX(),zombie.get(i).getY());
         }//if zombie is facing E
-        else if(zombie.isFacingEast()){
+        else if(zombie.get(i).isFacingEast()){
             //draw the zombie E picture
-            batch.draw(AssetManager.zombieE, zombie.getX(), zombie.getY());
+            batch.draw(AssetManager.zombieE, zombie.get(i).getX(), zombie.get(i).getY());
         }//if zombie facing W
-        else if(zombie.isFacingWest()){
+        else if(zombie.get(i).isFacingWest()){
             //draw the zombie W picture
-            batch.draw(AssetManager.zombieW, zombie.getX(), zombie.getY());
+            batch.draw(AssetManager.zombieW, zombie.get(i).getX(), zombie.get(i).getY());
         }//if zombie facing NE
-        else if(zombie.isFacingNE()){
+        else if(zombie.get(i).isFacingNE()){
             //draw the zombie NE picture
-            batch.draw(AssetManager.zombieNE, zombie.getX(), zombie.getY());
+            batch.draw(AssetManager.zombieNE, zombie.get(i).getX(), zombie.get(i).getY());
         }//if zombie is facing NW
-        else if(zombie.isFacingNW()){
+        else if(zombie.get(i).isFacingNW()){
             //draw the zombie NW picture
-            batch.draw(AssetManager.zombieNW, zombie.getX(), zombie.getY());
+            batch.draw(AssetManager.zombieNW, zombie.get(i).getX(), zombie.get(i).getY());
         }//if zombie is facing SE
-        else if(zombie.isFacingSE()){
+        else if(zombie.get(i).isFacingSE()){
             //draw the zombie SE picture
-            batch.draw(AssetManager.zombieSE, zombie.getX(), zombie.getY());
+            batch.draw(AssetManager.zombieSE, zombie.get(i).getX(),zombie.get(i).getY());
         }//if zombie facing SW
-        else if(zombie.isFacingSW()){
+        else if(zombie.get(i).isFacingSW()){
             //draw the zombie SW picture
-            batch.draw(AssetManager.zombieSW, zombie.getX(), zombie.getY());
+            batch.draw(AssetManager.zombieSW, zombie.get(i).getX(), zombie.get(i).getY());
         }
-   
+        }
         // finished listing things to draw
         batch.end();
         shapeRenderer.end();
+    
     }
-
     public void resize(int width, int height) {
         viewport.update(width, height);
     }

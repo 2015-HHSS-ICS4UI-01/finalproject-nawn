@@ -19,6 +19,7 @@ import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
 import com.finalproject.Model.Zombie;
 import com.finalproject.Screens.WorldRenderer;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,7 +31,7 @@ public class MainGame implements Screen {
     private World theWorld;
     private Player player;
     private WorldRenderer renderer;
-    private Zombie zombie;
+    private ArrayList<Zombie> zombie;
     private Bullet bullet;
     
    
@@ -83,50 +84,57 @@ public class MainGame implements Screen {
             player.setVelocityY(-2f);
             player.setVelocityX(-2f);
         }
+       
         
+        
+        
+        for (int i = 0; i < theWorld.getZombie().size()-1; i++) {
         //if player more right than zombie move right
-        if(player.getX() > zombie.getX()){
-            zombie.setVelocityX(0.5f);
-        }else if(player.getX() < zombie.getX()) {
+        if(player.getX() > zombie.get(i).getX()){
+            zombie.get(i).setVelocityX(0.5f);
+        }else if(player.getX() <zombie.get(i).getX()) {
             //move left
-            zombie.setVelocityX(-0.5f);
+            zombie.get(i).setVelocityX(-0.5f);
         }else{
-            zombie.setVelocityX(0);
+            zombie.get(i).setVelocityX(0);
         }
                 
         
+        
         //if player in ne position
-        if(player.getY() > zombie.getY() && player.getX() > zombie.getX()){
-            zombie.setVelocityX(0.5f);
-            zombie.setVelocityY(0.5f);
+        if(player.getY() > zombie.get(i).getY() && player.getX() > zombie.get(i).getX()){
+            zombie.get(i).setVelocityX(0.5f);
+            zombie.get(i).setVelocityY(0.5f);
         }
-        if(player.getY() < zombie.getY() && player.getX() > zombie.getX()){
-            zombie.setVelocityX(0.5f);
-            zombie.setVelocityY(-0.5f);
+        if(player.getY() < zombie.get(i).getY() && player.getX() > zombie.get(i).getX()){
+            zombie.get(i).setVelocityX(0.5f);
+            zombie.get(i).setVelocityY(-0.5f);
         }
-        if(player.getY() > zombie.getY() && player.getX() < zombie.getX()){
-            zombie.setVelocityX(-0.5f);
-            zombie.setVelocityY(0.5f);
+        if(player.getY() > zombie.get(i).getY() && player.getX() <zombie.get(i).getX()){
+            zombie.get(i).setVelocityX(-0.5f);
+            zombie.get(i).setVelocityY(0.5f);
         }
-        if(player.getY() < zombie.getY() && player.getX() < zombie.getX()){
-            zombie.setVelocityX(-0.5f);
-            zombie.setVelocityY(-0.5f);
+        if(player.getY() < zombie.get(i).getY() && player.getX() < zombie.get(i).getX()){
+            zombie.get(i).setVelocityX(-0.5f);
+          zombie.get(i).setVelocityY(-0.5f);
         }
         
         //if player is higher than zombie move up
         
-        if(player.getY() > zombie.getY()){
-            zombie.setVelocityY(0.5f);
-        }else if(player.getVelocityY()<zombie.getY()){
+        if(player.getY() > zombie.get(i).getY()){
+            zombie.get(i).setVelocityY(0.5f);
+        }else if(player.getVelocityY()<zombie.get(i).getY()){
             //move down
            // zombie.setVelocityY(-0.5f);
         }else{
-            zombie.setVelocityY(0);
+            zombie.get(i).setVelocityY(0);
         }
         
-        zombie.update(deltaTime);
+        zombie.get(i).update(deltaTime);
+        }
         player.update(deltaTime);    
         
+        collisions();
         
         //collisions with blocks 
         // go through each block
@@ -169,55 +177,8 @@ public class MainGame implements Screen {
 //                }
 //            }
 //        }
-         
-        if (player.isColliding(zombie)) {
-            player.setHealth((int) (player.getHealth()-0.00001));
-            zombie.setVelocityX(0);
-            zombie.setVelocityY(0);
-                // get overlapping amount
-                float overX = player.getOverlapX(zombie);
-                float overY = player.getOverlapY(zombie);
-
-                //just fixing y if not moving
-                if (player.getVelocityX() == 0 && player.getVelocityY() == 0 ) {
-                    // player is above the block
-                    if (player.getY() > (zombie.getY())) {
-                        player.addToPosition(0, overY);
-                    } else if(player.getY() < zombie.getY()) {
-                        
-                        player.addToPosition(0, -overY );
-                    }
-                    player.setVelocityY(0);
-                    zombie.setVelocityY(0);
-                    
-                } else {
-//                    player.setHealth(player.getHealth()-10);
-                    // fix the smallest overlap
-                    if (overX < overY) {
-
-                        
-                        // left of the block
-                        if (player.getX() > (zombie.getX())) {
-                            player.addToPosition((overX), 0);
-                        } else if(player.getX() < zombie.getX()) {
-                            player.addToPosition(-overX, 0);
-                        }  
-                        
-                    } else {
-//                        player.setHealth(player.getHealth()-10);
-                        
+       
                         // above the block
-                        if (player.getY() > (zombie.getY())) {
-                            player.addToPosition(0, (overY));
-
-                        } else if(player.getY() < zombie.getY()) {
-                            player.addToPosition(0, -overY);
-                        }
-                        player.setVelocityY(0);
-                        zombie.setVelocityY(0);
-                    }
-                }
-            }
                
         // draw the screen
         renderer.render(deltaTime);
@@ -247,4 +208,61 @@ public class MainGame implements Screen {
     public void dispose() {
 
     }
+    
+    public void collisions(){
+        
+        for (int i = 0; i < theWorld.getZombie().size()-1; i++) {
+            
+        
+        if (player.isColliding(zombie.get(i))) {
+            player.setHealth((int) (player.getHealth()-0.00001));
+            zombie.get(i).setVelocityX(0);
+            zombie.get(i).setVelocityY(0);
+                // get overlapping amount
+                float overX = player.getOverlapX(zombie.get(i));
+                float overY = player.getOverlapY(zombie.get(i));
+
+                //just fixing y if not moving
+                if (player.getVelocityX() == 0 && player.getVelocityY() == 0 ) {
+                    // player is above the block
+                    if (player.getY() > (zombie.get(i).getY())) {
+                        player.addToPosition(0, overY);
+                    } else if(player.getY() < zombie.get(i).getY()) {
+                        
+                        player.addToPosition(0, -overY );
+                    }
+                    player.setVelocityY(0);
+                    zombie.get(i).setVelocityY(0);
+                    
+                } else {
+//                    player.setHealth(player.getHealth()-10);
+                    // fix the smallest overlap
+                    if (overX < overY) {
+
+                        
+                        // left of the block
+                        if (player.getX() > (zombie.get(i).getX())) {
+                            player.addToPosition((overX), 0);
+                        } else if(player.getX() < zombie.get(i).getX()) {
+                            player.addToPosition(-overX, 0);
+                        }  
+                        
+                    } else {
+//                        player.setHealth(player.getHealth()-10);
+                        
+                        // above the block
+                        if (player.getY() > (zombie.get(i).getY())) {
+                            player.addToPosition(0, (overY));
+
+                        } else if(player.getY() < zombie.get(i).getY()) {
+                            player.addToPosition(0, -overY);
+                        }
+                        player.setVelocityY(0);
+                        zombie.get(i).setVelocityY(0);
+                    }
+                }
+    }
+        }
+    
+}
 }

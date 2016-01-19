@@ -72,6 +72,12 @@ public class Zombie extends Entity {
         }
         addToPosition(velocity.x, velocity.y);
         
+        
+        
+//        for (int i = 0; i < world.getZombie().size() - 1; i++) {
+//            
+//        
+      
         //if he is moving to the right
       // moving to the right
         if (velocity.x < 0 && velocity.y == 0) {
@@ -255,8 +261,8 @@ public class Zombie extends Entity {
 //            stateTime = 0;
 //        }
 //       
-    
-    
+//    }
+//    
     public void setVelocityX(float x) {
         velocity.x = x;
     }
