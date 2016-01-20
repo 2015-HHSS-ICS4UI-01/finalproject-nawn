@@ -34,7 +34,9 @@ public class World {
 //        zombie = new Zombie(300, 300, 300, 300);
         for (int i = 0; i <= 10; i++) {
             Zombie a = new Zombie(300,320 * i,16,16);
+            Zombie b = new Zombie(30 *i,320 * i,16,16);
             zombie.add(a);
+            zombie.add(b);
         }
      
         // blocks along the floor
