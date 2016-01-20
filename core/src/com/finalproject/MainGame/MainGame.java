@@ -320,6 +320,107 @@ public class MainGame implements Screen {
                     }
                 }
             }
+            
+            
+            for (int j = 0; j < i ; j++) {
+                
+                if (player.isColliding(zombie.get(j))) {
+                
+                zombie.get(j).setVelocityX(0);
+                zombie.get(j).setVelocityY(0);
+                // get overlapping amount
+                float overX = player.getOverlapX(zombie.get(j));
+                float overY = player.getOverlapY(zombie.get(j));
+
+                //just fixing y if not moving
+                if (player.getVelocityX() == 0 && player.getVelocityY() == 0) {
+                    // player is above the block
+                    if (player.getY() > (zombie.get(j).getY())) {
+                        player.addToPosition(0, overY);
+                    } else if (player.getY() < zombie.get(j).getY()) {
+
+                        player.addToPosition(0, -overY);
+                    }
+                    player.setVelocityY(0);
+                    zombie.get(j).setVelocityY(0);
+
+                } else {
+//                    player.setHealth(player.getHealth()-10);
+                    // fix the smallest overlap
+                    if (overX < overY) {
+
+                        // left of the block
+                        if (player.getX() > (zombie.get(j).getX())) {
+                            player.addToPosition((overX), 0);
+                        } else if (player.getX() < zombie.get(j).getX()) {
+                            player.addToPosition(-overX, 0);
+                        }
+
+                    } else {
+//                        player.setHealth(player.getHealth()-10);
+
+                        // above the block
+                        if (player.getY() > (zombie.get(j).getY())) {
+                            player.addToPosition(0, (overY));
+
+                        } else if (player.getY() < zombie.get(j).getY()) {
+                            player.addToPosition(0, -overY);
+                        }
+                        player.setVelocityY(0);
+                        zombie.get(j).setVelocityY(0);
+                    }
+                }
+            }
+                
+            
+            if (zombie.get(j).isColliding(zombie.get(i))) {
+               
+                zombie.get(i).setVelocityX(0);
+                zombie.get(i).setVelocityY(0);
+                // get overlapping amount
+                float overX = zombie.get(j).getOverlapX(zombie.get(i));
+                float overY = zombie.get(j).getOverlapY(zombie.get(i));
+
+                //just fixing y if not moving
+                if (zombie.get(j).getVelocityX() == 0 && zombie.get(j).getVelocityY() == 0) {
+                    // player is above the block
+                    if (zombie.get(j).getY() > (zombie.get(i).getY())) {
+                        zombie.get(j).addToPosition(0, overY);
+                    } else if (zombie.get(j).getY() < zombie.get(i).getY()) {
+
+                        zombie.get(j).addToPosition(0, -overY);
+                    }
+                    zombie.get(j).setVelocityY(0);
+                    zombie.get(i).setVelocityY(0);
+
+                } else {
+//                    player.setHealth(player.getHealth()-10);
+                    // fix the smallest overlap
+                    if (overX < overY) {
+
+                        // left of the block
+                        if (zombie.get(j).getX() > (zombie.get(i).getX())) {
+                            zombie.get(j).addToPosition((overX), 0);
+                        } else if (zombie.get(j).getX() < zombie.get(i).getX()) {
+                            zombie.get(j).addToPosition(-overX, 0);
+                        }
+
+                    } else {
+//                        player.setHealth(player.getHealth()-10);
+
+                        // above the block
+                        if (zombie.get(j).getY() > (zombie.get(i).getY())) {
+                            zombie.get(j).addToPosition(0, (overY));
+
+                        } else if (zombie.get(j).getY() < zombie.get(i).getY()) {
+                            zombie.get(j).addToPosition(0, -overY);
+                        }
+                        zombie.get(j).setVelocityY(0);
+                        zombie.get(i).setVelocityY(0);
+                    }
+                }
+            }
+            }
         }
 
     }
