@@ -20,7 +20,7 @@ public class Zombie extends Entity {
     //make variables to communicate with other class
     private World world;
     private Player player;
-    
+
     // movement variables
     private Vector2 velocity;
     private Vector2 acceleration;
@@ -33,20 +33,17 @@ public class Zombie extends Entity {
     private boolean isFacingNE;
     private boolean isFacingSW;
     private boolean isFacingSE;
-    
+
     private boolean isAlive;
     // animation state counter
     private float stateTime;
 
-    
     public Zombie(float x, float y, float width, float height) {
         super(x, y, width, height);
 
-        
-
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 0);
-     
+
         isFacingWest = false;
         isFacingSouth = false;
         isFacingEast = false;
@@ -71,8 +68,8 @@ public class Zombie extends Entity {
             velocity.y = 0;
         }
         addToPosition(velocity.x, velocity.y);
-     
-      // moving to the left
+
+        // moving to the left
         if (velocity.x < 0 && velocity.y == 0) {
             isFacingWest = true;
             isFacingSouth = false;
@@ -82,7 +79,7 @@ public class Zombie extends Entity {
             isFacingNW = false;
             isFacingSE = false;
             isFacingSW = false;
-       
+
             //moving right
         } else if (velocity.x > 0 && velocity.y == 0) {
             isFacingWest = false;
@@ -93,7 +90,7 @@ public class Zombie extends Entity {
             isFacingNW = false;
             isFacingSE = false;
             isFacingSW = false;
-      
+
             //moving south
         } else if (velocity.y < 0 && velocity.x == 0) {
             isFacingSouth = true;
@@ -104,7 +101,7 @@ public class Zombie extends Entity {
             isFacingNW = false;
             isFacingSE = false;
             isFacingSW = false;
-    
+
             //moving up
         } else if (velocity.y > 0 && velocity.x == 0) {
             isFacingNorth = true;
@@ -116,9 +113,8 @@ public class Zombie extends Entity {
             isFacingSE = false;
             isFacingSW = false;
 
-
-          //is running ne direction
-        } else if (velocity.y > 0 && velocity.x > 0 ) {
+            //is running ne direction
+        } else if (velocity.y > 0 && velocity.x > 0) {
             isFacingNE = true;
             isFacingWest = false;
             isFacingSouth = false;
@@ -127,9 +123,9 @@ public class Zombie extends Entity {
             isFacingNW = false;
             isFacingSE = false;
             isFacingSW = false;
-      
+
             //if running in nw direction
-        } else if (velocity.y > 0 && velocity.x < 0 ) {
+        } else if (velocity.y > 0 && velocity.x < 0) {
             isFacingNW = true;
             isFacingWest = false;
             isFacingSouth = false;
@@ -138,9 +134,9 @@ public class Zombie extends Entity {
             isFacingNE = false;
             isFacingSE = false;
             isFacingSW = false;
-         
-        //if running se
-        } else if (velocity.y < 0 && velocity.x > 0 ) {
+
+            //if running se
+        } else if (velocity.y < 0 && velocity.x > 0) {
             isFacingSE = true;
             isFacingWest = false;
             isFacingSouth = false;
@@ -149,8 +145,8 @@ public class Zombie extends Entity {
             isFacingNE = false;
             isFacingNW = false;
             isFacingSW = false;
-      
-           //if running sw
+
+            //if running sw
         } else if (velocity.y < 0 && velocity.x < 0) {
             isFacingSW = true;
             isFacingWest = false;
@@ -160,10 +156,11 @@ public class Zombie extends Entity {
             isFacingNE = false;
             isFacingNW = false;
             isFacingSE = false;
-          
-            } 
-            
-        }     
+
+        }
+
+    }
+
     public void setVelocityX(float x) {
         velocity.x = x;
     }
@@ -215,9 +212,13 @@ public class Zombie extends Entity {
     public boolean isFacingSW() {
         return isFacingSW;
     }
-    
-    public boolean isAlive(){
+
+    public boolean isAlive() {
         return isAlive;
+    }
+    
+    public int getNumberZombies(){
+        return world.getZombie().size();
     }
 
 }

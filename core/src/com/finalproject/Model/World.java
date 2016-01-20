@@ -13,30 +13,37 @@ import java.util.ArrayList;
  * @author vonhn
  */
 public class World {
-    
+
     private Array<Block> blocks;
     //private Bullet bullet;
     private Player player;
     private ArrayList<Zombie> zombie;
-  
+
     private World w;
+
     public World() {
         blocks = new Array<Block>();
         zombie = new ArrayList<Zombie>();
         demoLevel();
-        
+
     }
 
     private void demoLevel() {
-        
+
         player = new Player(16, 16, 16, 16);
         //bullet = new Bullet(50,50,16,16);
 //        zombie = new Zombie(300, 300, 300, 300);
-        for (int i = 0; i <= 10; i++) {
-            Zombie a = new Zombie(300,320 * i,16,16);
+        for (int i = 0; i <= 2; i++) {
+            Zombie a = new Zombie(300, 640 * (i * 10), 16, 16);
+            Zombie b = new Zombie(-20 * (i * 10), 70, 16, 16);
+            Zombie c = new Zombie(800 * (i * 10), 100, 16, 16);
+            Zombie d = new Zombie(400, -20 * (i * 10), 16, 16);
             zombie.add(a);
+            zombie.add(b);
+            zombie.add(c);
+            zombie.add(d);
         }
-     
+
         // blocks along the floor
 //        for (int i = 0; i < 50; i++) {
 //            Block a = new Block(0, i * 16, 16, 16);
@@ -48,13 +55,12 @@ public class World {
 //            blocks.add(c);
 //            blocks.add(d);
 //        }
-
     }
 
     public void update(float delta) {
 
     }
-    
+
     public Player getPlayer() {
         return player;
     }
@@ -65,6 +71,6 @@ public class World {
 
     public ArrayList<Zombie> getZombie() {
         return zombie;
-       
+
     }
 }
