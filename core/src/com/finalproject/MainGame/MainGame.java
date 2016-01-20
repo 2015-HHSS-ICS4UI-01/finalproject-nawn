@@ -164,35 +164,35 @@ public class MainGame implements Screen {
             
         //if player more right than zombie move right
         if(player.getX() > zombie.get(i).getX()){
-            zombie.get(i).setVelocityX(0.5f);
+            zombie.get(i).setVelocityX(i*0.5f);
         }else if(player.getX() <zombie.get(i).getX()) {
             //move left
-            zombie.get(i).setVelocityX(-0.5f);
+            zombie.get(i).setVelocityX(i*-0.5f);
         }else{
             zombie.get(i).setVelocityX(0);
         }
         //if player in ne position
         if(player.getY() > zombie.get(i).getY() && player.getX() > zombie.get(i).getX()){
-            zombie.get(i).setVelocityX(0.5f);
-            zombie.get(i).setVelocityY(0.5f);
+            zombie.get(i).setVelocityX(i*0.5f);
+            zombie.get(i).setVelocityY(i*0.5f);
         }
         if(player.getY() < zombie.get(i).getY() && player.getX() > zombie.get(i).getX()){
-            zombie.get(i).setVelocityX(0.5f);
-            zombie.get(i).setVelocityY(-0.5f);
+            zombie.get(i).setVelocityX(i*0.5f);
+            zombie.get(i).setVelocityY(i*-0.5f);
         }
         if(player.getY() > zombie.get(i).getY() && player.getX() <zombie.get(i).getX()){
-            zombie.get(i).setVelocityX(-0.5f);
-            zombie.get(i).setVelocityY(0.5f);
+            zombie.get(i).setVelocityX(i*-0.5f);
+            zombie.get(i).setVelocityY(i*0.5f);
         }
         if(player.getY() < zombie.get(i).getY() && player.getX() < zombie.get(i).getX()){
-            zombie.get(i).setVelocityX(-0.5f);
-          zombie.get(i).setVelocityY(-0.5f);
+            zombie.get(i).setVelocityX(i*-0.5f);
+          zombie.get(i).setVelocityY(i*-0.5f);
         }
         
         //if player is higher than zombie move up
         
         if(player.getY() > zombie.get(i).getY()){
-            zombie.get(i).setVelocityY(0.5f);
+            zombie.get(i).setVelocityY(i*0.5f);
         }else if(player.getVelocityY()<zombie.get(i).getY()){
             //move down
            // zombie.setVelocityY(-0.5f);
