@@ -38,7 +38,7 @@ public class Player extends Entity {
     // animation state counter
     private float stateTime;
     
-    private int health = 800;
+    private int health = 770;
     
     public Player(float x, float y, float width, float height) {
         super(x, y, width, height);
@@ -46,7 +46,7 @@ public class Player extends Entity {
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 0);
         //make north true so that the player will start by facing north
-        isFacingNorth = true;
+        isFacingNorth = false;
         isFacingWest = false;
         isFacingSouth = false;
         isFacingEast = false;

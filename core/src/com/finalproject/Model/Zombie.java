@@ -71,15 +71,8 @@ public class Zombie extends Entity {
             velocity.y = 0;
         }
         addToPosition(velocity.x, velocity.y);
-        
-        
-        
-//        for (int i = 0; i < world.getZombie().size() - 1; i++) {
-//            
-//        
-      
-        //if he is moving to the right
-      // moving to the right
+     
+      // moving to the left
         if (velocity.x < 0 && velocity.y == 0) {
             isFacingWest = true;
             isFacingSouth = false;
@@ -169,100 +162,8 @@ public class Zombie extends Entity {
             isFacingSE = false;
           
             } 
-            //not moving
-        } 
-        //go towards player
-//        if (player.getX() > this.getX()) {
-//            isFacingEast = true;
-//            isFacingWest = false;
-//            isFacingSouth = false;
-//            isFacingNorth = false;
-//            isFacingNE = false;
-//            isFacingNW = false;
-//            isFacingSE = false;
-//            isFacingSW = false;
-//            stateTime = 0;
-//        }//zombie facing West
-//        else if (player.getX() < this.getX()) {
-//            isFacingWest = true;
-//            isFacingSouth = false;
-//            isFacingEast = false;
-//            isFacingNorth = false;
-//            isFacingNE = false;
-//            isFacingNW = false;
-//            isFacingSE = false;
-//            isFacingSW = false;
-//            stateTime = 0;
-//        }//zombie facing North
-//        else if (player.getY() > this.getY()) {
-//            isFacingWest = false;
-//            isFacingSouth = false;
-//            isFacingEast = false;
-//            isFacingNorth = true;
-//            isFacingNE = false;
-//            isFacingNW = false;
-//            isFacingSE = false;
-//            isFacingSW = false;
-//            stateTime = 0;
-//        }//zombie facing South
-//        else if (player.getY() < this.getY()) {
-//            isFacingWest = false;
-//            isFacingSouth = true;
-//            isFacingEast = false;
-//            isFacingNorth = false;
-//            isFacingNE = false;
-//            isFacingNW = false;
-//            isFacingSE = false;
-//            isFacingSW = false;
-//            stateTime = 0;
-//        }//zombie facing NE
-//        else if (player.getX() > this.getX() && player.getY() > this.getY()) {
-//            isFacingWest = false;
-//            isFacingSouth = false;
-//            isFacingEast = false;
-//            isFacingNorth = false;
-//            isFacingNE = true;
-//            isFacingNW = false;
-//            isFacingSE = false;
-//            isFacingSW = false;
-//            stateTime = 0;
-//        }//zombie facing NW
-//        else if (player.getX() < this.getX() && player.getY() > this.getY()) {
-//            isFacingWest = false;
-//            isFacingSouth = false;
-//            isFacingEast = false;
-//            isFacingNorth = false;
-//            isFacingNE = false;
-//            isFacingNW = true;
-//            isFacingSE = false;
-//            isFacingSW = false;
-//            stateTime = 0;
-//        }//zombie facing SW
-//        else if (player.getX() < this.getX() && player.getY() < this.getY()) {
-//            isFacingWest = false;
-//            isFacingSouth = false;
-//            isFacingEast = false;
-//            isFacingNorth = false;
-//            isFacingNE = false;
-//            isFacingNW = false;
-//            isFacingSE = false;
-//            isFacingSW = true;
-//            stateTime = 0;
-//        }//zombie facing SE
-//        else if (player.getX() > this.getX() && player.getY() < this.getY()) {
-//            isFacingWest = false;
-//            isFacingSouth = false;
-//            isFacingEast = false;
-//            isFacingNorth = false;
-//            isFacingNE = false;
-//            isFacingNW = false;
-//            isFacingSE = true;
-//            isFacingSW = false;
-//            stateTime = 0;
-//        }
-//       
-//    }
-//    
+            
+        }     
     public void setVelocityX(float x) {
         velocity.x = x;
     }

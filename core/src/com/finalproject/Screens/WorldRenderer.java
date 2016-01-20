@@ -83,8 +83,8 @@ public class WorldRenderer {
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // update the camera
-        camera.position.x = Math.max(world.getPlayer().getX(), V_WIDTH / 2);
-        camera.position.y = Math.max(world.getPlayer().getY(), V_HEIGHT / 2);
+//        camera.position.x = Math.max(world.getPlayer().getX(), V_WIDTH / 2);
+//        camera.position.y = Math.max(world.getPlayer().getY(), V_HEIGHT / 2);
         camera.update();
         
         shapeRenderer.setProjectionMatrix(camera.combined);
@@ -104,17 +104,6 @@ public class WorldRenderer {
         mouseY = (int) this.getMousePosInGameWorldy();
         batch.draw(cross, mouseX, mouseY);
         
-      //  bullet.setX(player.getX());
-      //  bullet.setY(player.getY());
-       
-        
-      //  batch.draw(AssetManager.cross,mouseX-16,mouseY-15);
-      //  if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-      //  batch.draw(AssetManager.bullet, bullet.getX(), bullet.getY());
-      //  bullet.setVelocityX(2f);
-       // bullet.setVelocityY(2f);
-        
-      //  }
         //health bar
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.RED);
@@ -122,12 +111,7 @@ public class WorldRenderer {
         shapeRenderer.setColor(Color.GREEN);
         if(player.getHealth() != 0){
         shapeRenderer.rect(0, 580, player.getHealth(), 20);
-        }
-//        }else{ 
-//            //end game
-//        }
-                
-        
+        }      
      
         //if the player is standing
         if (player.getState() == Player.State.STANDING) {
@@ -148,7 +132,6 @@ public class WorldRenderer {
                 batch.draw(AssetManager.playerStandW, player.getX(), player.getY());
             }
             
-            //commit
         } //check if hes running
         else if (player.getState() == Player.State.RUNNING) {
             //check if hes facing south
@@ -186,45 +169,8 @@ public class WorldRenderer {
             }
         }
         
-         
-        
-        //draw the zombie
-        //if zombie facing N
-//        if(zombie.isFacingNorth()){
-//            //draw the zombie N picture
-//            batch.draw(AssetManager.zombieN.getKeyFrame(zombie.getStateTime(), true), zombie.getX(), zombie.getY());
-//        }//if zombie is facing S
-//        else if(zombie.isFacingSouth()){
-//            //draw the zombie S picture
-//            batch.draw(AssetManager.zombieS.getKeyFrame(zombie.getStateTime(), true), zombie.getX(), zombie.getY());
-//        }//if zombie is facing E
-//        else if(zombie.isFacingEast()){
-//            //draw the zombie E picture
-//            batch.draw(AssetManager.zombieE.getKeyFrame(zombie.getStateTime(), true), zombie.getX(), zombie.getY());
-//        }//if zombie facing W
-//        else if(zombie.isFacingWest()){
-//            //draw the zombie W picture
-//            batch.draw(AssetManager.zombieW.getKeyFrame(zombie.getStateTime(), true), zombie.getX(), zombie.getY());
-//        }//if zombie facing NE
-//        else if(zombie.isFacingNE()){
-//            //draw the zombie NE picture
-//            batch.draw(AssetManager.zombieNE.getKeyFrame(zombie.getStateTime(), true), zombie.getX(), zombie.getY());
-//        }//if zombie is facing NW
-//        else if(zombie.isFacingNW()){
-//            //draw the zombie NW picture
-//            batch.draw(AssetManager.zombieNW.getKeyFrame(zombie.getStateTime(), true), zombie.getX(), zombie.getY());
-//        }//if zombie is facing SE
-//        else if(zombie.isFacingSE()){
-//            //draw the zombie SE picture
-//            batch.draw(AssetManager.zombieSE.getKeyFrame(zombie.getStateTime(), true), zombie.getX(), zombie.getY());
-//        }//if zombie facing SW
-//        else if(zombie.isFacingSW()){
-//            //draw the zombie SW picture
-//            batch.draw(AssetManager.zombieSW.getKeyFrame(zombie.getStateTime(), true), zombie.getX(), zombie.getY());
-//        }
-        for (int i = 0; i < world.getZombie().size() -1; i++) {
-            
-        
+      //draw zombies
+        for (int i = 0; i < world.getZombie().size(); i++) {
         if(zombie.get(i).isFacingNorth()){
             //draw the zombie N picture
             batch.draw(AssetManager.zombieN, zombie.get(i).getX(), zombie.get(i).getY());
