@@ -15,7 +15,13 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.finalproject.Model.Block;
@@ -39,17 +45,25 @@ public class WorldRenderer {
     private World world;
     private Player player;
     private ArrayList<Zombie> zombie;
-   // private Bullet bullet;
+    // private Bullet bullet;
 
     private Viewport viewport;
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
+
     private int mouseX;
     private int mouseY;
+
     private int health;
+
+    private TiledMap map;
+    private OrthogonalTiledMapRenderer renderer;
+    private Array<Rectangle> collisionBlocks;
+    private int levelWidth;
     private int zombiesLeft;
     private BitmapFont text;
+
     public WorldRenderer(World w) {
         world = w;
         player = world.getPlayer();
@@ -64,8 +78,8 @@ public class WorldRenderer {
         batch = new SpriteBatch();
         text = new BitmapFont();
         shapeRenderer = new ShapeRenderer();
-        // move the x position of the camera
 
+        // move the x position of the camera
         camera.position.x = V_WIDTH / 2f;
         // move the y position of the camera
         camera.position.y = V_HEIGHT / 2f;
@@ -77,28 +91,70 @@ public class WorldRenderer {
         AssetManager.load();
 
         Gdx.graphics.setCursor(Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("Cursor.png")), 0, 0));
+
+        //map
+        map = new TmxMapLoader().load("zombieMap.tmx");
+        renderer = new OrthogonalTiledMapRenderer(map, 1f, batch);
+        renderer.setView(camera);
+
+        // create the collision rectangles for our map based on the map layer
+        collisionBlocks = new Array<Rectangle>();
+        // get collision layer
+        TiledMapTileLayer solidBlocks = (TiledMapTileLayer) map.getLayers().get("walls");
+
+        // get the dimensions of the map
+        int mapWidth = map.getProperties().get("width", Integer.class);
+        int mapHeight = map.getProperties().get("height", Integer.class);
+        int tileWidth = map.getProperties().get("tilewidth", Integer.class);
+        int tileHeight = map.getProperties().get("tileheight", Integer.class);
+
+        levelWidth = mapWidth;
+
+        // loop through all of the cells, find a tile and make a rectangle
+        for (int x = 0; x < mapWidth; x++) {
+            for (int y = 0; y < mapHeight; y++) {
+                if (solidBlocks.getCell(x, y) != null) {
+                    Rectangle r = new Rectangle(x, y, tileWidth, tileHeight);
+                    System.out.println("x: " + r.x + "   y: " + r.y + "   tw: " + tileWidth + "   th: " + tileHeight);
+                    collisionBlocks.add(r);
+                }
+            }
+        }
+
     }
 
     public void render(float delta) {
+
+        // get the dimensions of the map
+        int mapWidth = map.getProperties().get("width", Integer.class);
+        int mapHeight = map.getProperties().get("height", Integer.class);
+
         // clear the screen with black
         Gdx.gl20.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // update the camera
-//        camera.position.x = Math.max(world.getPlayer().getX(), V_WIDTH / 2);
-//        camera.position.y = Math.max(world.getPlayer().getY(), V_HEIGHT / 2);
+        //camera.position.x = Math.max(world.getPlayer().getX(), V_WIDTH / 2);
+        //camera.position.y = Math.max(world.getPlayer().getY(), V_HEIGHT / 2);
+        camera.position.x = Math.max(world.getPlayer().getX(), mapWidth / 2);
+        camera.position.y = Math.max(world.getPlayer().getY(), mapHeight / 2);
+
         camera.update();
 
-        
         shapeRenderer.setProjectionMatrix(camera.combined);
+
         // links the renderer to the camera
         batch.setProjectionMatrix(camera.combined);
 
-        // tells the renderer this is the list to draw
-        batch.begin();
+        // render the tile map
+        renderer.setView(camera);
+        renderer.render();
 
         //initialize the starting state of the player
         player.setState(Player.State.STANDING);
+
+        // tells the renderer this is the list to draw
+        batch.begin();
 
         //crosshair
         mouseX = (int) this.getMousePosInGameWorldx();
@@ -110,13 +166,56 @@ public class WorldRenderer {
         shapeRenderer.setColor(Color.RED);
         shapeRenderer.rect(0, 580, 800, 20);
         shapeRenderer.setColor(Color.GREEN);
+
         if (player.getHealth() != 0) {
             shapeRenderer.rect(0, 580, player.getHealth(), 20);
         }
-        
+
         text.setColor(Color.WHITE);
         text.draw(batch, "zombies Left: " + zombiesLeft, 20, 570);
+
+        //wall collisions
+        for (Rectangle r : collisionBlocks) {
+
+            if (player.getBounds().overlaps(r)) {
+                float overX = Math.min(r.getX() + r.getWidth(), player.getX() + player.getWidth()) - Math.max(r.getX(), player.getX());
+                float overY = Math.min(r.getY() + r.getHeight(), player.getY() + player.getHeight()) - Math.max(r.getY(), player.getY());
+                if (player.getXVelocity() == 0) {
+                    if (player.getY() < r.getY()) {
+                        player.add(0, -overY);
+                    } else {
+                        player.add(0, overY);
+                        player.land();
+                    }
+                    player.setVelocityY(0);
+                }
+
+                if (overX < overY) {
+                    if (player.getX() < r.getX()) {
+                        player.add(-overX, 0);
+                    } else {
+                        player.add(overX, 0);
+                    }
+                } else {
+                    if (player.getY() < r.getY()) {
+                        player.add(0, -overY);
+                    } else {
+                        player.add(0, overY);
+                        player.land();
+                    }
+                    player.setVelocityY(0);
+                }
+            }
+        }
         
+        // move the camera to the correct position
+        camera.position.x = Math.max(camera.viewportWidth / 2, player.getX());
+        camera.position.x = Math.min(camera.position.x, levelWidth - camera.viewportWidth / 2);
+
+        camera.position.y = Math.max(camera.viewportHeight / 2, player.getY());
+
+        camera.update();
+
         //if the player is standing
         if (player.getState() == Player.State.STANDING) {
             //check if hes facing south

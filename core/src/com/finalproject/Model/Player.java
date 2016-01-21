@@ -4,6 +4,7 @@
  */
 package com.finalproject.Model;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -24,6 +25,7 @@ public class Player extends Entity {
     // the actual state mario is in
     private State state;
     // movement variables
+    private Vector2 position;
     private Vector2 velocity;
     private Vector2 acceleration;
     // facing
@@ -37,6 +39,8 @@ public class Player extends Entity {
     private boolean isFacingSE;
     // animation state counter
     private float stateTime;
+    private Rectangle bounds;
+    private int health = 770;
     
     private int health = 800;
     
@@ -54,7 +58,11 @@ public class Player extends Entity {
         isFacingNW = false;
         isFacingSE = false;
         isFacingSW = false;
-
+        
+        bounds = new Rectangle(x,y, width, height);       
+        position = new Vector2(x,y);
+        
+        
         stateTime = 0;
     }
 
@@ -70,6 +78,14 @@ public class Player extends Entity {
             velocity.y = 0;
         }
         addToPosition(velocity.x, velocity.y);
+        
+        
+        
+        position.add(velocity);
+        bounds.x = position.x;
+        bounds.y = position.y;
+        
+        
 
         // moving to the rught
         if (velocity.x < 0) {
@@ -266,5 +282,40 @@ public class Player extends Entity {
             return 0;
         }
         
+    }
+    
+    public void add(float x, float y){
+        position.x += x;
+        position.y += y;
+        bounds.x = position.x;
+        bounds.y = position.y;
+    }
+    
+    public float getXVelocity(){
+        return velocity.x;
+    }
+    
+    public Rectangle getBounds(){
+        return this.bounds;
+    }
+    
+    public float getWidth(){
+        return bounds.getWidth();
+    }
+    
+    public float getHeight(){
+        return bounds.getHeight();
+    }
+    
+    public float getX(){
+        return position.x;
+    }
+    
+    public float getY(){
+        return position.y;
+    }
+    
+    public void land(){
+        state = State.STANDING;
     }
 }
