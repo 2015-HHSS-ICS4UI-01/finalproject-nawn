@@ -40,7 +40,7 @@ public class Player extends Entity {
     // animation state counter
     private float stateTime;
     private Rectangle bounds;
-    private int health = 770;
+  
     
     private int health = 800;
     
