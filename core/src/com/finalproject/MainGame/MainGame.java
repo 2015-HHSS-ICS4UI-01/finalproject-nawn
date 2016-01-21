@@ -82,75 +82,75 @@ public class MainGame implements Screen {
             player.setVelocityX(-2f);
         }
 
-        //if colliding with left part of screen
-        if (player.getX() <= 0) {
-            player.setVelocityX(0);
-            player.setState(Player.State.STANDING);
-            if (Gdx.input.isKeyPressed(Keys.D)) {
-                player.setVelocityX(2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-                player.setVelocityY(2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyPressed(Keys.S)) {
-                player.setVelocityY(-2f);
-                player.setState(Player.State.RUNNING);
-            }
-            //colliding with right 
-        } else if (player.getX() >= 770) {
-            player.setVelocityX(0);
-            player.setState(Player.State.STANDING);
-            if (Gdx.input.isKeyPressed(Keys.A)) {
-                player.setVelocityX(-2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-                player.setVelocityY(2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyPressed(Keys.S)) {
-                player.setVelocityY(-2f);
-                player.setState(Player.State.RUNNING);
-            }
-            //colliding with bottom
-        } else if (player.getY() <= 0) {
-            player.setVelocityY(0);
-            player.setState(Player.State.STANDING);
-            if (Gdx.input.isKeyPressed(Keys.A)) {
-                player.setVelocityX(-2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-                player.setVelocityY(2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyPressed(Keys.D)) {
-                player.setVelocityX(2f);
-                player.setState(Player.State.RUNNING);
-            }
-            //collides with top
-        } else if (player.getY() >= 550) {
-            player.setVelocityY(0);
-            player.setState(Player.State.STANDING);
-            if (Gdx.input.isKeyPressed(Keys.S)) {
-                player.setVelocityY(-2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-                player.setVelocityY(2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyPressed(Keys.D)) {
-                player.setVelocityX(2f);
-                player.setState(Player.State.RUNNING);
-            }
-            //top left
-        } else if (player.getY() >= 550 && player.getX() == 0) {
-            player.setVelocityY(0);
-            player.setState(Player.State.STANDING);
-            if (Gdx.input.isKeyPressed(Keys.S)) {
-                player.setVelocityY(-2f);
-                player.setState(Player.State.RUNNING);
-
-            } else if (Gdx.input.isKeyPressed(Keys.D)) {
-                player.setVelocityX(2f);
-                player.setState(Player.State.RUNNING);
-            }
-        }
+//        //if colliding with left part of screen
+//        if (player.getX() <= 0) {
+//            player.setVelocityX(0);
+//            player.setState(Player.State.STANDING);
+//            if (Gdx.input.isKeyPressed(Keys.D)) {
+//                player.setVelocityX(2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+//                player.setVelocityY(2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyPressed(Keys.S)) {
+//                player.setVelocityY(-2f);
+//                player.setState(Player.State.RUNNING);
+//            }
+//            //colliding with right 
+//        } else if (player.getX() >= 770) {
+//            player.setVelocityX(0);
+//            player.setState(Player.State.STANDING);
+//            if (Gdx.input.isKeyPressed(Keys.A)) {
+//                player.setVelocityX(-2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+//                player.setVelocityY(2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyPressed(Keys.S)) {
+//                player.setVelocityY(-2f);
+//                player.setState(Player.State.RUNNING);
+//            }
+//            //colliding with bottom
+//        } else if (player.getY() <= 0) {
+//            player.setVelocityY(0);
+//            player.setState(Player.State.STANDING);
+//            if (Gdx.input.isKeyPressed(Keys.A)) {
+//                player.setVelocityX(-2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+//                player.setVelocityY(2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyPressed(Keys.D)) {
+//                player.setVelocityX(2f);
+//                player.setState(Player.State.RUNNING);
+//            }
+//            //collides with top
+//        } else if (player.getY() >= 550) {
+//            player.setVelocityY(0);
+//            player.setState(Player.State.STANDING);
+//            if (Gdx.input.isKeyPressed(Keys.S)) {
+//                player.setVelocityY(-2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+//                player.setVelocityY(2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyPressed(Keys.D)) {
+//                player.setVelocityX(2f);
+//                player.setState(Player.State.RUNNING);
+//            }
+//            //top left
+//        } else if (player.getY() >= 550 && player.getX() == 0) {
+//            player.setVelocityY(0);
+//            player.setState(Player.State.STANDING);
+//            if (Gdx.input.isKeyPressed(Keys.S)) {
+//                player.setVelocityY(-2f);
+//                player.setState(Player.State.RUNNING);
+//
+//            } else if (Gdx.input.isKeyPressed(Keys.D)) {
+//                player.setVelocityX(2f);
+//                player.setState(Player.State.RUNNING);
+//            }
+//        }
 
         for (int i = 0; i < theWorld.getZombie().size() - 1; i++) {
 

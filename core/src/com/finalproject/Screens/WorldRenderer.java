@@ -19,6 +19,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
@@ -138,7 +139,14 @@ public class WorldRenderer {
         //camera.position.y = Math.max(world.getPlayer().getY(), V_HEIGHT / 2);
         camera.position.x = Math.max(world.getPlayer().getX(), mapWidth / 2);
         camera.position.y = Math.max(world.getPlayer().getY(), mapHeight / 2);
-
+//        
+//        if(player.getX() <= V_WIDTH/2){
+//            camera.position.x = world.getPlayer().getX();
+//        }
+        
+//        camera.update();
+        
+       
         camera.update();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
@@ -164,15 +172,15 @@ public class WorldRenderer {
         //health bar
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.RED);
-        shapeRenderer.rect(0, 580, 800, 20);
+        shapeRenderer.rect(camera.position.x - V_WIDTH/2, camera.position.y +280, 800, 20);
         shapeRenderer.setColor(Color.GREEN);
 
         if (player.getHealth() != 0) {
-            shapeRenderer.rect(0, 580, player.getHealth(), 20);
+            shapeRenderer.rect(camera.position.x - V_WIDTH/2, camera.position.y +280, player.getHealth(), 20);
         }
 
         text.setColor(Color.WHITE);
-        text.draw(batch, "zombies Left: " + zombiesLeft, 20, 570);
+        text.draw(batch, "zombies Left: " + zombiesLeft, camera.position.x - 370, camera.position.y +275);
 
         //wall collisions
         for (Rectangle r : collisionBlocks) {
@@ -207,14 +215,7 @@ public class WorldRenderer {
                 }
             }
         }
-        
-        // move the camera to the correct position
-        camera.position.x = Math.max(camera.viewportWidth / 2, player.getX());
-        camera.position.x = Math.min(camera.position.x, levelWidth - camera.viewportWidth / 2);
-
-        camera.position.y = Math.max(camera.viewportHeight / 2, player.getY());
-
-        camera.update();
+    
 
         //if the player is standing
         if (player.getState() == Player.State.STANDING) {
