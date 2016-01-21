@@ -10,7 +10,7 @@
  </layer>
  <layer name="walls" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztzzENADAMwLDe5Q94NLLKlgIgOzN7pN/5aPHR4qPFR4uPFh8tPlp8tPho8dHio8VHi48WHy0+Wny0+Gjx0eKjxUeLjxYfLT5arn1c6AHIWwep
+   eJztlksOwyAMRLPOMXr/Q3aVDTL4NwZjGAmpSg3DA4x5n+d5m/ap/e5t3nG5/rvrcmC8kWNV4eh9j8pxzhsptMcMjgoe3j3X3PdWD808rB6juJM4ou8SqTwcSFXh6HkgztVsVeCIzHOpd4Y3Q1RuWcZadSdmqh9ZdDli5Dmr2TissVKO3npYc9q7fu17Ae2B4tCsjYVjtB/WOffmpom1cFDahYOK6fWXjKflGO37Lvsx8vt+r8oPydw0savuK64vVx88HMj6QUnDQc0tWjM4ZgiR56dwrDpXXo5RfZE2yt/SB82xQmiOH2JSBl0OOrbKubLmLeIe0HBwsej9iHqXcLGZOaT7npkD4evRaRzaM5P1XGXnoBTtUY1DW9+8ddJbX6n//jlsFsU=
   </data>
  </layer>
 </map>
