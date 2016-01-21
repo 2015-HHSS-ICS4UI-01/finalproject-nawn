@@ -10,8 +10,8 @@ package com.finalproject.Model;
  * @author admin
  */
 public class Cursor {
-    float xpos;
-    float ypos;
+    private float xpos;
+    private float ypos;
    public Cursor(float x, float y){
       xpos = x;
       ypos = y;

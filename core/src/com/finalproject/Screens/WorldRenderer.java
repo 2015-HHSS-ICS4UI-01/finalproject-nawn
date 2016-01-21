@@ -304,11 +304,13 @@ public class WorldRenderer {
 
     float getMousePosInGameWorldx() {
         Vector3 n = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        world.setCursorX(n.x);
         return n.x;
     }
 
     float getMousePosInGameWorldy() {
         Vector3 n = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        world.setCursorY(n.y);
         return n.y;
     }
 
