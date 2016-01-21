@@ -6,6 +6,7 @@ package com.finalproject.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -174,24 +175,8 @@ public class WorldRenderer {
 
         //draw zombies
         for (int i = 0; i < world.getZombie().size(); i++) {
-            if (zombie.get(i).isFacingNorth()) {
-                //draw the zombie N picture
-                batch.draw(AssetManager.zombieN, zombie.get(i).getX(), zombie.get(i).getY());
-            }//if zombie is facing S
-            else if (zombie.get(i).isFacingSouth()) {
-
-                //draw the zombie S picture
-                batch.draw(AssetManager.zombieS, zombie.get(i).getX(), zombie.get(i).getY());
-            }//if zombie is facing E
-            else if (zombie.get(i).isFacingEast()) {
-                //draw the zombie E picture
-                batch.draw(AssetManager.zombieE, zombie.get(i).getX(), zombie.get(i).getY());
-            }//if zombie facing W
-            else if (zombie.get(i).isFacingWest()) {
-                //draw the zombie W picture
-                batch.draw(AssetManager.zombieW, zombie.get(i).getX(), zombie.get(i).getY());
-            }//if zombie facing NE
-            else if (zombie.get(i).isFacingNE()) {
+            // zombie facing NE
+             if (zombie.get(i).isFacingNE()) {
                 //draw the zombie NE picture
                 batch.draw(AssetManager.zombieNE, zombie.get(i).getX(), zombie.get(i).getY());
             }//if zombie is facing NW
@@ -227,5 +212,7 @@ public class WorldRenderer {
         Vector3 n = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
         return n.y;
     }
+
+ 
 
 }

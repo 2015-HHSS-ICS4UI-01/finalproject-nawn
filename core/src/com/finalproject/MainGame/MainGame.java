@@ -126,7 +126,6 @@ public class MainGame implements Screen {
             }
             //collides with top
         } else if (player.getY() >= 550) {
-            System.out.println("t");
             player.setVelocityY(0);
             player.setState(Player.State.STANDING);
             if (Gdx.input.isKeyPressed(Keys.S)) {
@@ -325,7 +324,7 @@ public class MainGame implements Screen {
             for (int j = 0; j < i ; j++) {
                 
                 if (player.isColliding(zombie.get(j))) {
-                
+                player.setHealth((int) (player.getHealth() - 0.00001));
                 zombie.get(j).setVelocityX(0);
                 zombie.get(j).setVelocityY(0);
                 // get overlapping amount
