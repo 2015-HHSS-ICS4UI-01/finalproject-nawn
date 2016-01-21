@@ -63,6 +63,7 @@ public class WorldRenderer {
     private int levelWidth;
     private int zombiesLeft;
     private BitmapFont text;
+    private Bullet bullet;
 
     public WorldRenderer(World w) {
         world = w;
@@ -72,7 +73,7 @@ public class WorldRenderer {
         health = world.getPlayer().getHealth();
         zombiesLeft = world.getZombie().size();
         //when they die decrease number zombie
-        //  bullet = world.getBullet();
+        bullet = world.getBullet();
         camera = new OrthographicCamera();
         viewport = new FitViewport(V_WIDTH, V_HEIGHT, camera);
         batch = new SpriteBatch();
@@ -160,6 +161,9 @@ public class WorldRenderer {
         mouseX = (int) this.getMousePosInGameWorldx();
         mouseY = (int) this.getMousePosInGameWorldy();
         batch.draw(cross, mouseX, mouseY);
+        
+        //bullet
+        batch.draw(AssetManager.bullet, bullet.getx(), bullet.gety());
 
         //health bar
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);

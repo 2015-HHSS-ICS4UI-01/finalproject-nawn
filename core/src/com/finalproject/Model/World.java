@@ -19,13 +19,14 @@ public class World {
     private Player player;
     private ArrayList<Zombie> zombie;
     private Cursor cursor;
-
+    private Bullet bullet;
     private World w;
 
     public World() {
         blocks = new Array<Block>();
         zombie = new ArrayList<Zombie>();
         cursor = new Cursor(0,0);
+        bullet = new Bullet(cursor.getx(),cursor.gety(),25,25);
         demoLevel();
 
     }
@@ -78,5 +79,11 @@ public class World {
     }
     public void setCursorY(float y){
       cursor.sety(y);
+    }
+    public Bullet getBullet(){
+        return bullet;
+    }
+    public Cursor getCursor(){
+        return cursor;
     }
 }
