@@ -45,6 +45,8 @@ public class Player extends Entity {
     
     private int health = 800;
     
+ 
+    
     public Player(float x, float y, float width, float height) {
         super(x, y, width, height);
         state = State.STANDING;
