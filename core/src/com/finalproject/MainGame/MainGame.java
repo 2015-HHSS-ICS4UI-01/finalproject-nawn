@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.finalproject.Model.Block;
 import com.finalproject.Model.Bullet;
+import com.finalproject.Model.Cursor;
 import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
 import com.finalproject.Model.Zombie;
@@ -32,14 +33,16 @@ public class MainGame implements Screen {
     private WorldRenderer renderer;
     private ArrayList<Zombie> zombie;
     private Bullet bullet;
+    private Cursor cursor;
 
     public MainGame() {
         theWorld = new World();
         player = theWorld.getPlayer();
         renderer = new WorldRenderer(theWorld);
         zombie = theWorld.getZombie();
-     //   bullet = theWorld.getBullet();
-
+        bullet = theWorld.getBullet();
+        cursor = theWorld.getCursor();
+        
     }
 
     @Override
@@ -59,13 +62,13 @@ public class MainGame implements Screen {
 //        }
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
-            player.setVelocityX(2f);
+            player.setVelocityX(6f);
         } else if (Gdx.input.isKeyPressed(Keys.A)) {
-            player.setVelocityX(-2f);
+            player.setVelocityX(-6f);
         } else if (Gdx.input.isKeyPressed(Keys.W)) {
-            player.setVelocityY(2f);
+            player.setVelocityY(6f);
         } else if (Gdx.input.isKeyPressed(Keys.S)) {
-            player.setVelocityY(-2f);
+            player.setVelocityY(-6f);
             //diagonal movement
         }
         if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.W)) {
@@ -83,74 +86,65 @@ public class MainGame implements Screen {
         }
 
 //        //if colliding with left part of screen
-//        if (player.getX() <= 0) {
-//            player.setVelocityX(0);
-//            player.setState(Player.State.STANDING);
-//            if (Gdx.input.isKeyPressed(Keys.D)) {
-//                player.setVelocityX(2f);
-//                player.setState(Player.State.RUNNING);
-//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-//                player.setVelocityY(2f);
-//                player.setState(Player.State.RUNNING);
-//            } else if (Gdx.input.isKeyPressed(Keys.S)) {
-//                player.setVelocityY(-2f);
-//                player.setState(Player.State.RUNNING);
-//            }
+        if (player.getX() <= 0) {
+            player.setVelocityX(0);
+            player.setState(Player.State.STANDING);
+            if (Gdx.input.isKeyPressed(Keys.D)) {
+                player.setVelocityX(2f);
+                player.setState(Player.State.RUNNING);
+            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+                player.setVelocityY(2f);
+                player.setState(Player.State.RUNNING);
+            } else if (Gdx.input.isKeyPressed(Keys.S)) {
+                player.setVelocityY(-2f);
+                player.setState(Player.State.RUNNING);
+            }
 //            //colliding with right 
-//        } else if (player.getX() >= 770) {
-//            player.setVelocityX(0);
-//            player.setState(Player.State.STANDING);
-//            if (Gdx.input.isKeyPressed(Keys.A)) {
-//                player.setVelocityX(-2f);
-//                player.setState(Player.State.RUNNING);
-//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-//                player.setVelocityY(2f);
-//                player.setState(Player.State.RUNNING);
-//            } else if (Gdx.input.isKeyPressed(Keys.S)) {
-//                player.setVelocityY(-2f);
-//                player.setState(Player.State.RUNNING);
-//            }
+        } else if (player.getX() >= 1570) {
+            player.setVelocityX(0);
+            player.setState(Player.State.STANDING);
+            if (Gdx.input.isKeyPressed(Keys.A)) {
+                player.setVelocityX(-2f);
+                player.setState(Player.State.RUNNING);
+            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+                player.setVelocityY(2f);
+                player.setState(Player.State.RUNNING);
+            } else if (Gdx.input.isKeyPressed(Keys.S)) {
+                player.setVelocityY(-2f);
+                player.setState(Player.State.RUNNING);
+            }
 //            //colliding with bottom
-//        } else if (player.getY() <= 0) {
-//            player.setVelocityY(0);
-//            player.setState(Player.State.STANDING);
-//            if (Gdx.input.isKeyPressed(Keys.A)) {
-//                player.setVelocityX(-2f);
-//                player.setState(Player.State.RUNNING);
-//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-//                player.setVelocityY(2f);
-//                player.setState(Player.State.RUNNING);
-//            } else if (Gdx.input.isKeyPressed(Keys.D)) {
-//                player.setVelocityX(2f);
-//                player.setState(Player.State.RUNNING);
-//            }
+        } else if (player.getY() <= 0) {
+            player.setVelocityY(0);
+            player.setState(Player.State.STANDING);
+            if (Gdx.input.isKeyPressed(Keys.A)) {
+                player.setVelocityX(-2f);
+                player.setState(Player.State.RUNNING);
+            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+                player.setVelocityY(2f);
+                player.setState(Player.State.RUNNING);
+            } else if (Gdx.input.isKeyPressed(Keys.D)) {
+                player.setVelocityX(2f);
+                player.setState(Player.State.RUNNING);
+            }
 //            //collides with top
-//        } else if (player.getY() >= 550) {
-//            player.setVelocityY(0);
-//            player.setState(Player.State.STANDING);
-//            if (Gdx.input.isKeyPressed(Keys.S)) {
-//                player.setVelocityY(-2f);
-//                player.setState(Player.State.RUNNING);
-//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-//                player.setVelocityY(2f);
-//                player.setState(Player.State.RUNNING);
-//            } else if (Gdx.input.isKeyPressed(Keys.D)) {
-//                player.setVelocityX(2f);
-//                player.setState(Player.State.RUNNING);
-//            }
-//            //top left
-//        } else if (player.getY() >= 550 && player.getX() == 0) {
-//            player.setVelocityY(0);
-//            player.setState(Player.State.STANDING);
-//            if (Gdx.input.isKeyPressed(Keys.S)) {
-//                player.setVelocityY(-2f);
-//                player.setState(Player.State.RUNNING);
-//
-//            } else if (Gdx.input.isKeyPressed(Keys.D)) {
-//                player.setVelocityX(2f);
-//                player.setState(Player.State.RUNNING);
-//            }
-//        }
+        } else if (player.getY() >= 1570) {
+            player.setVelocityY(0);
+            player.setState(Player.State.STANDING);
+            if (Gdx.input.isKeyPressed(Keys.S)) {
+                player.setVelocityY(-2f);
+                player.setState(Player.State.RUNNING);
+            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+                player.setVelocityY(2f);
+                player.setState(Player.State.RUNNING);
+            } else if (Gdx.input.isKeyPressed(Keys.D)) {
+                player.setVelocityX(2f);
+                player.setState(Player.State.RUNNING);
+            }
+        }
+        
+        
+        
 
         for (int i = 0; i < theWorld.getZombie().size() - 1; i++) {
 
@@ -423,4 +417,50 @@ public class MainGame implements Screen {
         }
 
     }
+    
+    
+    public void fire(){
+    float xtarget;
+    float ytarget;
+    float xmulti;
+    float ymulti;
+    int speed = 2;
+    
+    if(player.getX()<cursor.getx()){
+        xtarget = cursor.getx()-player.getX();
+        xmulti = 1;
+    }else{
+        xtarget = player.getX()-cursor.getx();
+        xmulti = -1;
+    }
+    
+    if(player.getY()<cursor.gety()){
+        ytarget = cursor.gety()-player.getY();
+        ymulti = 1;
+    }else{
+        ytarget = player.getY()-cursor.gety();
+        ymulti = -1;
+    }
+    
+    float comp;
+    
+    if(ytarget>xtarget){
+     comp = ytarget/xtarget;   
+    }else{
+     comp = xtarget/ytarget;
+    }
+    
+    if(ytarget>xtarget){
+        bullet.setX(bullet.getx()+(speed*xmulti));
+        bullet.setY(bullet.gety()+((speed+comp)*ymulti));
+    }else if (xtarget>ytarget){
+        bullet.setX(bullet.getx()+((speed+comp)*xmulti));
+        bullet.setY(bullet.gety()+(speed*ymulti));
+    }else{
+        bullet.setX(bullet.getx()+(speed*xmulti));
+        bullet.setY(bullet.gety()+(speed*ymulti));
+    }
+    
+    
+}
 }
