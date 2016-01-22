@@ -62,13 +62,13 @@ public class MainGame implements Screen {
 //        }
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
-            player.setVelocityX(6f);
+            player.setVelocityX(2f);
         } else if (Gdx.input.isKeyPressed(Keys.A)) {
-            player.setVelocityX(-6f);
+            player.setVelocityX(-2f);
         } else if (Gdx.input.isKeyPressed(Keys.W)) {
-            player.setVelocityY(6f);
+            player.setVelocityY(2f);
         } else if (Gdx.input.isKeyPressed(Keys.S)) {
-            player.setVelocityY(-6f);
+            player.setVelocityY(-2f);
             //diagonal movement
         }
         if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.W)) {
@@ -83,7 +83,8 @@ public class MainGame implements Screen {
         } else if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.S)) {
             player.setVelocityY(-2f);
             player.setVelocityX(-2f);
-        }
+        } 
+        
 
 //        //if colliding with left part of screen
         if (player.getX() <= 0) {
