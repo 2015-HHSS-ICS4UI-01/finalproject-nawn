@@ -34,6 +34,7 @@ public class MainGame implements Screen {
     private ArrayList<Zombie> zombie;
     private Bullet bullet;
     private Cursor cursor;
+    private boolean isShoot;
 
     public MainGame() {
         theWorld = new World();
@@ -42,7 +43,7 @@ public class MainGame implements Screen {
         zombie = theWorld.getZombie();
         bullet = theWorld.getBullet();
         cursor = theWorld.getCursor();
-
+        isShoot = false;
     }
 
     @Override
@@ -53,13 +54,18 @@ public class MainGame implements Screen {
     @Override
     // game loop
     public void render(float deltaTime) {
-//        if(Gdx.input.isKeyPressed(Keys.SPACE)){
-//           Bullet bullet = new Bullet(player.getX(),player.getY(),16,16);
-//           bullet.setVelocityX(2);
-//           bullet.setVelocityY(2);
-//           bullet.update(deltaTime);
-//           
-//        }
+        //shoot button
+        if(Gdx.input.isKeyPressed(Keys.SPACE)){
+            isShoot = true;
+        }
+        
+        //shooting
+        if(!isShoot){
+          bullet.setX(player.getX());
+          bullet.setY(player.getY());
+        }else{
+           fire(); 
+        }
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
             player.setVelocityX(2f);
@@ -442,25 +448,16 @@ public class MainGame implements Screen {
         ytarget = player.getY()-cursor.gety();
         ymulti = -1;
     }
+ 
+
     
-    float comp;
+    double angle = Math.atan2(cursor.getx()-player.getX(),cursor.gety()-player.getY() );
     
-    if(ytarget>xtarget){
-     comp = ytarget/xtarget;   
-    }else{
-     comp = xtarget/ytarget;
-    }
+    double bulletdx = speed*Math.sin(angle);
+    double bulletdy = speed*Math.cos(angle);
     
-    if(ytarget>xtarget){
-        bullet.setX(bullet.getx()+(speed*xmulti));
-        bullet.setY(bullet.gety()+((speed+comp)*ymulti));
-    }else if (xtarget>ytarget){
-        bullet.setX(bullet.getx()+((speed+comp)*xmulti));
-        bullet.setY(bullet.gety()+(speed*ymulti));
-    }else{
-        bullet.setX(bullet.getx()+(speed*xmulti));
-        bullet.setY(bullet.gety()+(speed*ymulti));
-    }
+    bullet.setX((float) (bullet.getx()+bulletdx));
+    bullet.setY((float) (bullet.gety()+bulletdy));
     
     
 }

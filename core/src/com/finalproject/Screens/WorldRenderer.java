@@ -30,6 +30,7 @@ import com.finalproject.Model.Bullet;
 import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
 import com.finalproject.Model.Zombie;
+import static com.finalproject.Screens.AssetManager.bullet;
 import static com.finalproject.Screens.AssetManager.cross;
 import java.util.ArrayList;
 
@@ -64,9 +65,11 @@ public class WorldRenderer {
     private int levelWidth;
     private int zombiesLeft;
     private BitmapFont text;
-    private Bullet bullet;
+    private Bullet bullet1;
+    private int playercomp;
 
     public WorldRenderer(World w) {
+        playercomp = -8;
         world = w;
         player = world.getPlayer();
         zombie = world.getZombie();
@@ -74,7 +77,7 @@ public class WorldRenderer {
         health = world.getPlayer().getHealth();
         zombiesLeft = world.getZombie().size();
         //when they die decrease number zombie
-        bullet = world.getBullet();
+        bullet1 = world.getBullet();
         camera = new OrthographicCamera();
         viewport = new FitViewport(V_WIDTH, V_HEIGHT, camera);
         batch = new SpriteBatch();
@@ -170,10 +173,10 @@ public class WorldRenderer {
         //crosshair
         mouseX = (int) this.getMousePosInGameWorldx();
         mouseY = (int) this.getMousePosInGameWorldy();
-        batch.draw(cross, mouseX, mouseY);
+        batch.draw(cross, mouseX-16, mouseY-15);
         
         //bullet
-        batch.draw(AssetManager.bullet, bullet.getx(), bullet.gety());
+        batch.draw(bullet, bullet1.getx()-5, bullet1.gety()-5);
 
         //health bar
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -228,18 +231,18 @@ public class WorldRenderer {
             //check if hes facing south
             if (player.isFacingSouth()) {
                 //output his standing south picture
-                batch.draw(AssetManager.playerStandS, player.getX(), player.getY());
+                batch.draw(AssetManager.playerStandS, player.getX()+playercomp, player.getY()+playercomp);
             }//check if hes facing north
             else if (player.isFacingNorth()) {
                 //output his standing north picture
-                batch.draw(AssetManager.playerStandN, player.getX(), player.getY());
+                batch.draw(AssetManager.playerStandN, player.getX()+playercomp, player.getY()+playercomp);
             }//check if hes facing east
             else if (player.isFacingEast()) {
                 //output his standing east picture
-                batch.draw(AssetManager.playerStandE, player.getX(), player.getY());
+                batch.draw(AssetManager.playerStandE, player.getX()+playercomp, player.getY()+playercomp);
             } else {
                 //output his standing west picture
-                batch.draw(AssetManager.playerStandW, player.getX(), player.getY());
+                batch.draw(AssetManager.playerStandW, player.getX()+playercomp, player.getY()+playercomp);
             }
 
         } //check if hes running
@@ -247,35 +250,35 @@ public class WorldRenderer {
             //check if hes facing south
             if (player.isFacingSouth()) {
                 //play his walking south animation
-                batch.draw(AssetManager.playerWalkS.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
+                batch.draw(AssetManager.playerWalkS.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
             } //check if hes facing north
             else if (player.isFacingNorth()) {
                 //play his walking north animation
-                batch.draw(AssetManager.playerWalkN.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
+                batch.draw(AssetManager.playerWalkN.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
             } //check if hes facing east
             else if (player.isFacingEast()) {
                 //play his walking east animation
-                batch.draw(AssetManager.playerWalkE.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
+                batch.draw(AssetManager.playerWalkE.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
             }//check if hes facing west
             else if (player.isFacingWest()) {
                 //play his walking west animation
-                batch.draw(AssetManager.playerWalkW.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
+                batch.draw(AssetManager.playerWalkW.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
             }//check if hes facing NE
             else if (player.isFacingNE()) {
                 //play his walking NE animation
-                batch.draw(AssetManager.playerWalkNE.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
+                batch.draw(AssetManager.playerWalkNE.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
             }//check if hes facing NWw
             else if (player.isFacingNW()) {
                 //play his walking NW animation
-                batch.draw(AssetManager.playerWalkNW.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
+                batch.draw(AssetManager.playerWalkNW.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
             }//check if hes facing SE
             else if (player.isFacingSE()) {
                 //play his walking SE animation
-                batch.draw(AssetManager.playerWalkSE.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
+                batch.draw(AssetManager.playerWalkSE.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
             }//check if hes facing SW
             else {
                 //play his walking SW animation
-                batch.draw(AssetManager.playerWalkSW.getKeyFrame(player.getStateTime(), true), player.getX(), player.getY());
+                batch.draw(AssetManager.playerWalkSW.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
             }
         }
 
