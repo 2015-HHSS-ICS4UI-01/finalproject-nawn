@@ -73,7 +73,8 @@ public class AssetManager {
         zombieNE = atlas.findRegion("zombie_nw");
         zombieSW = atlas.findRegion("zombie_sw");
         zombieSE = atlas.findRegion("zombie_se");
-      //  bullet = atlas.findRegion("cross");
+        //bullet
+        bullet = atlas.findRegion("bullet");
 
         //crosshair 
         cross = atlas.findRegion("cross");

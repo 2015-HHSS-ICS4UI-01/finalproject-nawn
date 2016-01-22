@@ -19,6 +19,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
@@ -63,6 +64,7 @@ public class WorldRenderer {
     private int levelWidth;
     private int zombiesLeft;
     private BitmapFont text;
+    private Bullet bullet;
 
     public WorldRenderer(World w) {
         world = w;
@@ -72,7 +74,7 @@ public class WorldRenderer {
         health = world.getPlayer().getHealth();
         zombiesLeft = world.getZombie().size();
         //when they die decrease number zombie
-        //  bullet = world.getBullet();
+        bullet = world.getBullet();
         camera = new OrthographicCamera();
         viewport = new FitViewport(V_WIDTH, V_HEIGHT, camera);
         batch = new SpriteBatch();
@@ -133,13 +135,22 @@ public class WorldRenderer {
         Gdx.gl20.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // update the camera
-        //camera.position.x = Math.max(world.getPlayer().getX(), V_WIDTH / 2);
-        //camera.position.y = Math.max(world.getPlayer().getY(), V_HEIGHT / 2);
-        camera.position.x = Math.max(world.getPlayer().getX(), mapWidth / 2);
-        camera.position.y = Math.max(world.getPlayer().getY(), mapHeight / 2);
-
-        camera.update();
+    
+        //stop following player when  he reaches the end
+        if(player.getX() >= V_WIDTH/2){
+            if(player.getX() < 1600 - (V_WIDTH/2)){
+           camera.position.x = Math.max(world.getPlayer().getX(), mapWidth / 2);  
+            }
+        }
+        
+        //stop following player when he reaches the top
+        if(player.getY() >= V_HEIGHT/2){
+            if(player.getY() < 1620 - (V_HEIGHT/2)){
+                camera.position.y = Math.max(world.getPlayer().getY(), mapHeight / 2); 
+            }
+        
+        }
+       camera.update();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
 
@@ -160,19 +171,22 @@ public class WorldRenderer {
         mouseX = (int) this.getMousePosInGameWorldx();
         mouseY = (int) this.getMousePosInGameWorldy();
         batch.draw(cross, mouseX, mouseY);
+        
+        //bullet
+        batch.draw(AssetManager.bullet, bullet.getx(), bullet.gety());
 
         //health bar
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.RED);
-        shapeRenderer.rect(0, 580, 800, 20);
+        shapeRenderer.rect(camera.position.x - V_WIDTH/2, camera.position.y +280, 800, 20);
         shapeRenderer.setColor(Color.GREEN);
 
         if (player.getHealth() != 0) {
-            shapeRenderer.rect(0, 580, player.getHealth(), 20);
+            shapeRenderer.rect(camera.position.x - V_WIDTH/2, camera.position.y +280, player.getHealth(), 20);
         }
 
         text.setColor(Color.WHITE);
-        text.draw(batch, "zombies Left: " + zombiesLeft, 20, 570);
+        text.draw(batch, "zombies Left: " + zombiesLeft, camera.position.x - 370, camera.position.y +275);
 
         //wall collisions
         for (Rectangle r : collisionBlocks) {
@@ -207,14 +221,7 @@ public class WorldRenderer {
                 }
             }
         }
-        
-        // move the camera to the correct position
-        camera.position.x = Math.max(camera.viewportWidth / 2, player.getX());
-        camera.position.x = Math.min(camera.position.x, levelWidth - camera.viewportWidth / 2);
-
-        camera.position.y = Math.max(camera.viewportHeight / 2, player.getY());
-
-        camera.update();
+    
 
         //if the player is standing
         if (player.getState() == Player.State.STANDING) {
@@ -304,11 +311,13 @@ public class WorldRenderer {
 
     float getMousePosInGameWorldx() {
         Vector3 n = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        world.setCursorX(n.x);
         return n.x;
     }
 
     float getMousePosInGameWorldy() {
         Vector3 n = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        world.setCursorY(n.y);
         return n.y;
     }
 

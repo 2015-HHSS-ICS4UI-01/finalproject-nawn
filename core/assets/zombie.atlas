@@ -201,9 +201,9 @@ zombie_sw
   index: -1
 cross
   rotate: false
-  xy: 239, 71
-  size: 32, 30
-  orig: 32, 30
+  xy: 239, 70
+  size: 32, 31
+  orig: 32, 31
   offset: 0, 0
   index: -1
 bullet
