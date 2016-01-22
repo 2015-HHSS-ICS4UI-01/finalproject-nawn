@@ -34,7 +34,10 @@ public class MainGame implements Screen {
     private ArrayList<Zombie> zombie;
     private Bullet bullet;
     private Cursor cursor;
+    private float cursorfinalx;
+    private float cursorfinaly;
     private boolean isShoot;
+    private int shoot = 0;
 
     public MainGame() {
         theWorld = new World();
@@ -64,7 +67,12 @@ public class MainGame implements Screen {
           bullet.setX(player.getX());
           bullet.setY(player.getY());
         }else{
-           fire(); 
+           fire();
+           shoot++;
+        }
+        if(shoot==1){
+          cursorfinalx = cursor.getx();
+          cursorfinaly = cursor.gety();
         }
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
@@ -427,31 +435,17 @@ public class MainGame implements Screen {
     
     
     public void fire(){
-    float xtarget;
-    float ytarget;
+    float cursorx;
+    float cursory;
     float xmulti;
     float ymulti;
     int speed = 2;
     
-    if(player.getX()<cursor.getx()){
-        xtarget = cursor.getx()-player.getX();
-        xmulti = 1;
-    }else{
-        xtarget = player.getX()-cursor.getx();
-        xmulti = -1;
-    }
-    
-    if(player.getY()<cursor.gety()){
-        ytarget = cursor.gety()-player.getY();
-        ymulti = 1;
-    }else{
-        ytarget = player.getY()-cursor.gety();
-        ymulti = -1;
-    }
- 
+    cursorx = cursorfinalx;
+    cursory = cursorfinaly;
 
     
-    double angle = Math.atan2(cursor.getx()-player.getX(),cursor.gety()-player.getY() );
+    double angle = Math.atan2(cursorx-player.getX(),cursory-player.getY() );
     
     double bulletdx = speed*Math.sin(angle);
     double bulletdy = speed*Math.cos(angle);
