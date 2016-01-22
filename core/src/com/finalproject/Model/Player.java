@@ -41,6 +41,8 @@ public class Player extends Entity {
     private float stateTime;
     private Rectangle bounds;
 
+  
+    
     private int health = 800;
     
     public Player(float x, float y, float width, float height) {
