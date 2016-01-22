@@ -42,7 +42,7 @@ public class MainGame implements Screen {
         zombie = theWorld.getZombie();
         bullet = theWorld.getBullet();
         cursor = theWorld.getCursor();
-        
+
     }
 
     @Override
