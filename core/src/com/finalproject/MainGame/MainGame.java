@@ -19,6 +19,7 @@ import com.finalproject.Model.Cursor;
 import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
 import com.finalproject.Model.Zombie;
+import com.finalproject.Screens.AssetManager;
 import com.finalproject.Screens.WorldRenderer;
 import java.util.ArrayList;
 
@@ -57,6 +58,7 @@ public class MainGame implements Screen {
     @Override
     // game loop
     public void render(float deltaTime) {
+        AssetManager.game.play();
         //shoot button
         if(Gdx.input.isKeyPressed(Keys.SPACE)){
             isShoot = true;
