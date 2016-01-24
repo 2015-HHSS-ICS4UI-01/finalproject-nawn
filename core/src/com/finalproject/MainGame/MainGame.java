@@ -355,7 +355,9 @@ public class MainGame implements Screen {
             for (int j = 0; j < i ; j++) {
                 
                 if (player.isColliding(zombie.get(j))) {
+                    if(zombie.get(j).isAlive()){
                 player.setHealth((int) (player.getHealth() - 0.00001));
+                    }
                 zombie.get(j).setVelocityX(0);
                 zombie.get(j).setVelocityY(0);
                 // get overlapping amount
@@ -473,9 +475,11 @@ public class MainGame implements Screen {
     bullet.setX((float) (bullet.getx()+bulletdx));
     bullet.setY((float) (bullet.gety()+bulletdy));
         for (int i = 0; i < theWorld.getZombie().size(); i++) {
+            if(zombie.get(i).isAlive()){
             if(bullet.isColliding(zombie.get(i))){
                 zombie.get(i).sethealth(zombie.get(i).getheath()-50);
                 reset();
+            }
             }
         }
     if(shoot == 100){
