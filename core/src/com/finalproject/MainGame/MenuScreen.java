@@ -31,6 +31,11 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.finalproject.Screens.AssetManager;
 import sun.font.TextLabel;
 
+/**
+ *
+ * @author Walter
+ */
+
 public class MenuScreen implements Screen {
 	Skin skin;
 	Stage stage;
@@ -114,6 +119,7 @@ public class MenuScreen implements Screen {
 				
 				
                                 //move start button off of screen
+                                textButton.remove();
                                 startButtonX = 1000;
 				g.setScreen( new MainGame());
                                 
@@ -178,48 +184,6 @@ public class MenuScreen implements Screen {
 	}
 }
 
-//
-//import com.badlogic.gdx.Screen;
-//
-///**
-// *
-// * @author Walter
-// */
-//public class StartScreen implements Screen{
-//
-//    @Override
-//    public void show() {
-//
-//    }
-//
-//    @Override
-//    public void render(float f) {
-//
-//    }
-//
-//    @Override
-//    public void resize(int i, int i1) {
-//
-//    }
-//
-//    @Override
-//    public void pause() {
-//
-//    }
-//
-//    @Override
-//    public void resume() {
-//
-//    }
-//
-//    @Override
-//    public void hide() {
-//
-//    }
-//
-//    @Override
-//    public void dispose() {
-//
-//    }
-//    
-//}
+
+
+
