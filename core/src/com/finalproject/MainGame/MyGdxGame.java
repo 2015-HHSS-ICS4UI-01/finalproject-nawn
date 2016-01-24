@@ -18,13 +18,6 @@ public class MyGdxGame extends Game {
         AssetManager.load();
                setScreen(new MenuScreen(this));
             
-
-            
-             
-            
-		//if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-                    //setScreen(new MainGame());
-                //}
                 
 	}
 

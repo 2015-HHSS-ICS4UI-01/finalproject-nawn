@@ -64,6 +64,7 @@ public class WorldRenderer {
     private Array<Rectangle> collisionBlocks;
     private int levelWidth;
     private int zombiesLeft;
+    private int kills = 0;
     private BitmapFont text;
     private Bullet bullet1;
     private int playercomp;
@@ -188,7 +189,9 @@ public class WorldRenderer {
         }
 
         text.setColor(Color.WHITE);
-        text.draw(batch, "zombies Left: " + zombiesLeft, camera.position.x - 370, camera.position.y +275);
+        
+        text.draw(batch, "Z o m b i e s  L e f t : " + zombiesLeft, camera.position.x - 370, camera.position.y +250);
+        text.draw(batch, "K i l l s : " + kills, camera.position.x - 370, camera.position.y +225);
 
         //wall collisions
         for (Rectangle r : collisionBlocks) {
@@ -307,13 +310,22 @@ public class WorldRenderer {
             }
         }
         int z = 0;
+        int x = 0;
+        
         for (int i = 0; i < zombie.size(); i++) {
             if(zombie.get(i).isAlive()){
                 z++;
+                
+            }
+            if(zombie.get(i).isAlive() == false){
+               x ++; 
             }
             
         }
         zombiesLeft = z;
+        kills = x;
+        
+        
         // finished listing things to draw
         batch.end();
         shapeRenderer.end();
