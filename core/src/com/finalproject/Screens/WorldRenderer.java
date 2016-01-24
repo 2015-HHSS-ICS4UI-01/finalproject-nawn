@@ -176,6 +176,7 @@ public class WorldRenderer {
         
         //bullet
         batch.draw(bullet, bullet1.getx()-5, bullet1.gety()-5);
+   
 
         //health bar
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);

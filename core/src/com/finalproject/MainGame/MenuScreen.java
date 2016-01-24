@@ -41,7 +41,7 @@ public class MenuScreen implements Screen {
 	Stage stage;
 	SpriteBatch batch;
         private BitmapFont font;
-        
+        int startButtonX = 275;
         
         
 
@@ -95,7 +95,7 @@ public class MenuScreen implements Screen {
 		final TextButton textButton=new TextButton("Start",textButtonStyle);
                 
                 
-		textButton.setPosition(275, 300);
+		textButton.setPosition(startButtonX, 300);
                 
                 final Label title = new Label("Call of duty ghosts", textLabelStyle );
                 final Label Instructions = new Label(" W, A, S, D keys to move the player around   ", textLabelStyle );
@@ -118,11 +118,12 @@ public class MenuScreen implements Screen {
 			public void changed (ChangeEvent event, Actor actor) {
 				
 				
-                                //remove start button off of screen
+                                //move start button off of screen
                                 textButton.remove();
+                                startButtonX = 1000;
                                 
 				g.setScreen( new MainGame());
-                                
+                                AssetManager.splash.dispose();
                                 
 			}
 		});

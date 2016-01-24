@@ -107,7 +107,7 @@ public class InstructionScreen implements Screen {
 			public void changed (ChangeListener.ChangeEvent event, Actor actor) {
 				//System.out.println("Clicked! Is checked: " + textButton.isChecked());
 				//textButton.setText("Starting new game");
-				g.setScreen(new MenuScreen());
+				g.setScreen( new MainGame());
                                 
                                 
 			}

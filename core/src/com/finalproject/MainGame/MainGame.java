@@ -61,7 +61,9 @@ public class MainGame implements Screen {
         AssetManager.game.play();
         //shoot button
         if(Gdx.input.isKeyPressed(Keys.SPACE)){
+            AssetManager.gunShot.play();
             isShoot = true;
+           
         }
         
         //shooting
@@ -71,10 +73,14 @@ public class MainGame implements Screen {
         }else{
            fire();
            shoot++;
+           
         }
         if(shoot==1){
+           
+                
           cursorfinalx = cursor.getx();
           cursorfinaly = cursor.gety();
+          
         }
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
@@ -452,7 +458,9 @@ public class MainGame implements Screen {
     
     bullet.setX((float) (bullet.getx()+bulletdx));
     bullet.setY((float) (bullet.gety()+bulletdy));
+    
     if(shoot==70){
+        
      reset();   
     }
     
