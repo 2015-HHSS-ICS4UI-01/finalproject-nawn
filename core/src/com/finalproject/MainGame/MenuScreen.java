@@ -118,7 +118,7 @@ public class MenuScreen implements Screen {
 			public void changed (ChangeEvent event, Actor actor) {
 				
 				
-                                //move start button off of screen
+                                //remove start button off of screen
                                 textButton.remove();
                                 startButtonX = 1000;
 				g.setScreen( new MainGame());
