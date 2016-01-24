@@ -88,6 +88,12 @@ public class MainGame implements Screen {
              zombie.get(i).Alive(false);
          }   
         }
+        //zombie health
+        for (int i = 0; i < theWorld.getZombie().size(); i++) {
+         if(zombie.get(i).getheath()<1){
+             zombie.get(i).Alive(false);
+         }   
+        }
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
             player.setVelocityX(2f);
