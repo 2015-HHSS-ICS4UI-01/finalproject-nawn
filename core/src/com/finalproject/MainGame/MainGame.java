@@ -37,6 +37,8 @@ public class MainGame implements Screen {
     private Cursor cursor;
     private float cursorfinalx;
     private float cursorfinaly;
+    private float playerfinalx;
+    private float playerfinaly;
     private boolean isShoot;
     private int shoot = 0;
 
@@ -75,6 +77,8 @@ public class MainGame implements Screen {
         if(shoot==1){
           cursorfinalx = cursor.getx();
           cursorfinaly = cursor.gety();
+          playerfinalx = player.getX();
+          playerfinaly = player.getY();
         }
         //zombie health
         for (int i = 0; i < theWorld.getZombie().size(); i++) {
@@ -449,13 +453,17 @@ public class MainGame implements Screen {
     public void fire(){
     float cursorx;
     float cursory;
+    float playerx;
+    float playery;
     int speed = 3;
     
     cursorx = cursorfinalx;
     cursory = cursorfinaly;
+    playerx = playerfinalx;
+    playery = playerfinaly;
 
     
-    double angle = Math.atan2(cursorx-player.getX(),cursory-player.getY() );
+    double angle = Math.atan2(cursorx-playerx,cursory-playery );
     
     double bulletdx = speed*Math.sin(angle);
     double bulletdy = speed*Math.cos(angle);
