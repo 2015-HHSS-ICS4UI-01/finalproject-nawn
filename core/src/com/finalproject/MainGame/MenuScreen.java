@@ -31,11 +31,17 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.finalproject.Screens.AssetManager;
 import sun.font.TextLabel;
 
+/**
+ *
+ * @author Walter
+ */
+
 public class MenuScreen implements Screen {
 	Skin skin;
 	Stage stage;
 	SpriteBatch batch;
         private BitmapFont font;
+        
         
         
 
@@ -87,34 +93,36 @@ public class MenuScreen implements Screen {
 
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
 		final TextButton textButton=new TextButton("Start",textButtonStyle);
-                final TextButton textButton2 = new TextButton("Instructions", textButtonStyle);
-                textButton2.setPosition(300, 200);
-		textButton.setPosition(300, 300);
                 
-                final Label title = new Label("Zombies", textLabelStyle );
-                title.setPosition(325, 400);
+                
+		textButton.setPosition(275, 300);
+                
+                final Label title = new Label("Call of duty ghosts", textLabelStyle );
+                final Label Instructions = new Label(" W, A, S, D keys to move the player around   ", textLabelStyle );
+                final Label Instructions2 = new Label(" Space to shoot   ", textLabelStyle );
+                title.setPosition(265, 400);
+                Instructions.setPosition(190, 150);
+                Instructions2.setPosition(270, 100);
+                
                 stage.addActor(title);
+                stage.addActor(Instructions);
+                stage.addActor(Instructions2);
 		stage.addActor(textButton);
-		stage.addActor(textButton2);
+		
 		//stage.addActor(textButton);
                 
-                textButton2.addListener(new ChangeListener() {
-                    
-			public void changed (ChangeListener.ChangeEvent event, Actor actor) {
-				System.out.println("Clicked! Is checked: " + textButton.isChecked());
-				//textButton.setText("Starting new game");
-				g.setScreen( new InstructionScreen());
-                                
-			}
-		});
+              
                 
                                 textButton.addListener(new ChangeListener() {
                     
 			public void changed (ChangeEvent event, Actor actor) {
-				System.out.println("Clicked! Is checked: " + textButton.isChecked());
-				//textButton.setText("Starting new game");
-                                AssetManager.splash.dispose();
+				
+				
+                                //remove start button off of screen
+                                textButton.remove();
+                                
 				g.setScreen( new MainGame());
+                                
                                 
 			}
 		});
@@ -176,48 +184,6 @@ public class MenuScreen implements Screen {
 	}
 }
 
-//
-//import com.badlogic.gdx.Screen;
-//
-///**
-// *
-// * @author Walter
-// */
-//public class StartScreen implements Screen{
-//
-//    @Override
-//    public void show() {
-//
-//    }
-//
-//    @Override
-//    public void render(float f) {
-//
-//    }
-//
-//    @Override
-//    public void resize(int i, int i1) {
-//
-//    }
-//
-//    @Override
-//    public void pause() {
-//
-//    }
-//
-//    @Override
-//    public void resume() {
-//
-//    }
-//
-//    @Override
-//    public void hide() {
-//
-//    }
-//
-//    @Override
-//    public void dispose() {
-//
-//    }
-//    
-//}
+
+
+
