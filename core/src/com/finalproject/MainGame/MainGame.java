@@ -457,4 +457,8 @@ public class MainGame implements Screen {
     
     
 }
+    public void reset(){
+    isShoot = false;
+    bullet.setX(cursor.getx() );
+}
 }
