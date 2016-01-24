@@ -439,9 +439,7 @@ public class MainGame implements Screen {
     public void fire(){
     float cursorx;
     float cursory;
-    float xmulti;
-    float ymulti;
-    int speed = 2;
+    int speed = 3;
     
     cursorx = cursorfinalx;
     cursory = cursorfinaly;
@@ -454,11 +452,16 @@ public class MainGame implements Screen {
     
     bullet.setX((float) (bullet.getx()+bulletdx));
     bullet.setY((float) (bullet.gety()+bulletdy));
+    if(shoot==70){
+     reset();   
+    }
     
     
 }
     public void reset(){
     isShoot = false;
-    bullet.setX(cursor.getx() );
+    shoot = 0;
+    
 }
+    
 }
