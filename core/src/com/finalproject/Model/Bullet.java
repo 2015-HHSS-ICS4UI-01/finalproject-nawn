@@ -25,8 +25,7 @@ public class Bullet extends Entity {
     public Bullet(float x, float y, float width, float height) {
         super(x, y, width, height);
         
-        velocityx = 0;
-        velocityy = 0;
+        
         
          
     }

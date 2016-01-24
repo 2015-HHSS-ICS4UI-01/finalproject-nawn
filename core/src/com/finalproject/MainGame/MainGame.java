@@ -19,6 +19,7 @@ import com.finalproject.Model.Cursor;
 import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
 import com.finalproject.Model.Zombie;
+import com.finalproject.Screens.AssetManager;
 import com.finalproject.Screens.WorldRenderer;
 import java.util.ArrayList;
 
@@ -34,6 +35,10 @@ public class MainGame implements Screen {
     private ArrayList<Zombie> zombie;
     private Bullet bullet;
     private Cursor cursor;
+    private float cursorfinalx;
+    private float cursorfinaly;
+    private boolean isShoot;
+    private int shoot = 0;
 
     public MainGame() {
         theWorld = new World();
@@ -42,7 +47,7 @@ public class MainGame implements Screen {
         zombie = theWorld.getZombie();
         bullet = theWorld.getBullet();
         cursor = theWorld.getCursor();
-
+        isShoot = false;
     }
 
     @Override
@@ -53,13 +58,24 @@ public class MainGame implements Screen {
     @Override
     // game loop
     public void render(float deltaTime) {
-//        if(Gdx.input.isKeyPressed(Keys.SPACE)){
-//           Bullet bullet = new Bullet(player.getX(),player.getY(),16,16);
-//           bullet.setVelocityX(2);
-//           bullet.setVelocityY(2);
-//           bullet.update(deltaTime);
-//           
-//        }
+        AssetManager.game.play();
+        //shoot button
+        if(Gdx.input.isKeyPressed(Keys.SPACE)){
+            isShoot = true;
+        }
+        
+        //shooting
+        if(!isShoot){
+          bullet.setX(player.getX());
+          bullet.setY(player.getY());
+        }else{
+           fire();
+           shoot++;
+        }
+        if(shoot==1){
+          cursorfinalx = cursor.getx();
+          cursorfinaly = cursor.gety();
+        }
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
             player.setVelocityX(2f);
@@ -421,47 +437,31 @@ public class MainGame implements Screen {
     
     
     public void fire(){
-    float xtarget;
-    float ytarget;
-    float xmulti;
-    float ymulti;
-    int speed = 2;
+    float cursorx;
+    float cursory;
+    int speed = 3;
     
-    if(player.getX()<cursor.getx()){
-        xtarget = cursor.getx()-player.getX();
-        xmulti = 1;
-    }else{
-        xtarget = player.getX()-cursor.getx();
-        xmulti = -1;
-    }
+    cursorx = cursorfinalx;
+    cursory = cursorfinaly;
+
     
-    if(player.getY()<cursor.gety()){
-        ytarget = cursor.gety()-player.getY();
-        ymulti = 1;
-    }else{
-        ytarget = player.getY()-cursor.gety();
-        ymulti = -1;
-    }
+    double angle = Math.atan2(cursorx-player.getX(),cursory-player.getY() );
     
-    float comp;
+    double bulletdx = speed*Math.sin(angle);
+    double bulletdy = speed*Math.cos(angle);
     
-    if(ytarget>xtarget){
-     comp = ytarget/xtarget;   
-    }else{
-     comp = xtarget/ytarget;
-    }
-    
-    if(ytarget>xtarget){
-        bullet.setX(bullet.getx()+(speed*xmulti));
-        bullet.setY(bullet.gety()+((speed+comp)*ymulti));
-    }else if (xtarget>ytarget){
-        bullet.setX(bullet.getx()+((speed+comp)*xmulti));
-        bullet.setY(bullet.gety()+(speed*ymulti));
-    }else{
-        bullet.setX(bullet.getx()+(speed*xmulti));
-        bullet.setY(bullet.gety()+(speed*ymulti));
+    bullet.setX((float) (bullet.getx()+bulletdx));
+    bullet.setY((float) (bullet.gety()+bulletdy));
+    if(shoot==70){
+     reset();   
     }
     
     
 }
+    public void reset(){
+    isShoot = false;
+    shoot = 0;
+    
+}
+    
 }

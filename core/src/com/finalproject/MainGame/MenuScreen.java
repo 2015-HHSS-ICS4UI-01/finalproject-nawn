@@ -28,6 +28,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.finalproject.Screens.AssetManager;
 import sun.font.TextLabel;
 
 public class MenuScreen implements Screen {
@@ -49,6 +50,7 @@ public class MenuScreen implements Screen {
 		create();
 	}
 	public void create(){
+            AssetManager.splash.play();
 		batch = new SpriteBatch();
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
