@@ -281,24 +281,29 @@ public class WorldRenderer {
             }
         }
 
-        //draw zombies
+        //draw zombie
+        int zcomp = 8;
+       
+        
         for (int i = 0; i < world.getZombie().size(); i++) {
+            if(zombie.get(i).isAlive()){
             // zombie facing NE
              if (zombie.get(i).isFacingNE()) {
                 //draw the zombie NE picture
-                batch.draw(AssetManager.zombieNE, zombie.get(i).getX(), zombie.get(i).getY());
+                batch.draw(AssetManager.zombieNE, zombie.get(i).getX()-zcomp, zombie.get(i).getY()-zcomp);
             }//if zombie is facing NW
             else if (zombie.get(i).isFacingNW()) {
                 //draw the zombie NW picture
-                batch.draw(AssetManager.zombieNW, zombie.get(i).getX(), zombie.get(i).getY());
+                batch.draw(AssetManager.zombieNW, zombie.get(i).getX()-zcomp, zombie.get(i).getY()-zcomp);
             }//if zombie is facing SE
             else if (zombie.get(i).isFacingSE()) {
                 //draw the zombie SE picture
-                batch.draw(AssetManager.zombieSE, zombie.get(i).getX(), zombie.get(i).getY());
+                batch.draw(AssetManager.zombieSE, zombie.get(i).getX()-zcomp, zombie.get(i).getY()-zcomp);
             }//if zombie facing SW
             else if (zombie.get(i).isFacingSW()) {
                 //draw the zombie SW picture
-                batch.draw(AssetManager.zombieSW, zombie.get(i).getX(), zombie.get(i).getY());
+                batch.draw(AssetManager.zombieSW, zombie.get(i).getX()-zcomp, zombie.get(i).getY()-zcomp);
+            }
             }
         }
         // finished listing things to draw

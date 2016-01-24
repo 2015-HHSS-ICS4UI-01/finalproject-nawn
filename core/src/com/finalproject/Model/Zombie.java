@@ -34,9 +34,11 @@ public class Zombie extends Entity {
     private boolean isFacingSW;
     private boolean isFacingSE;
 
-    private boolean isAlive;
+    private boolean isAlive = true;
     // animation state counter
     private float stateTime;
+    
+    private int health = 100;
 
     public Zombie(float x, float y, float width, float height) {
         super(x, y, width, height);
@@ -57,6 +59,7 @@ public class Zombie extends Entity {
     }
 
     public void update(float delta) {
+        if(isAlive){
         //acceleration.y = -9.8f;
         velocity.mulAdd(acceleration, delta);
         velocity.x = velocity.x * DAMP;
@@ -158,6 +161,7 @@ public class Zombie extends Entity {
             isFacingSE = false;
 
         }
+        }
 
     }
 
@@ -213,12 +217,24 @@ public class Zombie extends Entity {
         return isFacingSW;
     }
 
-    public boolean isAlive() {
+    public void Alive(boolean a) {
+         isAlive = a;
+    }
+    
+    public boolean isAlive(){
         return isAlive;
     }
     
     public int getNumberZombies(){
         return world.getZombie().size();
+    }
+    
+    public void sethealth(int h){
+        health = h;
+    }
+    
+    public int getheath(){
+        return health;
     }
 
 }

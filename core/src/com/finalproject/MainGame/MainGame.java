@@ -76,6 +76,12 @@ public class MainGame implements Screen {
           cursorfinalx = cursor.getx();
           cursorfinaly = cursor.gety();
         }
+        //zombie health
+        for (int i = 0; i < theWorld.getZombie().size(); i++) {
+         if(zombie.get(i).getheath()<1){
+             zombie.get(i).Alive(false);
+         }   
+        }
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
             player.setVelocityX(2f);
@@ -284,7 +290,9 @@ public class MainGame implements Screen {
         for (int i = 0; i < theWorld.getZombie().size() - 1; i++) {
 
             if (player.isColliding(zombie.get(i))) {
+                if(zombie.get(i).isAlive()){
                 player.setHealth((int) (player.getHealth() - 0.00001));
+                }
                 zombie.get(i).setVelocityX(0);
                 zombie.get(i).setVelocityY(0);
                 // get overlapping amount
@@ -452,9 +460,17 @@ public class MainGame implements Screen {
     
     bullet.setX((float) (bullet.getx()+bulletdx));
     bullet.setY((float) (bullet.gety()+bulletdy));
-    if(shoot==70){
-     reset();   
+        for (int i = 0; i < theWorld.getZombie().size(); i++) {
+            if(bullet.isColliding(zombie.get(i))){
+                zombie.get(i).sethealth(zombie.get(i).getheath()-50);
+                reset();
+            }
+        }
+    if(shoot == 100){
+        reset();
     }
+        
+    
     
     
 }
@@ -463,5 +479,9 @@ public class MainGame implements Screen {
     shoot = 0;
     
 }
+    
+    public boolean shoot(){
+    return isShoot;
+    }
     
 }
