@@ -66,7 +66,7 @@ public class WorldRenderer {
     private int zombiesLeft;
     private int kills = 0;
     private BitmapFont text;
-    private Bullet bullet1;
+    private ArrayList<Bullet> bullet1;
     private int playercomp;
 
     public WorldRenderer(World w) {
@@ -176,7 +176,10 @@ public class WorldRenderer {
         batch.draw(cross, mouseX-16, mouseY-15);
         
         //bullet
-        batch.draw(bullet, bullet1.getx()-5, bullet1.gety()-5);
+        for (int i = 0; i < world.getBullet().size(); i++) {
+            batch.draw(bullet,world.getBullet().get(i).getx(), world.getBullet().get(i).gety());
+        }
+        
 
         //health bar
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
