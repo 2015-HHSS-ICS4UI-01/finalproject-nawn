@@ -35,6 +35,7 @@ public class Zombie extends Entity {
     private boolean isFacingSE;
 
     private boolean isAlive = true;
+    private int zombiesLeft;
     // animation state counter
     private float stateTime;
     
@@ -236,5 +237,6 @@ public class Zombie extends Entity {
     public int getheath(){
         return health;
     }
-
+    
+    
 }

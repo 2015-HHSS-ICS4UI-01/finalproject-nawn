@@ -168,7 +168,7 @@ public class WorldRenderer {
 
         // tells the renderer this is the list to draw
         batch.begin();
-
+        
         //crosshair
         mouseX = (int) this.getMousePosInGameWorldx();
         mouseY = (int) this.getMousePosInGameWorldy();
@@ -176,7 +176,7 @@ public class WorldRenderer {
         
         //bullet
         batch.draw(bullet, bullet1.getx()-5, bullet1.gety()-5);
-        
+        System.out.println(world.getZombiesLeft());
         //health bar
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.RED);
@@ -313,7 +313,8 @@ public class WorldRenderer {
             }
             
         }
-        zombiesLeft = z;
+        zombiesLeft = z -1;
+        
         // finished listing things to draw
         batch.end();
         shapeRenderer.end();

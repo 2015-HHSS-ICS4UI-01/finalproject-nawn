@@ -24,7 +24,8 @@ public class World {
     private Bullet bullet;
     private World w;
     private boolean levelOneDone = false;
-
+    private int zombiesLeft;
+    
     public World() {
         blocks = new Array<Block>();
         zombie = new ArrayList<Zombie>();
@@ -72,28 +73,28 @@ public class World {
 
             } else {
                 if (rand == 1) {
-                    Zombie a = new Zombie(390*i, 0, 16, 16);
-                    Zombie b = new Zombie(1400, 1590*i, 16, 16);
-                    Zombie c = new Zombie(-100*i, 375, 16, 16);
-                    Zombie d = new Zombie(1570*i, 1190, 16, 16);
+                    Zombie a = new Zombie(390*(i/10), 0, 16, 16);
+                    Zombie b = new Zombie(1400, 1590*(i/10), 16, 16);
+                    Zombie c = new Zombie(-100*(i/10), 375, 16, 16);
+                    Zombie d = new Zombie(1570*(i/10), 1190, 16, 16);
                     zombie.add(a);
                     zombie.add(b);
                     zombie.add(c);
                     zombie.add(d);
                 } else if (rand == 2) {
-                    Zombie a = new Zombie(1420*i, 0, 16, 16);
-                    Zombie b = new Zombie(900, 1590*i, 16, 16);
-                    Zombie c = new Zombie(-100*i, 550, 16, 16);
-                    Zombie d = new Zombie(1570, 1420*i, 16, 16);
+                    Zombie a = new Zombie(1420*(i/10), 0, 16, 16);
+                    Zombie b = new Zombie(900, 1590*(i/10), 16, 16);
+                    Zombie c = new Zombie(-100*(i/10), 550, 16, 16);
+                    Zombie d = new Zombie(1570, 1420*(i/10), 16, 16);
                     zombie.add(a);
                     zombie.add(b);
                     zombie.add(c);
                     zombie.add(d);
                 } else if (rand == 3) {
-                    Zombie a = new Zombie(390*i, 0, 16, 16);
-                    Zombie b = new Zombie(200, 1590*i, 16, 16);
-                    Zombie c = new Zombie(-100*i, 1400, 16, 16);
-                    Zombie d = new Zombie(1570, 940*i, 16, 16);
+                    Zombie a = new Zombie(390*(i/10), 0, 16, 16);
+                    Zombie b = new Zombie(200, 1590*(i/10), 16, 16);
+                    Zombie c = new Zombie(-100*(i/10), 1400, 16, 16);
+                    Zombie d = new Zombie(1570, 940*(i/10), 16, 16);
                     zombie.add(a);
                     zombie.add(b);
                     zombie.add(c);
@@ -101,35 +102,41 @@ public class World {
                 }
             //if all zombies dead
                 // if(levelonedone = true){
-//            levelTwo();
+            
             }
 
         }
+     if(zombiesLeft == 1){
+         levelTwo();
+     }
     }
 
-//    public void levelTwo(){
-    //arrange differently and add more zombies
-//        for (int i = 0; i <= 2; i++) {
-//            if(i == 0){
-//            Zombie a = new Zombie(300, 640, 16, 16);
-//            Zombie b = new Zombie(-20, 70, 16, 16);
-//            Zombie c = new Zombie(800, 100, 16, 16);
-//            Zombie d = new Zombie(400, -20, 16, 16);
-//            zombie.add(a);
-//            zombie.add(b);
-//            zombie.add(c);
-//            zombie.add(d);
-//            }else{
-//            Zombie a = new Zombie(300, 640 * (i * 10), 16, 16);
-//            Zombie b = new Zombie(-20 * (i * 10), 70, 16, 16);
-//            Zombie c = new Zombie(800 * (i * 10), 100, 16, 16);
-//            Zombie d = new Zombie(400, -20 * (i * 10), 16, 16);
-//            zombie.add(a);
-//            zombie.add(b);
-//            zombie.add(c);
-//            zombie.add(d);
-//        } 
-//    }
+    
+    public void levelTwo(){
+    
+        for (int i = 0; i <= 4; i++) {
+            if(i == 0){
+            Zombie e = new Zombie(300, 640, 16, 16);
+            Zombie f = new Zombie(-20, 70, 16, 16);
+            Zombie g = new Zombie(800, 100, 16, 16);
+            Zombie h = new Zombie(400, -20, 16, 16);
+            zombie.add(e);
+            zombie.add(f);
+            zombie.add(g);
+            zombie.add(h);
+            }else{
+            Zombie e = new Zombie(300, 640 * (i/10), 16, 16);
+            Zombie f = new Zombie(-20 * (i * 10), 70, 16, 16);
+            Zombie g = new Zombie(800 * (i/10), 100, 16, 16);
+            Zombie h = new Zombie(400, -20 * (i * 10), 16, 16);
+            zombie.add(e);
+            zombie.add(f);
+            zombie.add(g);
+            zombie.add(h);
+        } 
+    }
+    }
+    
     public void update(float delta) {
 
     }
@@ -161,5 +168,11 @@ public class World {
 
     public Cursor getCursor() {
         return cursor;
+    }
+    public void setZombiesLeft(int z){
+        zombiesLeft = z;
+    }
+    public int getZombiesLeft(){
+        return zombiesLeft -1;
     }
 }

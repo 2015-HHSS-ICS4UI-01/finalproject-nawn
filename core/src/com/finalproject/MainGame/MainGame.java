@@ -59,11 +59,11 @@ public class MainGame implements Screen {
     // game loop
     public void render(float deltaTime) {
         AssetManager.game.play();
+        AssetManager.game.setLooping(true);
         //shoot button
         if(Gdx.input.isKeyPressed(Keys.SPACE)){
             AssetManager.gunShot.play();
             isShoot = true;
-           
         }
         
         //shooting
