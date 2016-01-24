@@ -306,6 +306,14 @@ public class WorldRenderer {
             }
             }
         }
+        int z = 0;
+        for (int i = 0; i < zombie.size(); i++) {
+            if(zombie.get(i).isAlive()){
+                z++;
+            }
+            
+        }
+        zombiesLeft = z;
         // finished listing things to draw
         batch.end();
         shapeRenderer.end();
