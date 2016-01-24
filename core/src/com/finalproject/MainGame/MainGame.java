@@ -33,7 +33,7 @@ public class MainGame implements Screen {
     private Player player;
     private WorldRenderer renderer;
     private ArrayList<Zombie> zombie;
-    private Bullet bullet;
+    private ArrayList<Bullet> bullet;
     private Cursor cursor;
     private float cursorfinalx;
     private float cursorfinaly;
@@ -41,6 +41,7 @@ public class MainGame implements Screen {
     private float playerfinaly;
     private boolean isShoot;
     private int shoot = 0;
+    private int clip = 0;
 
     public MainGame() {
         theWorld = new World();
@@ -65,20 +66,35 @@ public class MainGame implements Screen {
         if(Gdx.input.isKeyPressed(Keys.SPACE)){
             isShoot = true;
         }
+        if(clip==9){
+            clip = 0;
+        }
         
         //shooting
         if(!isShoot){
-          bullet.setX(player.getX());
-          bullet.setY(player.getY());
+            for (int i = 0; i < bullet.size(); i++) {
+               bullet.get(i).setX(player.getX());
+               bullet.get(i).setY(player.getY());
+            }
+          
         }else{
-           fire();
+           fire(bullet.get(clip));
+            for (int i = 1; i < 10; i++) {
+               bullet.get(i).setX(player.getX());
+               bullet.get(i).setY(player.getY());
+            }
            shoot++;
+           
+            
+            
+           //clip++;
         }
         if(shoot==1){
           cursorfinalx = cursor.getx();
           cursorfinaly = cursor.gety();
           playerfinalx = player.getX();
           playerfinaly = player.getY();
+         
         }
         //zombie health
         for (int i = 0; i < theWorld.getZombie().size(); i++) {
@@ -450,7 +466,7 @@ public class MainGame implements Screen {
     }
     
     
-    public void fire(){
+    public void fire(Bullet bullet){
     float cursorx;
     float cursory;
     float playerx;
