@@ -30,12 +30,12 @@ public abstract class Entity {
     public float getY() {
         return bounds.y;
     }
-    
-    public void setX(float x){
+
+    public void setX(float x) {
         bounds.x = x;
     }
-    
-    public void setY(float y){
+
+    public void setY(float y) {
         bounds.y = y;
     }
 
@@ -60,8 +60,8 @@ public abstract class Entity {
         float overlap = Math.min(this.bounds.y + this.bounds.height, other.bounds.y + other.bounds.height) - Math.max(this.bounds.y, other.bounds.y);
         return overlap;
     }
-    
-        public Rectangle getBounds(){
+
+    public Rectangle getBounds() {
         return this.bounds;
     }
 }

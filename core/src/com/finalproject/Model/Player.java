@@ -40,13 +40,9 @@ public class Player extends Entity {
     // animation state counter
     private float stateTime;
     private Rectangle bounds;
-  
-        
-    
+
     private int health = 800;
-    
- 
-    
+
     public Player(float x, float y, float width, float height) {
         super(x, y, width, height);
         state = State.STANDING;
@@ -61,11 +57,10 @@ public class Player extends Entity {
         isFacingNW = false;
         isFacingSE = false;
         isFacingSW = false;
-        
-        bounds = new Rectangle(x,y, width, height);       
-        position = new Vector2(x,y);
-        
-        
+
+        bounds = new Rectangle(x, y, width, height);
+        position = new Vector2(x, y);
+
         stateTime = 0;
     }
 
@@ -81,14 +76,10 @@ public class Player extends Entity {
             velocity.y = 0;
         }
         addToPosition(velocity.x, velocity.y);
-        
-        
-        
+
         position.add(velocity);
         bounds.x = position.x;
         bounds.y = position.y;
-        
-        
 
         // moving to the rught
         if (velocity.x < 0) {
@@ -147,7 +138,7 @@ public class Player extends Entity {
                 state = State.RUNNING;
             }
 
-          //is running ne direction
+            //is running ne direction
         } else if (velocity.y > 0 && velocity.x > 0) {
             isFacingNE = true;
             isFacingWest = false;
@@ -175,7 +166,7 @@ public class Player extends Entity {
                 stateTime = 0;
                 state = State.RUNNING;
             }
-        //if running se
+            //if running se
         } else if (velocity.y < 0 && velocity.x > 0) {
             isFacingSE = true;
             isFacingWest = false;
@@ -189,7 +180,7 @@ public class Player extends Entity {
                 stateTime = 0;
                 state = State.RUNNING;
             }
-           //if running sw
+            //if running sw
         } else if (velocity.y < 0 && velocity.x < 0) {
             isFacingSW = true;
             isFacingWest = false;
@@ -273,52 +264,52 @@ public class Player extends Entity {
     public boolean isFacingSW() {
         return isFacingSW;
     }
-    
-    public void setHealth(int x){
+
+    public void setHealth(int x) {
         health = x;
     }
-    
-    public int getHealth(){
-        if(health > 0){
+
+    public int getHealth() {
+        if (health > 0) {
             return health;
-        }else{
+        } else {
             return 0;
         }
-        
+
     }
-    
-    public void add(float x, float y){
+
+    public void add(float x, float y) {
         position.x += x;
         position.y += y;
         bounds.x = position.x;
         bounds.y = position.y;
     }
-    
-    public float getXVelocity(){
+
+    public float getXVelocity() {
         return velocity.x;
     }
-    
-    public Rectangle getBounds(){
+
+    public Rectangle getBounds() {
         return this.bounds;
     }
-    
-    public float getWidth(){
+
+    public float getWidth() {
         return bounds.getWidth();
     }
-    
-    public float getHeight(){
+
+    public float getHeight() {
         return bounds.getHeight();
     }
-    
-    public float getX(){
+
+    public float getX() {
         return position.x;
     }
-    
-    public float getY(){
+
+    public float getY() {
         return position.y;
     }
-    
-    public void land(){
+
+    public void land() {
         state = State.STANDING;
     }
 }
