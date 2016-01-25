@@ -95,6 +95,9 @@ public class MainGame implements Screen {
         if(Gdx.input.isButtonPressed(Buttons.LEFT)){
            
             isShoot = true;
+            for (int i = 0; i < bullet.size(); i++) {
+                AssetManager.gunShot.play();
+            }
         }
         if(clip==9){
              
@@ -110,13 +113,12 @@ public class MainGame implements Screen {
         }else{
            fire(bullet.get(clip));
             for (int i = 1; i < 10; i++) {
-               
                bullet.get(i).setX(player.getX());
                bullet.get(i).setY(player.getY());
             }
            shoot++;
         }
-        if(shoot==1){    
+        if(shoot==1){
           cursorfinalx = cursor.getx();
           cursorfinaly = cursor.gety();
           playerfinalx = player.getX();
@@ -249,7 +251,6 @@ public class MainGame implements Screen {
             } else {
                 zombie.get(i).setVelocityY(0);
             }
-
             zombie.get(i).update(deltaTime);
         }
         
@@ -317,7 +318,6 @@ public class MainGame implements Screen {
                     zombie.get(i).setVelocityY(0);
 
                 } else {
-//                    player.setHealth(player.getHealth()-10);
                     // fix the smallest overlap
                     if (overX < overY) {
 
@@ -329,8 +329,6 @@ public class MainGame implements Screen {
                         }
 
                     } else {
-//                        player.setHealth(player.getHealth()-10);
-
                         // above the block
                         if (player.getY() > (zombie.get(i).getY())) {
                             player.addToPosition(0, (overY));
@@ -370,7 +368,6 @@ public class MainGame implements Screen {
                     zombie.get(j).setVelocityY(0);
 
                 } else {
-//                    player.setHealth(player.getHealth()-10);
                     // fix the smallest overlap
                     if (overX < overY) {
 
@@ -419,11 +416,8 @@ public class MainGame implements Screen {
                     zombie.get(i).setVelocityY(0);
 
                 } else {
-//                    player.setHealth(player.getHealth()-10);
                     // fix the smallest overlap
                     if (overX < overY) {
-
-                        // left of the block
                         if (zombie.get(j).getX() > (zombie.get(i).getX())) {
                             zombie.get(j).addToPosition((overX), 0);
                         } else if (zombie.get(j).getX() < zombie.get(i).getX()) {
@@ -431,8 +425,6 @@ public class MainGame implements Screen {
                         }
 
                     } else {
-//                        player.setHealth(player.getHealth()-10);
-
                         // above the block
                         if (zombie.get(j).getY() > (zombie.get(i).getY())) {
                             zombie.get(j).addToPosition(0, (overY));
@@ -484,10 +476,6 @@ public class MainGame implements Screen {
     if(shoot == 100){
         reset();
     }
-        
-    
-    
-    
 }
     public void reset(){
     isShoot = false;

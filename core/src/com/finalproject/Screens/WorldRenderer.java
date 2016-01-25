@@ -346,7 +346,7 @@ public class WorldRenderer {
 
     private void levelTwo() {
 
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 0; i <=6; i++) {
             int rand = random.nextInt(3) + 1;
             if (i == 0) {
                 if (rand == 1) {
@@ -407,14 +407,12 @@ public class WorldRenderer {
                     zombie.add(g);
                     zombie.add(h);
                 }
-            //if all zombies dead
-
             }
         }
     }
 
     private void levelThree() {
-        for (int i = 0; i <= 7; i++) {
+        for (int i = 0; i <= 9; i++) {
             int rand = random.nextInt(3) + 1;
             if (i == 0) {
                 if (rand == 1) {
