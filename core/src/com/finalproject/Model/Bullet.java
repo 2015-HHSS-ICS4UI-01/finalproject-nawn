@@ -11,6 +11,13 @@ package com.finalproject.Model;
  */
 public class Bullet extends Entity {
 
+    /**
+     * 
+     * @param x x position of bullet
+     * @param y y position of bullet
+     * @param width width of bullet
+     * @param height height of bullet
+     */
     public Bullet(float x, float y, float width, float height) {
         super(x, y, width, height);
     }
@@ -19,10 +26,18 @@ public class Bullet extends Entity {
 
     }
 
+    /**
+     * 
+     * @return x position of bullet
+     */
     public float getx() {
         return super.getX();
     }
 
+    /**
+     * 
+     * @return y position of bullet
+     */
     public float gety() {
         return super.getY();
     }
