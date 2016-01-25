@@ -31,6 +31,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.finalproject.Model.Player;
 import com.finalproject.Screens.AssetManager;
 import sun.font.TextLabel;
+import static java.awt.SystemColor.text;
 
 /**
  *
@@ -49,7 +50,9 @@ public class EndScreen implements Screen {
 	Game g;
 	public EndScreen(Game g){
 		create();
-		this.g=g;
+		this.g=g; 
+                
+                
 	}
 
 	public EndScreen(){
@@ -92,34 +95,24 @@ public class EndScreen implements Screen {
                 skin.add("default", textLabelStyle);
 
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-		final TextButton textButton=new TextButton("Restart",textButtonStyle);
+		
                 
+               
+               
+
                 
-		textButton.setPosition(startButtonX, 300);
-                
-                final Label title = new Label("u lose", textLabelStyle );
-                title.setPosition(265, 400);
+                final Label title = new Label("  Y o u  L o s e !  ", textLabelStyle );
+                title.setPosition(265, 300);
+               
                 
                 stage.addActor(title);
-		stage.addActor(textButton);
 		
 		//stage.addActor(textButton);
                 
               
                 
-                                textButton.addListener(new ChangeListener() {
-                    
-			public void changed (ChangeListener.ChangeEvent event, Actor actor) {
-				
-				
-                                //move start button off of screen
-                                textButton.remove();
-                                startButtonX = 1000;
-				g.setScreen( new MenuScreen());
-                                AssetManager.splash.dispose();
-                                
-			}
-		});
+           
+		
                 
                                    
                 
@@ -181,3 +174,4 @@ public class EndScreen implements Screen {
 
 
 
+                                
