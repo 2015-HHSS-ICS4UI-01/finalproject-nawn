@@ -25,7 +25,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.finalproject.Model.Block;
 import com.finalproject.Model.Bullet;
 import com.finalproject.Model.Player;
 import com.finalproject.Model.World;
@@ -68,7 +67,7 @@ public class WorldRenderer {
     private int playercomp;
 
     public WorldRenderer(World w) {
-        
+
         playercomp = -8;
         world = w;
         player = world.getPlayer();
@@ -92,8 +91,6 @@ public class WorldRenderer {
         // update the camera
         camera.update();
 
-       
-
         Gdx.graphics.setCursor(Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("Cursor.png")), 0, 0));
 
         //map
@@ -113,22 +110,21 @@ public class WorldRenderer {
         Gdx.gl20.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-    
         //stop following player when  he reaches the end
-        if(player.getX() >= V_WIDTH/2){
-            if(player.getX() < 1600 - (V_WIDTH/2)){
-           camera.position.x = Math.max(world.getPlayer().getX(), mapWidth / 2);  
+        if (player.getX() >= V_WIDTH / 2) {
+            if (player.getX() < 1600 - (V_WIDTH / 2)) {
+                camera.position.x = Math.max(world.getPlayer().getX(), mapWidth / 2);
             }
         }
-        
+
         //stop following player when he reaches the top
-        if(player.getY() >= V_HEIGHT/2){
-            if(player.getY() < 1620 - (V_HEIGHT/2)){
-                camera.position.y = Math.max(world.getPlayer().getY(), mapHeight / 2); 
+        if (player.getY() >= V_HEIGHT / 2) {
+            if (player.getY() < 1620 - (V_HEIGHT / 2)) {
+                camera.position.y = Math.max(world.getPlayer().getY(), mapHeight / 2);
             }
-        
+
         }
-       camera.update();
+        camera.update();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
 
@@ -148,46 +144,46 @@ public class WorldRenderer {
         //crosshair
         mouseX = (int) this.getMousePosInGameWorldx();
         mouseY = (int) this.getMousePosInGameWorldy();
-        batch.draw(cross, mouseX-16, mouseY-15);
-        
+        batch.draw(cross, mouseX - 16, mouseY - 15);
+
         //bullet
         for (int i = 0; i < world.getBullet().size(); i++) {
-            batch.draw(bullet,world.getBullet().get(i).getx(), world.getBullet().get(i).gety());
+
+            batch.draw(bullet, world.getBullet().get(i).getx(), world.getBullet().get(i).gety());
         }
-        
 
         //health bar
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.RED);
-        shapeRenderer.rect(camera.position.x - V_WIDTH/2, camera.position.y +280, 800, 20);
+        shapeRenderer.rect(camera.position.x - V_WIDTH / 2, camera.position.y + 280, 800, 20);
         shapeRenderer.setColor(Color.GREEN);
 
         if (player.getHealth() != 0) {
-            shapeRenderer.rect(camera.position.x - V_WIDTH/2, camera.position.y +280, player.getHealth(), 20);
+            shapeRenderer.rect(camera.position.x - V_WIDTH / 2, camera.position.y + 280, player.getHealth(), 20);
         }
 
         text.setColor(Color.WHITE);
-        
-        text.draw(batch, "Z o m b i e s  L e f t : " + zombiesLeft, camera.position.x - 370, camera.position.y +250);
-        text.draw(batch, "K i l l s : " + kills, camera.position.x - 370, camera.position.y +225);
+
+        text.draw(batch, "Z o m b i e s  L e f t : " + zombiesLeft, camera.position.x - 370, camera.position.y + 250);
+        text.draw(batch, "K i l l s : " + kills, camera.position.x - 370, camera.position.y + 225);
 
         //if the player is standing
         if (player.getState() == Player.State.STANDING) {
             //check if hes facing south
             if (player.isFacingSouth()) {
                 //output his standing south picture
-                batch.draw(AssetManager.playerStandS, player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerStandS, player.getX() + playercomp, player.getY() + playercomp);
             }//check if hes facing north
             else if (player.isFacingNorth()) {
                 //output his standing north picture
-                batch.draw(AssetManager.playerStandN, player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerStandN, player.getX() + playercomp, player.getY() + playercomp);
             }//check if hes facing east
             else if (player.isFacingEast()) {
                 //output his standing east picture
-                batch.draw(AssetManager.playerStandE, player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerStandE, player.getX() + playercomp, player.getY() + playercomp);
             } else {
                 //output his standing west picture
-                batch.draw(AssetManager.playerStandW, player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerStandW, player.getX() + playercomp, player.getY() + playercomp);
             }
 
         } //check if hes running
@@ -195,80 +191,77 @@ public class WorldRenderer {
             //check if hes facing south
             if (player.isFacingSouth()) {
                 //play his walking south animation
-                batch.draw(AssetManager.playerWalkS.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerWalkS.getKeyFrame(player.getStateTime(), true), player.getX() + playercomp, player.getY() + playercomp);
             } //check if hes facing north
             else if (player.isFacingNorth()) {
                 //play his walking north animation
-                batch.draw(AssetManager.playerWalkN.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerWalkN.getKeyFrame(player.getStateTime(), true), player.getX() + playercomp, player.getY() + playercomp);
             } //check if hes facing east
             else if (player.isFacingEast()) {
                 //play his walking east animation
-                batch.draw(AssetManager.playerWalkE.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerWalkE.getKeyFrame(player.getStateTime(), true), player.getX() + playercomp, player.getY() + playercomp);
             }//check if hes facing west
             else if (player.isFacingWest()) {
                 //play his walking west animation
-                batch.draw(AssetManager.playerWalkW.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerWalkW.getKeyFrame(player.getStateTime(), true), player.getX() + playercomp, player.getY() + playercomp);
             }//check if hes facing NE
             else if (player.isFacingNE()) {
                 //play his walking NE animation
-                batch.draw(AssetManager.playerWalkNE.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerWalkNE.getKeyFrame(player.getStateTime(), true), player.getX() + playercomp, player.getY() + playercomp);
             }//check if hes facing NWw
             else if (player.isFacingNW()) {
                 //play his walking NW animation
-                batch.draw(AssetManager.playerWalkNW.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerWalkNW.getKeyFrame(player.getStateTime(), true), player.getX() + playercomp, player.getY() + playercomp);
             }//check if hes facing SE
             else if (player.isFacingSE()) {
                 //play his walking SE animation
-                batch.draw(AssetManager.playerWalkSE.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerWalkSE.getKeyFrame(player.getStateTime(), true), player.getX() + playercomp, player.getY() + playercomp);
             }//check if hes facing SW
             else {
                 //play his walking SW animation
-                batch.draw(AssetManager.playerWalkSW.getKeyFrame(player.getStateTime(), true), player.getX()+playercomp, player.getY()+playercomp);
+                batch.draw(AssetManager.playerWalkSW.getKeyFrame(player.getStateTime(), true), player.getX() + playercomp, player.getY() + playercomp);
             }
         }
 
         //draw zombie
         int zcomp = 8;
-       
-        
+
         for (int i = 0; i < world.getZombie().size(); i++) {
-            if(zombie.get(i).isAlive()){
-            // zombie facing NE
-             if (zombie.get(i).isFacingNE()) {
-                //draw the zombie NE picture
-                batch.draw(AssetManager.zombieNE, zombie.get(i).getX()-zcomp, zombie.get(i).getY()-zcomp);
-            }//if zombie is facing NW
-            else if (zombie.get(i).isFacingNW()) {
-                //draw the zombie NW picture
-                batch.draw(AssetManager.zombieNW, zombie.get(i).getX()-zcomp, zombie.get(i).getY()-zcomp);
-            }//if zombie is facing SE
-            else if (zombie.get(i).isFacingSE()) {
-                //draw the zombie SE picture
-                batch.draw(AssetManager.zombieSE, zombie.get(i).getX()-zcomp, zombie.get(i).getY()-zcomp);
-            }//if zombie facing SW
-            else if (zombie.get(i).isFacingSW()) {
-                //draw the zombie SW picture
-                batch.draw(AssetManager.zombieSW, zombie.get(i).getX()-zcomp, zombie.get(i).getY()-zcomp);
-            }
+            if (zombie.get(i).isAlive()) {
+                // zombie facing NE
+                if (zombie.get(i).isFacingNE()) {
+                    //draw the zombie NE picture
+                    batch.draw(AssetManager.zombieNE, zombie.get(i).getX() - zcomp, zombie.get(i).getY() - zcomp);
+                }//if zombie is facing NW
+                else if (zombie.get(i).isFacingNW()) {
+                    //draw the zombie NW picture
+                    batch.draw(AssetManager.zombieNW, zombie.get(i).getX() - zcomp, zombie.get(i).getY() - zcomp);
+                }//if zombie is facing SE
+                else if (zombie.get(i).isFacingSE()) {
+                    //draw the zombie SE picture
+                    batch.draw(AssetManager.zombieSE, zombie.get(i).getX() - zcomp, zombie.get(i).getY() - zcomp);
+                }//if zombie facing SW
+                else if (zombie.get(i).isFacingSW()) {
+                    //draw the zombie SW picture
+                    batch.draw(AssetManager.zombieSW, zombie.get(i).getX() - zcomp, zombie.get(i).getY() - zcomp);
+                }
             }
         }
         int z = 0;
         int x = 0;
-        
-        for (int i = 0; i < zombie.size(); i++) {
-            if(zombie.get(i).isAlive()){
+
+        for (int i = 0; i < zombie.size() - 1; i++) {
+            if (zombie.get(i).isAlive()) {
                 z++;
-                
             }
-            if(zombie.get(i).isAlive() == false){
-               x ++; 
+            if (zombie.get(i).isAlive() == false) {
+                x++;
             }
-            
+
         }
         zombiesLeft = z;
         kills = x;
-        
-        
+
         // finished listing things to draw
         batch.end();
         shapeRenderer.end();
@@ -290,7 +283,5 @@ public class WorldRenderer {
         world.setCursorY(n.y);
         return n.y;
     }
-
- 
 
 }

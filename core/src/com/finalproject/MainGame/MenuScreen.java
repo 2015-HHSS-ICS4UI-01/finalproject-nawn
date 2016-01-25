@@ -36,152 +36,138 @@ import sun.font.TextLabel;
  *
  * @author Walter
  */
-
 public class MenuScreen implements Screen {
-	Skin skin;
-	Stage stage;
-	SpriteBatch batch;
-        private BitmapFont font;
-        
-        
-        
 
-	Game g;
-	public MenuScreen(Game g){
-		create();
-		this.g=g;
-	}
+    Skin skin;
+    Stage stage;
+    SpriteBatch batch;
+    private BitmapFont font;
+    int startButtonX = 275;
 
-	public MenuScreen(){
-		create();
-	}
-	public void create(){
-            AssetManager.splash.play();
-		batch = new SpriteBatch();
-		stage = new Stage();
-		Gdx.input.setInputProcessor(stage);
+    Game g;
 
-		
-		skin = new Skin();
-		// Generate a 1x1 white texture and store it in the skin named "white".
-		Pixmap pixmap = new Pixmap(100, 75, Format.RGBA8888);
-		pixmap.setColor(Color.BLACK);
-		pixmap.fill();
+    public MenuScreen(Game g) {
+        create();
+        this.g = g;
+    }
 
-		skin.add("black", new Texture(pixmap));
+    public MenuScreen() {
+        create();
+    }
 
-		// Store the default libgdx font under the name "default".
-		BitmapFont bfont =new BitmapFont();
-                BitmapFont titleFont = new BitmapFont();
-                titleFont.getData().setScale(1);
-		bfont.getData().setScale(1);
-		skin.add("default",bfont);
+    public void create() {
+        AssetManager.splash.play();
+        batch = new SpriteBatch();
+        stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
 
-		// Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
-		TextButtonStyle textButtonStyle = new TextButtonStyle();
-		textButtonStyle.up = skin.newDrawable("black", Color.DARK_GRAY);
-		textButtonStyle.down = skin.newDrawable("black", Color.DARK_GRAY);
-		textButtonStyle.checked = skin.newDrawable("black", Color.BLUE);
-		textButtonStyle.over = skin.newDrawable("black", Color.LIGHT_GRAY);
-                LabelStyle textLabelStyle = new LabelStyle();
-                textLabelStyle.font = skin.getFont("default");
-                
-		textButtonStyle.font = skin.getFont("default");
+        skin = new Skin();
+        // Generate a 1x1 white texture and store it in the skin named "white".
+        Pixmap pixmap = new Pixmap(100, 75, Format.RGBA8888);
+        pixmap.setColor(Color.BLACK);
+        pixmap.fill();
 
-		skin.add("default", textButtonStyle);
-                skin.add("default", textLabelStyle);
+        skin.add("black", new Texture(pixmap));
 
-		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-		final TextButton textButton=new TextButton("Start",textButtonStyle);
-                
-                
-		textButton.setPosition(275, 300);
-                
-                final Label title = new Label("Call of duty ghosts", textLabelStyle );
-                final Label Instructions = new Label(" W, A, S, D keys to move the player around   ", textLabelStyle );
-                final Label Instructions2 = new Label(" Space to shoot   ", textLabelStyle );
-                title.setPosition(265, 400);
-                Instructions.setPosition(190, 150);
-                Instructions2.setPosition(270, 100);
-                
-                stage.addActor(title);
-                stage.addActor(Instructions);
-                stage.addActor(Instructions2);
-		stage.addActor(textButton);
-		
-		//stage.addActor(textButton);
-                
-              
-                
-                                textButton.addListener(new ChangeListener() {
-                    
-			public void changed (ChangeEvent event, Actor actor) {								
-                                //remove start button off of screen
-                              
-                                textButton.remove();                               
-				g.setScreen( new MainGame());  
-                                
-                                
-			}
-		});
-                
-                                   
-                
+        // Store the default libgdx font under the name "default".
+        BitmapFont bfont = new BitmapFont();
+        BitmapFont titleFont = new BitmapFont();
+        titleFont.getData().setScale(1);
+        bfont.getData().setScale(1);
+        skin.add("default", bfont);
 
+        // Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
+        TextButtonStyle textButtonStyle = new TextButtonStyle();
+        textButtonStyle.up = skin.newDrawable("black", Color.DARK_GRAY);
+        textButtonStyle.down = skin.newDrawable("black", Color.DARK_GRAY);
+        textButtonStyle.checked = skin.newDrawable("black", Color.BLUE);
+        textButtonStyle.over = skin.newDrawable("black", Color.LIGHT_GRAY);
+        LabelStyle textLabelStyle = new LabelStyle();
+        textLabelStyle.font = skin.getFont("default");
 
-	}
+        textButtonStyle.font = skin.getFont("default");
 
-	public void render (float delta) {
-		Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-		stage.draw();
-                stage.setDebugAll(true);
-                
-                
-                
-		//Table.drawDebug(stage);
-	}
+        skin.add("default", textButtonStyle);
+        skin.add("default", textLabelStyle);
 
-	@Override
-	public void resize (int width, int height) {
-		//stage.setViewport(width, height);
-           // stage.setViewport(new StretchViewport(width, height));
-            
-	}
+        // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
+        final TextButton textButton = new TextButton("Start", textButtonStyle);
 
-	@Override
-	public void dispose () {
-		stage.dispose();
-		skin.dispose();
-	}
+        textButton.setPosition(startButtonX, 300);
 
-	@Override
-	public void show() {
-		// TODO Auto-generated method stub
-         //   Gdx.input.setInputProcessor(stage);
+        final Label title = new Label("Call of duty ghosts", textLabelStyle);
+        final Label Instructions = new Label(" W, A, S, D keys to move the player around   ", textLabelStyle);
+        final Label Instructions2 = new Label(" Left to shoot   ", textLabelStyle);
+        title.setPosition(265, 400);
+        Instructions.setPosition(190, 150);
+        Instructions2.setPosition(280, 100);
 
-	}
+        stage.addActor(title);
+        stage.addActor(Instructions);
+        stage.addActor(Instructions2);
+        stage.addActor(textButton);
 
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
+        //stage.addActor(textButton);
+        textButton.addListener(new ChangeListener() {
 
-	}
+            public void changed(ChangeEvent event, Actor actor) {
 
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
+                //move start button off of screen
+                textButton.remove();
 
-	}
+                g.setScreen(new MainGame(g));
+                AssetManager.splash.dispose();
 
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
+            }
+        });
 
-	}
+    }
+
+    public void render(float delta) {
+        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.draw();
+        stage.setDebugAll(true);
+
+        //Table.drawDebug(stage);
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        //stage.setViewport(width, height);
+        // stage.setViewport(new StretchViewport(width, height));
+
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
+        skin.dispose();
+    }
+
+    @Override
+    public void show() {
+        // TODO Auto-generated method stub
+        //   Gdx.input.setInputProcessor(stage);
+
+    }
+
+    @Override
+    public void hide() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void pause() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void resume() {
+        // TODO Auto-generated method stub
+
+    }
 }
-
-
-
-

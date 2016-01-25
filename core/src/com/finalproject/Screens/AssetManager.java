@@ -56,17 +56,18 @@ public class AssetManager {
 //    public static Animation zombieNE;
 //    public static Animation zombieSE;
 //    public static Animation zombieSW;
-    
     public static Music splash;
     public static Music game;
+    public static Music gunShot;
+
     public static void load() {
         //find the file to look at
         atlas = new TextureAtlas("zombie.atlas");
 
         splash = Gdx.audio.newMusic(Gdx.files.internal("splash.mp3"));
         game = Gdx.audio.newMusic(Gdx.files.internal("game.mp3"));
-        
-        
+        gunShot = Gdx.audio.newMusic(Gdx.files.internal("gunShot.mp3"));
+
         //get the images of soldier in all his standing positions
         playerStandS = atlas.findRegion("soldier_standing_south");
         playerStandN = atlas.findRegion("soldier_standing_north");

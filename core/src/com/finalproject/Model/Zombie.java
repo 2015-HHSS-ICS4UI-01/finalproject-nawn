@@ -35,9 +35,10 @@ public class Zombie extends Entity {
     private boolean isFacingSE;
 
     private boolean isAlive = true;
+
     // animation state counter
     private float stateTime;
-    
+
     private int health = 100;
 
     public Zombie(float x, float y, float width, float height) {
@@ -59,108 +60,108 @@ public class Zombie extends Entity {
     }
 
     public void update(float delta) {
-        if(isAlive){
-        //acceleration.y = -9.8f;
-        velocity.mulAdd(acceleration, delta);
-        velocity.x = velocity.x * DAMP;
-        if (velocity.x < 0.01f && velocity.x > -0.01f) {
-            velocity.x = 0;
-        }
-        velocity.y = velocity.y * DAMP;
-        if (velocity.y < 0.01f && velocity.y > -0.01f) {
-            velocity.y = 0;
-        }
-        addToPosition(velocity.x, velocity.y);
+        if (isAlive) {
+            //acceleration.y = -9.8f;
+            velocity.mulAdd(acceleration, delta);
+            velocity.x = velocity.x * DAMP;
+            if (velocity.x < 0.01f && velocity.x > -0.01f) {
+                velocity.x = 0;
+            }
+            velocity.y = velocity.y * DAMP;
+            if (velocity.y < 0.01f && velocity.y > -0.01f) {
+                velocity.y = 0;
+            }
+            addToPosition(velocity.x, velocity.y);
 
-        // moving to the left
-        if (velocity.x < 0 && velocity.y == 0) {
-            isFacingWest = true;
-            isFacingSouth = false;
-            isFacingEast = false;
-            isFacingNorth = false;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSE = false;
-            isFacingSW = false;
+            // moving to the left
+            if (velocity.x < 0 && velocity.y == 0) {
+                isFacingWest = true;
+                isFacingSouth = false;
+                isFacingEast = false;
+                isFacingNorth = false;
+                isFacingNE = false;
+                isFacingNW = false;
+                isFacingSE = false;
+                isFacingSW = false;
 
-            //moving right
-        } else if (velocity.x > 0 && velocity.y == 0) {
-            isFacingWest = false;
-            isFacingSouth = false;
-            isFacingNorth = false;
-            isFacingEast = true;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSE = false;
-            isFacingSW = false;
+                //moving right
+            } else if (velocity.x > 0 && velocity.y == 0) {
+                isFacingWest = false;
+                isFacingSouth = false;
+                isFacingNorth = false;
+                isFacingEast = true;
+                isFacingNE = false;
+                isFacingNW = false;
+                isFacingSE = false;
+                isFacingSW = false;
 
-            //moving south
-        } else if (velocity.y < 0 && velocity.x == 0) {
-            isFacingSouth = true;
-            isFacingWest = false;
-            isFacingEast = false;
-            isFacingNorth = false;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSE = false;
-            isFacingSW = false;
+                //moving south
+            } else if (velocity.y < 0 && velocity.x == 0) {
+                isFacingSouth = true;
+                isFacingWest = false;
+                isFacingEast = false;
+                isFacingNorth = false;
+                isFacingNE = false;
+                isFacingNW = false;
+                isFacingSE = false;
+                isFacingSW = false;
 
-            //moving up
-        } else if (velocity.y > 0 && velocity.x == 0) {
-            isFacingNorth = true;
-            isFacingWest = false;
-            isFacingSouth = false;
-            isFacingEast = false;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSE = false;
-            isFacingSW = false;
+                //moving up
+            } else if (velocity.y > 0 && velocity.x == 0) {
+                isFacingNorth = true;
+                isFacingWest = false;
+                isFacingSouth = false;
+                isFacingEast = false;
+                isFacingNE = false;
+                isFacingNW = false;
+                isFacingSE = false;
+                isFacingSW = false;
 
-            //is running ne direction
-        } else if (velocity.y > 0 && velocity.x > 0) {
-            isFacingNE = true;
-            isFacingWest = false;
-            isFacingSouth = false;
-            isFacingEast = false;
-            isFacingNorth = false;
-            isFacingNW = false;
-            isFacingSE = false;
-            isFacingSW = false;
+                //is running ne direction
+            } else if (velocity.y > 0 && velocity.x > 0) {
+                isFacingNE = true;
+                isFacingWest = false;
+                isFacingSouth = false;
+                isFacingEast = false;
+                isFacingNorth = false;
+                isFacingNW = false;
+                isFacingSE = false;
+                isFacingSW = false;
 
-            //if running in nw direction
-        } else if (velocity.y > 0 && velocity.x < 0) {
-            isFacingNW = true;
-            isFacingWest = false;
-            isFacingSouth = false;
-            isFacingEast = false;
-            isFacingNorth = false;
-            isFacingNE = false;
-            isFacingSE = false;
-            isFacingSW = false;
+                //if running in nw direction
+            } else if (velocity.y > 0 && velocity.x < 0) {
+                isFacingNW = true;
+                isFacingWest = false;
+                isFacingSouth = false;
+                isFacingEast = false;
+                isFacingNorth = false;
+                isFacingNE = false;
+                isFacingSE = false;
+                isFacingSW = false;
 
-            //if running se
-        } else if (velocity.y < 0 && velocity.x > 0) {
-            isFacingSE = true;
-            isFacingWest = false;
-            isFacingSouth = false;
-            isFacingEast = false;
-            isFacingNorth = false;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSW = false;
+                //if running se
+            } else if (velocity.y < 0 && velocity.x > 0) {
+                isFacingSE = true;
+                isFacingWest = false;
+                isFacingSouth = false;
+                isFacingEast = false;
+                isFacingNorth = false;
+                isFacingNE = false;
+                isFacingNW = false;
+                isFacingSW = false;
 
-            //if running sw
-        } else if (velocity.y < 0 && velocity.x < 0) {
-            isFacingSW = true;
-            isFacingWest = false;
-            isFacingSouth = false;
-            isFacingEast = false;
-            isFacingNorth = false;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSE = false;
+                //if running sw
+            } else if (velocity.y < 0 && velocity.x < 0) {
+                isFacingSW = true;
+                isFacingWest = false;
+                isFacingSouth = false;
+                isFacingEast = false;
+                isFacingNorth = false;
+                isFacingNE = false;
+                isFacingNW = false;
+                isFacingSE = false;
 
-        }
+            }
         }
 
     }
@@ -218,22 +219,22 @@ public class Zombie extends Entity {
     }
 
     public void Alive(boolean a) {
-         isAlive = a;
+        isAlive = a;
     }
-    
-    public boolean isAlive(){
+
+    public boolean isAlive() {
         return isAlive;
     }
-    
-    public int getNumberZombies(){
+
+    public int getNumberZombies() {
         return world.getZombie().size();
     }
-    
-    public void sethealth(int h){
+
+    public void sethealth(int h) {
         health = h;
     }
-    
-    public int getheath(){
+
+    public int getheath() {
         return health;
     }
 
