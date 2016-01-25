@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
  * @author NAWN
  */
 public class Zombie extends Entity {
-    
+
     //variable for damp effect
     private final float DAMP = 0.8f;
 

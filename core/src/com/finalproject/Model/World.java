@@ -12,7 +12,9 @@ import java.util.ArrayList;
  * @author NAWN
  */
 public class World {
+
     //variable for the player
+
     private Player player;
     //array to store zombies
     private ArrayList<Zombie> zombie;
@@ -115,7 +117,7 @@ public class World {
                 }
             }
         }
-        
+
         //for each bullet
         for (int i = 0; i < 10; i++) {
             //add the bullet to the array
@@ -125,6 +127,7 @@ public class World {
 
     /**
      * get the player
+     *
      * @return player
      */
     public Player getPlayer() {
@@ -133,6 +136,7 @@ public class World {
 
     /**
      * get each zombie
+     *
      * @return the zombie
      */
     public ArrayList<Zombie> getZombie() {
@@ -141,6 +145,7 @@ public class World {
 
     /**
      * set the cursor x position
+     *
      * @param x is the new x position
      */
     public void setCursorX(float x) {
@@ -149,6 +154,7 @@ public class World {
 
     /**
      * set the cursor y position
+     *
      * @param y is the new y position
      */
     public void setCursorY(float y) {
@@ -157,6 +163,7 @@ public class World {
 
     /**
      * get the bullet
+     *
      * @return the bullet
      */
     public ArrayList<Bullet> getBullet() {
@@ -165,12 +172,13 @@ public class World {
 
     /**
      * get the cursor
+     *
      * @return the cursor
      */
     public Cursor getCursor() {
         return cursor;
     }
-    
+
     public void update(float delta) {
 
     }

@@ -16,6 +16,7 @@ public abstract class Entity {
 
     /**
      * assigns an entity properties and stores as a rectangle
+     *
      * @param x the x value of an entity in the world
      * @param y the y value of entity in the world
      * @param width the width of the entity
@@ -27,6 +28,7 @@ public abstract class Entity {
 
     /**
      * adds to position of the entity
+     *
      * @param x adds to x value
      * @param y adds to y value
      */
@@ -36,7 +38,7 @@ public abstract class Entity {
     }
 
     /**
-     * 
+     *
      * @return returns x value of the entity
      */
     public float getX() {
@@ -44,8 +46,8 @@ public abstract class Entity {
     }
 
     /**
-     * 
-     * @return returns the y value of the entity 
+     *
+     * @return returns the y value of the entity
      */
     public float getY() {
         return bounds.y;
@@ -53,6 +55,7 @@ public abstract class Entity {
 
     /**
      * sets the x value of the entity
+     *
      * @param x the x value of the entity to change to
      */
     public void setX(float x) {
@@ -61,6 +64,7 @@ public abstract class Entity {
 
     /**
      * sets the y value of the entity
+     *
      * @param y the y value of the entity to change to
      */
     public void setY(float y) {
@@ -68,7 +72,7 @@ public abstract class Entity {
     }
 
     /**
-     * 
+     *
      * @return returns width of the entity
      */
     public float getWidth() {
@@ -76,7 +80,7 @@ public abstract class Entity {
     }
 
     /**
-     * 
+     *
      * @return returns height of the entity
      */
     public float getHeight() {
@@ -85,8 +89,9 @@ public abstract class Entity {
 
     /**
      * checks if two entities are colliding
+     *
      * @param other the entity to compare to for collision
-     * @return 
+     * @return
      */
     public boolean isColliding(Entity other) {
         return bounds.overlaps(other.bounds);
@@ -94,8 +99,9 @@ public abstract class Entity {
 
     /**
      * gets the overlap for x axis
+     *
      * @param other
-     * @return 
+     * @return
      */
     public float getOverlapX(Entity other) {
         float overlap = Math.min(this.bounds.x + this.bounds.width, other.bounds.x + other.bounds.width) - Math.max(this.bounds.x, other.bounds.x);
@@ -103,9 +109,10 @@ public abstract class Entity {
     }
 
     /**
-     * gets the overlap  for y value
+     * gets the overlap for y value
+     *
      * @param other
-     * @return 
+     * @return
      */
     public float getOverlapY(Entity other) {
         float overlap = Math.min(this.bounds.y + this.bounds.height, other.bounds.y + other.bounds.height) - Math.max(this.bounds.y, other.bounds.y);
@@ -113,8 +120,8 @@ public abstract class Entity {
     }
 
     /**
-     * 
-     * @return returns the properties of the entity 
+     *
+     * @return returns the properties of the entity
      */
     public Rectangle getBounds() {
         return this.bounds;

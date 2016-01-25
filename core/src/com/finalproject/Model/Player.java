@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Player extends Entity {
 
-     //variable for damp effect
+    //variable for damp effect
     private final float DAMP = 0.8f;
 
     // states for player

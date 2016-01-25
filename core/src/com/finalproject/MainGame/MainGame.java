@@ -70,8 +70,6 @@ public class MainGame implements Screen {
         this.g = g;
     }
 
-  
-
     public void create() {
         //if player is dead
         if (player.getHealth() == 0) {

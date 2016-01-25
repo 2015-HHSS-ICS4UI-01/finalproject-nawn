@@ -12,7 +12,7 @@ package com.finalproject.Model;
 public class Bullet extends Entity {
 
     /**
-     * 
+     *
      * @param x x position of bullet
      * @param y y position of bullet
      * @param width width of bullet
@@ -27,7 +27,7 @@ public class Bullet extends Entity {
     }
 
     /**
-     * 
+     *
      * @return x position of bullet
      */
     public float getx() {
@@ -35,7 +35,7 @@ public class Bullet extends Entity {
     }
 
     /**
-     * 
+     *
      * @return y position of bullet
      */
     public float gety() {
