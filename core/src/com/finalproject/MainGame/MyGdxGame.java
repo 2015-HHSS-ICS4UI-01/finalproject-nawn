@@ -3,6 +3,10 @@ package com.finalproject.MainGame;
 import com.badlogic.gdx.Game;
 import com.finalproject.Screens.AssetManager;
 
+/**
+ *
+ * @author Walter
+ */
 public class MyGdxGame extends Game {
 
     @Override
