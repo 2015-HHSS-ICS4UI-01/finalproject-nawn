@@ -68,13 +68,11 @@ public class MainGame implements Screen {
 
     public void create() {
         if (player.getHealth() == 0) {
-
             g.setScreen(new EndScreen());
         }
         if (zombie.size() == 1) {
             g.setScreen(new WinScreen());
         }
-
     }
 
     @Override
@@ -187,7 +185,6 @@ public class MainGame implements Screen {
                     //if hit wall from top down  
                 } else if (player.getY() > rectangle.y) {
                     player.setVelocityY(0.5f);
-
                     //if hit wall from left right  
                 }
 
@@ -541,11 +538,9 @@ public class MainGame implements Screen {
     public void reset() {
         isShoot = false;
         shoot = 0;
-
     }
 
     public boolean shoot() {
-
         return isShoot;
     }
 

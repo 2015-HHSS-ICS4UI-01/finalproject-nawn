@@ -22,10 +22,6 @@ public class Zombie extends Entity {
     private Vector2 velocity;
     private Vector2 acceleration;
     // initialize the directions that the zombie is facing
-    private boolean isFacingWest;
-    private boolean isFacingSouth;
-    private boolean isFacingEast;
-    private boolean isFacingNorth;
     private boolean isFacingNW;
     private boolean isFacingNE;
     private boolean isFacingSW;
