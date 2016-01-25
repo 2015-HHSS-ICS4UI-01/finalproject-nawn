@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author lamonta
+ * @author vonhn
  */
 public class MainGame implements Screen {
 
@@ -177,27 +177,27 @@ public class MainGame implements Screen {
             player.setVelocityX(-2f);
         }
 
-        //loads the map  
+        //loads the map
         map = new TmxMapLoader().load("zombieMap.tmx");
-        //loads collision layer  
+        //loads collision layer
         MapLayer collisionObjectLayer = map.getLayers().get("collision");
-        //finds all objects in the collision layer  
+        //finds all objects in the collision layer
         MapObjects objects = collisionObjectLayer.getObjects();
-        //gets all the rectangle objects on the map   
+        //gets all the rectangle objects on the map
         for (RectangleMapObject rectangleObject : objects.getByType(RectangleMapObject.class)) {
 
-            //declares all rectangle objects as rectangles   
+            //declares all rectangle objects as rectangles
             Rectangle rectangle = rectangleObject.getRectangle();
 
-            //if the rectangle objects overlaps the player the speeds is decreased  
+            //if the rectangle objects overlaps the player the speeds is decreased
             if (Intersector.overlaps(rectangle, player.getBounds())) {
 
-                //find which side it intersected from and based on that slow the speed or initiate the collison  
-                //if hit wall from bottom up  
+                //find which side it intersected from and based on that slow the speed or initiate the collison
+                //if hit wall from bottom up
                 if (player.getY() < rectangle.y) {
                     player.setVelocityY(-0.5f);
 
-                    //if hit wall from top down  
+                    //if hit wall from top down
                 } else if (player.getY() > rectangle.y) {
                     player.setVelocityY(0.5f);
                     //if hit wall from left right  
@@ -206,7 +206,7 @@ public class MainGame implements Screen {
                 if (player.getX() > rectangle.x) {
                     player.setVelocityX(0.5f);
 
-                    //if hit wall from right left  
+                    //if hit wall from right left
                 } else if (player.getX() < rectangle.x) {
                     player.setVelocityX(-0.5f);
                 }
@@ -359,97 +359,15 @@ public class MainGame implements Screen {
             //check if player collides with zombie
             if (player.isColliding(zombie.get(i))) {
                 if (zombie.get(i).isAlive()) {
-                    //decrease the players health
+                    //if the player still has health left and is colliding with the zombie
+                    //the player looses health
                     player.setHealth((int) (player.getHealth() - 0.00001));
                 }
-                zombie.get(i).setVelocityX(0);
-                zombie.get(i).setVelocityY(0);
-                // get overlapping amount
-                float overX = player.getOverlapX(zombie.get(i));
-                float overY = player.getOverlapY(zombie.get(i));
 
-                //just fixing y if not moving
-                if (player.getVelocityX() == 0 && player.getVelocityY() == 0) {
-                    // player is above the block
-                    if (player.getY() > (zombie.get(i).getY())) {
-                        player.addToPosition(0, overY);
-                    } else if (player.getY() < zombie.get(i).getY()) {
-
-                        player.addToPosition(0, -overY);
-                    }
-                    player.setVelocityY(0);
-                    zombie.get(i).setVelocityY(0);
-                    // fix the smallest overlap
-                } else {
-                    if (overX < overY) {
-                        // left of the block
-                        if (player.getX() > (zombie.get(i).getX())) {
-                            player.addToPosition((overX), 0);
-                        } else if (player.getX() < zombie.get(i).getX()) {
-                            player.addToPosition(-overX, 0);
-                        }
-
-                    } else {
-                        // above the block
-                        if (player.getY() > (zombie.get(i).getY())) {
-                            player.addToPosition(0, (overY));
-
-                        } else if (player.getY() < zombie.get(i).getY()) {
-                            player.addToPosition(0, -overY);
-                        }
-                        player.setVelocityY(0);
-                        zombie.get(i).setVelocityY(0);
-                    }
-                }
             }
 
             for (int j = 0; j < i; j++) {
-                //check if player collides with zombie
-                if (player.isColliding(zombie.get(j))) {
-                    if (zombie.get(j).isAlive()) {
-                        player.setHealth((int) (player.getHealth() - 0.00001));
-                    }
-                    zombie.get(j).setVelocityX(0);
-                    zombie.get(j).setVelocityY(0);
-                    // get overlapping amount
-                    float overX = player.getOverlapX(zombie.get(j));
-                    float overY = player.getOverlapY(zombie.get(j));
-
-                    //just fixing y if not moving
-                    if (player.getVelocityX() == 0 && player.getVelocityY() == 0) {
-                        // player is above the block
-                        if (player.getY() > (zombie.get(j).getY())) {
-                            player.addToPosition(0, overY);
-                        } else if (player.getY() < zombie.get(j).getY()) {
-
-                            player.addToPosition(0, -overY);
-                        }
-                        player.setVelocityY(0);
-                        zombie.get(j).setVelocityY(0);
-                        // fix the smallest overlap
-                    } else {
-                        if (overX < overY) {
-                            // left of the block
-                            if (player.getX() > (zombie.get(j).getX())) {
-                                player.addToPosition((overX), 0);
-                            } else if (player.getX() < zombie.get(j).getX()) {
-                                player.addToPosition(-overX, 0);
-                            }
-
-                        } else {
-                            // above the block
-                            if (player.getY() > (zombie.get(j).getY())) {
-                                player.addToPosition(0, (overY));
-
-                            } else if (player.getY() < zombie.get(j).getY()) {
-                                player.addToPosition(0, -overY);
-                            }
-                            player.setVelocityY(0);
-                            zombie.get(j).setVelocityY(0);
-                        }
-                    }
-                }
-
+                //if the zombies are colliding with eachother
                 if (zombie.get(j).isColliding(zombie.get(i))) {
 
                     zombie.get(i).setVelocityX(0);
@@ -458,9 +376,9 @@ public class MainGame implements Screen {
                     float overX = zombie.get(j).getOverlapX(zombie.get(i));
                     float overY = zombie.get(j).getOverlapY(zombie.get(i));
 
-                    //just fixing y if not moving
+                    // fixing x & y if not moving
                     if (zombie.get(j).getVelocityX() == 0 && zombie.get(j).getVelocityY() == 0) {
-                        // player is above the block
+                        // zombie(j) is above the zombie(i)
                         if (zombie.get(j).getY() > (zombie.get(i).getY())) {
                             zombie.get(j).addToPosition(0, overY);
                         } else if (zombie.get(j).getY() < zombie.get(i).getY()) {
@@ -480,7 +398,7 @@ public class MainGame implements Screen {
                             }
 
                         } else {
-                            // above the block
+                            // above the zombie
                             if (zombie.get(j).getY() > (zombie.get(i).getY())) {
                                 zombie.get(j).addToPosition(0, (overY));
 
@@ -535,17 +453,17 @@ public class MainGame implements Screen {
         }
         //collisions with walls
         map = new TmxMapLoader().load("zombieMap.tmx");
-        //loads collision layer  
+        //loads collision layer
         MapLayer collisionObjectLayer = map.getLayers().get("collision");
-        //finds all objects in the collision layer  
+        //finds all objects in the collision layer
         MapObjects objects = collisionObjectLayer.getObjects();
-        //gets all the rectangle objects on the map   
+        //gets all the rectangle objects on the map
         for (RectangleMapObject rectangleObject : objects.getByType(RectangleMapObject.class)) {
 
-            //declares all rectangle objects as rectangles   
+            //declares all rectangle objects as rectangles
             Rectangle rectangle = rectangleObject.getRectangle();
 
-            //if the rectangle objects overlaps the player the speeds is decreased  
+            //if the rectangle objects overlaps the player the speeds is decreased
             if (Intersector.overlaps(rectangle, bullet.getBounds())) {
                 reset();
             }
