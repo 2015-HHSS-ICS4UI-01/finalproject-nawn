@@ -33,12 +33,15 @@ public class MainGame implements Screen {
     private Player player;
     private WorldRenderer renderer;
     private ArrayList<Zombie> zombie;
-    private Bullet bullet;
+    private ArrayList<Bullet> bullet;
     private Cursor cursor;
     private float cursorfinalx;
     private float cursorfinaly;
+    private float playerfinalx;
+    private float playerfinaly;
     private boolean isShoot;
     private int shoot = 0;
+    private int clip = 0;
 
     public MainGame() {
         theWorld = new World();
@@ -65,28 +68,37 @@ public class MainGame implements Screen {
             AssetManager.gunShot.play();
             isShoot = true;
         }
+        if(clip==9){
+            clip = 0;
+        }
         
         //shooting
         if(!isShoot){
-          bullet.setX(player.getX());
-          bullet.setY(player.getY());
+            for (int i = 0; i < bullet.size(); i++) {
+               bullet.get(i).setX(player.getX());
+               bullet.get(i).setY(player.getY());
+            }
+          
         }else{
-           fire();
+           fire(bullet.get(clip));
+            for (int i = 1; i < 10; i++) {
+               bullet.get(i).setX(player.getX());
+               bullet.get(i).setY(player.getY());
+            }
            shoot++;
            
+            
+            
+           //clip++;
         }
         if(shoot==1){
            
                 
           cursorfinalx = cursor.getx();
           cursorfinaly = cursor.gety();
-          
-        }
-        //zombie health
-        for (int i = 0; i < theWorld.getZombie().size(); i++) {
-         if(zombie.get(i).getheath()<1){
-             zombie.get(i).Alive(false);
-         }   
+          playerfinalx = player.getX();
+          playerfinaly = player.getY();
+         
         }
         //zombie health
         for (int i = 0; i < theWorld.getZombie().size(); i++) {
@@ -458,16 +470,20 @@ public class MainGame implements Screen {
     }
     
     
-    public void fire(){
+    public void fire(Bullet bullet){
     float cursorx;
     float cursory;
+    float playerx;
+    float playery;
     int speed = 3;
     
     cursorx = cursorfinalx;
     cursory = cursorfinaly;
+    playerx = playerfinalx;
+    playery = playerfinaly;
 
     
-    double angle = Math.atan2(cursorx-player.getX(),cursory-player.getY() );
+    double angle = Math.atan2(cursorx-playerx,cursory-playery );
     
     double bulletdx = speed*Math.sin(angle);
     double bulletdy = speed*Math.cos(angle);

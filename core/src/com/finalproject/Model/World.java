@@ -21,7 +21,7 @@ public class World {
     private Player player;
     private ArrayList<Zombie> zombie;
     private Cursor cursor;
-    private Bullet bullet;
+    private ArrayList<Bullet> bullet;
     private World w;
     private boolean levelOneDone = false;
     private int zombiesLeft;
@@ -30,7 +30,7 @@ public class World {
         blocks = new Array<Block>();
         zombie = new ArrayList<Zombie>();
         cursor = new Cursor(0, 0);
-        bullet = new Bullet(cursor.getx(), cursor.gety(), 25, 25);
+        bullet = new ArrayList<Bullet>();
         Random random = new Random();
         demoLevel();
 
@@ -106,6 +106,10 @@ public class World {
             }
 
         }
+        
+        for (int i = 0; i < 10; i++) {
+         bullet.add(new Bullet(cursor.getx(), cursor.gety(), 25, 25));
+        }
      if(zombiesLeft == 1){
          levelTwo();
      }
@@ -162,7 +166,7 @@ public class World {
         cursor.sety(y);
     }
 
-    public Bullet getBullet() {
+    public ArrayList<Bullet> getBullet() {
         return bullet;
     }
 
