@@ -25,6 +25,8 @@ import com.finalproject.Model.Zombie;
 import com.finalproject.Screens.AssetManager;
 import com.finalproject.Screens.WorldRenderer;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -65,9 +67,11 @@ Game g;
     
      public void create(){
         if(player.getHealth()==0){
-            g.dispose();
-            AssetManager.game.dispose();
+            
             g.setScreen( new EndScreen());
+        } 
+            if(zombie.size() == 1){
+            g.setScreen(new WinScreen());
         }
     
 }
@@ -84,7 +88,12 @@ Game g;
         
         AssetManager.game.play();
         AssetManager.game.setLooping(true);
-        if(player.getHealth() <10){
+        if(player.getHealth() ==0){
+            create();
+            AssetManager.game.setLooping(false);
+            AssetManager.game.dispose();
+        }
+        if(zombie.size()==1){
             create();
             AssetManager.game.setLooping(false);
             AssetManager.game.dispose();
@@ -133,9 +142,10 @@ Game g;
          
         }
         //zombie health
-        for (int i = 0; i < theWorld.getZombie().size(); i++) {
+        for (int i = 0; i < theWorld.getZombie().size()-1; i++) {
          if(zombie.get(i).getheath()<1){
              zombie.get(i).Alive(false);
+             zombie.remove(i);
          }   
         }
         //movement up down left right with keys
@@ -270,8 +280,9 @@ Game g;
 
         collisions();
 
-        //collisions with blocks 
-        // go through each block
+        try {
+            //collisions with blocks
+            // go through each block
 //        for (Block b : theWorld.getBlocks()) {
 //            // if player is hitting a block
 //            if (player.isColliding(b)) {
@@ -311,9 +322,12 @@ Game g;
 //                }
 //            }
 //        }
-                        // above the block
-        // draw the screen
-        renderer.render(deltaTime);
+            // above the block
+            // draw the screen
+            renderer.render(deltaTime);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

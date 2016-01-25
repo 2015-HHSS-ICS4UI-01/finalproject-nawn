@@ -226,9 +226,6 @@ public class Zombie extends Entity {
         return isAlive;
     }
     
-    public int getNumberZombies(){
-        return world.getZombie().size();
-    }
     
     public void sethealth(int h){
         health = h;

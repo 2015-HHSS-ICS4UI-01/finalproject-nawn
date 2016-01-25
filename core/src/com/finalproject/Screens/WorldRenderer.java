@@ -20,6 +20,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import static com.badlogic.gdx.math.MathUtils.random;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
@@ -64,11 +65,10 @@ public class WorldRenderer {
     private Array<Rectangle> collisionBlocks;
     private int levelWidth;
     private int zombiesLeft;
-    private int kills = 0;
     private BitmapFont text;
     private ArrayList<Bullet> bullet1;
     private int playercomp;
-
+    private int level = 1;
     public WorldRenderer(World w) {
         playercomp = -8;
         world = w;
@@ -128,7 +128,7 @@ public class WorldRenderer {
 
     }
 
-    public void render(float delta) {
+    public void render(float delta) throws InterruptedException {
 
         // get the dimensions of the map
         int mapWidth = map.getProperties().get("width", Integer.class);
@@ -181,7 +181,20 @@ public class WorldRenderer {
             batch.draw(bullet,world.getBullet().get(i).getx(), world.getBullet().get(i).gety());
         }
         
-
+        if(zombie.size() == 1){
+        level++;
+        if (level ==2){
+        levelTwo();
+        }
+        if(level ==3)
+            levelThree();
+        } 
+        
+        
+       
+         
+        
+        
         //health bar
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.RED);
@@ -195,8 +208,7 @@ public class WorldRenderer {
         text.setColor(Color.WHITE);
         
         text.draw(batch, "Z o m b i e s  L e f t : " + zombiesLeft, camera.position.x - 370, camera.position.y +250);
-        text.draw(batch, "K i l l s : " + kills, camera.position.x - 370, camera.position.y +225);
-
+       text.draw(batch, "L e v e l : " + level, camera.position.x +250, camera.position.y +250);
         //wall collisions
         for (Rectangle r : collisionBlocks) {
 
@@ -314,19 +326,17 @@ public class WorldRenderer {
             }
         }
         int z = 0;
-        int x = 0;
+    
         
-        for (int i = 0; i < zombie.size()-1; i++) {
+        for (int i = 0; i < zombie.size(); i++) {
             if(zombie.get(i).isAlive()){
                 z++;
             }
-            if(zombie.get(i).isAlive() == false){
-               x ++; 
-            }
+            
             
         }
-        zombiesLeft = z;
-        kills = x;
+        zombiesLeft = z-1;
+    
         
         
         // finished listing things to draw
@@ -352,5 +362,140 @@ public class WorldRenderer {
     }
 
  
+ private void levelTwo(){
+        
+            for (int i = 0; i <= 4; i++) {
+            int rand = random.nextInt(3) + 1;
+            if (i == 0) {
+                if (rand == 1) {
+                    Zombie e = new Zombie(390, 0, 16, 16);
+                    Zombie f = new Zombie(1400, 1590, 16, 16);
+                    Zombie g = new Zombie(-20, 375, 16, 16);
+                    Zombie h = new Zombie(1570, 1190, 16, 16);
+                    zombie.add(e);
+                    zombie.add(f);
+                    zombie.add(g);
+                    zombie.add(h);
+                } else if (rand == 2) {
+                    Zombie e = new Zombie(1420, 0, 16, 16);
+                    Zombie f = new Zombie(900, 1590, 16, 16);
+                    Zombie g = new Zombie(-20, 550, 16, 16);
+                    Zombie h = new Zombie(1570, 1420, 16, 16);
+                    zombie.add(e);
+                    zombie.add(f);
+                    zombie.add(g);
+                    zombie.add(h);
+                } else if (rand == 3) {
+                    Zombie e = new Zombie(390, 0, 16, 16);
+                    Zombie f = new Zombie(200, 1590, 16, 16);
+                    Zombie g = new Zombie(-20, 1400, 16, 16);
+                    Zombie h = new Zombie(1570, 940, 16, 16);
+                    zombie.add(e);
+                    zombie.add(f);
+                    zombie.add(g);
+                    zombie.add(h);
+                }
 
-}
+            } else {
+                if (rand == 1) {
+                    Zombie e = new Zombie(390*(i/10), 0, 16, 16);
+                    Zombie f = new Zombie(1400, 1590*(i/10), 16, 16);
+                    Zombie g = new Zombie(-100*(i/10), 375, 16, 16);
+                    Zombie h = new Zombie(1570*(i/10), 1190, 16, 16);
+                    zombie.add(e);
+                    zombie.add(f);
+                    zombie.add(g);
+                    zombie.add(h);
+                } else if (rand == 2) {
+                    Zombie e = new Zombie(1420*(i/10), 0, 16, 16);
+                    Zombie f = new Zombie(900, 1590*(i/10), 16, 16);
+                    Zombie g = new Zombie(-100*(i/10), 550, 16, 16);
+                    Zombie h = new Zombie(1570, 1420*(i/10), 16, 16);
+                    zombie.add(e);
+                    zombie.add(f);
+                    zombie.add(g);
+                    zombie.add(h);
+                } else if (rand == 3) {
+                    Zombie e = new Zombie(390*(i/10), 0, 16, 16);
+                    Zombie f = new Zombie(200, 1590*(i/10), 16, 16);
+                    Zombie g = new Zombie(-100*(i/10), 1400, 16, 16);
+                    Zombie h = new Zombie(1570, 940*(i/10), 16, 16);
+                    zombie.add(e);
+                    zombie.add(f);
+                    zombie.add(g);
+                    zombie.add(h);
+                }
+            //if all zombies dead
+              
+            }}}
+        
+            
+  private void levelThree(){
+        for (int i = 0; i <= 5; i++) {
+            int rand = random.nextInt(3) + 1;
+            if (i == 0) {
+                if (rand == 1) {
+                    Zombie j = new Zombie(390, 0, 16, 16);
+                    Zombie k = new Zombie(1400, 1590, 16, 16);
+                    Zombie l = new Zombie(-20, 375, 16, 16);
+                    Zombie m = new Zombie(1570, 1190, 16, 16);
+                    zombie.add(j);
+                    zombie.add(k);
+                    zombie.add(l);
+                    zombie.add(m);
+                } else if (rand == 2) {
+                    Zombie j = new Zombie(1420, 0, 16, 16);
+                    Zombie k = new Zombie(900, 1590, 16, 16);
+                    Zombie l = new Zombie(-20, 550, 16, 16);
+                    Zombie m = new Zombie(1570, 1420, 16, 16);
+                    zombie.add(j);
+                    zombie.add(k);
+                    zombie.add(l);
+                    zombie.add(m);
+                } else if (rand == 3) {
+                    Zombie j = new Zombie(390, 0, 16, 16);
+                    Zombie k = new Zombie(200, 1590, 16, 16);
+                    Zombie l = new Zombie(-20, 1400, 16, 16);
+                    Zombie m = new Zombie(1570, 940, 16, 16);
+                    zombie.add(j);
+                    zombie.add(k);
+                    zombie.add(l);
+                    zombie.add(m);
+                }
+
+            } else {
+                if (rand == 1) {
+                    Zombie j = new Zombie(390*(i/10), 0, 16, 16);
+                    Zombie k = new Zombie(1400, 1590*(i/10), 16, 16);
+                    Zombie l = new Zombie(-100*(i/10), 375, 16, 16);
+                    Zombie m = new Zombie(1570*(i/10), 1190, 16, 16);
+                    zombie.add(j);
+                    zombie.add(k);
+                    zombie.add(l);
+                    zombie.add(m);
+                } else if (rand == 2) {
+                    Zombie j = new Zombie(1420*(i/10), 0, 16, 16);
+                    Zombie k = new Zombie(900, 1590*(i/10), 16, 16);
+                    Zombie l = new Zombie(-100*(i/10), 550, 16, 16);
+                    Zombie m = new Zombie(1570, 1420*(i/10), 16, 16);
+                    zombie.add(j);
+                    zombie.add(k);
+                    zombie.add(l);
+                    zombie.add(m);
+                } else if (rand == 3) {
+                    Zombie j = new Zombie(390*(i/10), 0, 16, 16);
+                    Zombie k = new Zombie(200, 1590*(i/10), 16, 16);
+                    Zombie l = new Zombie(-100*(i/10), 1400, 16, 16);
+                    Zombie m = new Zombie(1570, 940*(i/10), 16, 16);
+                    zombie.add(j);
+                    zombie.add(k);
+                    zombie.add(l);
+                    zombie.add(m);
+                }
+          
+            }
+            
+        
+    }
+    
+}}

@@ -40,7 +40,7 @@ public class Player extends Entity {
     // animation state counter
     private float stateTime;
     private Rectangle bounds;
-  
+    private boolean isDead = false;
         
     
     private int health = 800;
@@ -88,7 +88,7 @@ public class Player extends Entity {
         bounds.x = position.x;
         bounds.y = position.y;
         
-        
+        System.out.println(isDead);
 
         // moving to the rught
         if (velocity.x < 0) {
@@ -281,8 +281,10 @@ public class Player extends Entity {
     public int getHealth(){
         if(health > 0){
             return health;
-        }else{
+        }else{ 
+            isDead = true;
             return 0;
+           
         }
         
     }
@@ -321,4 +323,8 @@ public class Player extends Entity {
     public void land(){
         state = State.STANDING;
     }
+    public boolean isDead(){
+        return isDead;
+    } 
+    
 }

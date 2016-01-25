@@ -32,12 +32,12 @@ public class World {
         cursor = new Cursor(0, 0);
         bullet = new ArrayList<Bullet>();
         Random random = new Random();
-        demoLevel();
+        levelOne();
         
 
     }
 
-    private void demoLevel() {
+    private void levelOne() {
 
         player = new Player(480, 785, 16, 16);
         for (int i = 0; i <= 3; i++) {
@@ -111,40 +111,14 @@ public class World {
          bullet.add(new Bullet(cursor.getx(), cursor.gety(), 25, 25));
         }
         
-        if(zombiesLeft == 0){
-            
-            for (int i = 0; i <= 4; i++) {
-            if(i == 0){
-            Zombie a = new Zombie(300, 640, 16, 16);
-            Zombie b = new Zombie(-20, 70, 16, 16);
-            Zombie c = new Zombie(800, 100, 16, 16);
-            Zombie d = new Zombie(400, -20, 16, 16);
-            zombie.add(a);
-            zombie.add(b);
-            zombie.add(c);
-            zombie.add(d);
-            }else{
-            Zombie a = new Zombie(300, 640 * (i/10), 16, 16);
-            Zombie b = new Zombie(-20 * (i * 10), 70, 16, 16);
-            Zombie c = new Zombie(800 * (i/10), 100, 16, 16);
-            Zombie d = new Zombie(400, -20 * (i * 10), 16, 16);
-            zombie.add(a);
-            zombie.add(b);
-            zombie.add(c);
-            zombie.add(d);
         
-    }
-    }
-        }
  
     }
+    
+   
 
     
-    public void levelTwo(){
-      
-          
-       
-    }
+    
     public void update(float delta) {
 
     }
@@ -159,7 +133,6 @@ public class World {
 
     public ArrayList<Zombie> getZombie() {
         return zombie;
-
     }
 
     public void setCursorX(float x) {
@@ -181,6 +154,8 @@ public class World {
         zombiesLeft = z;
     }
     public int getZombiesLeft(){
-        return zombiesLeft -1;
+        return zombiesLeft;
     }
+    
+    
 }

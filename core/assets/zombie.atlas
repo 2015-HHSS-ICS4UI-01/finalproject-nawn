@@ -208,8 +208,8 @@ cross
   index: -1
 bullet
   rotate: false
-  xy: 205, 23
-  size: 10, 10
-  orig: 10, 10
+  xy: 273, 129
+  size: 6, 6
+  orig: 6, 6
   offset: 0, 0
   index: -1

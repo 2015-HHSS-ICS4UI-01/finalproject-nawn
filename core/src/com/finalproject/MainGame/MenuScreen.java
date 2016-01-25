@@ -97,10 +97,10 @@ public class MenuScreen implements Screen {
                 
 		textButton.setPosition(startButtonX, 300);
                 
-                final Label title = new Label("Call of duty ghosts", textLabelStyle );
+                final Label title = new Label("Call of Duty Ghosts - NAWN Edition", textLabelStyle );
                 final Label Instructions = new Label(" W, A, S, D keys to move the player around   ", textLabelStyle );
-                final Label Instructions2 = new Label(" Left to shoot   ", textLabelStyle );
-                title.setPosition(265, 400);
+                final Label Instructions2 = new Label(" Left click to shoot   ", textLabelStyle );
+                title.setPosition(210, 400);
                 Instructions.setPosition(190, 150);
                 Instructions2.setPosition(280, 100);
                 
@@ -122,7 +122,7 @@ public class MenuScreen implements Screen {
                                 textButton.remove();
                                 
                                 
-				g.setScreen( new MainGame());
+				g.setScreen( new MainGame(g));
                                 AssetManager.splash.dispose();
                                 
 			}

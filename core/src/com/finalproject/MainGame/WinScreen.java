@@ -41,7 +41,7 @@ import java.util.ArrayList;
  * @author Walter
  */
 
-public class EndScreen implements Screen {
+public class WinScreen implements Screen {
 	Skin skin;
 	Stage stage;
 	SpriteBatch batch;
@@ -53,14 +53,14 @@ public class EndScreen implements Screen {
       private ArrayList<Zombie> zombie;
         
 	Game g;
-	public EndScreen(Game g){
+	public WinScreen(Game g){
 		create();
 		this.g=g; 
                 
                 
 	}
 
-	public EndScreen(){
+	public WinScreen(){
             world = new World();
             player = world.getPlayer();
             zombie = world.getZombie();
@@ -108,7 +108,7 @@ public class EndScreen implements Screen {
                
                 
                 
-                    final Label title = new Label("  Y o u  L o s e !  ", textLabelStyle ); 
+                final Label title = new Label("  Y o u  W i n!  ", textLabelStyle ); 
                 title.setPosition(265, 300);
                 stage.addActor(title);
                 
