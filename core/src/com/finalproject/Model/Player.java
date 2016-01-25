@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  *
- * @author Vonhn
+ * @author NAWN
  */
 public class Player extends Entity {
 

@@ -27,7 +27,7 @@ import com.finalproject.Screens.AssetManager;
 
 /**
  *
- * @author Walter
+ * @author NAWN
  */
 public class MenuScreen implements Screen {
 

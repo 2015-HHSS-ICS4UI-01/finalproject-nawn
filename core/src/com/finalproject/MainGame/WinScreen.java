@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 
 /**
  *
- * @author Walter
+ * @author NAWN
  */
 public class WinScreen implements Screen {
 

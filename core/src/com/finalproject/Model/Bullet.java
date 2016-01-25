@@ -7,7 +7,7 @@ package com.finalproject.Model;
 
 /**
  *
- * @author Walter
+ * @author NAWN
  */
 public class Bullet extends Entity {
 

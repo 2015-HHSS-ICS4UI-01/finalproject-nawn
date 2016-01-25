@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  *
- * @author alimu
+ * @author NAWN
  */
 public class Zombie extends Entity {
     

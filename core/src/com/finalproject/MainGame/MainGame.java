@@ -29,27 +29,37 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author vonhn
+ * @author NAWN
  */
 public class MainGame implements Screen {
 
+    //variable for the world
     private World theWorld;
+    //variable for the player
     private Player player;
+    //variable for the renderer
     private WorldRenderer renderer;
+    //array storing the zombies
     private ArrayList<Zombie> zombie;
+    //array storing the bullets
     private ArrayList<Bullet> bullet;
+    //variables for the cursor and player shooting
     private Cursor cursor;
     private float cursorfinalx;
     private float cursorfinaly;
     private float playerfinalx;
     private float playerfinaly;
+    //boolean for the player shooting
     private boolean isShoot;
     private int shoot = 0;
     private int clip = 0;
+    //map 
     private TiledMap map;
+    //the game
     Game g;
 
     public MainGame(Game g) {
+        //import and intialize variables
         theWorld = new World();
         player = theWorld.getPlayer();
         renderer = new WorldRenderer(theWorld);
@@ -57,14 +67,10 @@ public class MainGame implements Screen {
         bullet = theWorld.getBullet();
         cursor = theWorld.getCursor();
         isShoot = false;
-
-        create();
         this.g = g;
     }
 
-    public MainGame() {
-        create();
-    }
+  
 
     public void create() {
         //if player is dead

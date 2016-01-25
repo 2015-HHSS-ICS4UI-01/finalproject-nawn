@@ -32,7 +32,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author vonhn
+ * @author NAWN
  */
 public class WorldRenderer {
 

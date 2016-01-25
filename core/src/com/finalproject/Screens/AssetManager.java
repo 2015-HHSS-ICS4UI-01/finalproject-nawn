@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  *
- * @author vonhn
+ * @author NAWN
  */
 public class AssetManager {
 

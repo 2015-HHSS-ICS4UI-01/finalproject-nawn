@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 /**
  *
- * @author vonhn
+ * @author NAWN
  */
 public abstract class Entity {
 

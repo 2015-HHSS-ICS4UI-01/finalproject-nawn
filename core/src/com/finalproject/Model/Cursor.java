@@ -7,7 +7,7 @@ package com.finalproject.Model;
 
 /**
  *
- * @author admin
+ * @author NAWN
  */
 public class Cursor {
 
