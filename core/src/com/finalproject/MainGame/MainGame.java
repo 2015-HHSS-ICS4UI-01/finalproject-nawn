@@ -7,16 +7,8 @@ package com.finalproject.MainGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Input.Buttons;
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
-import com.finalproject.Model.Block;
 import com.finalproject.Model.Bullet;
 import com.finalproject.Model.Cursor;
 import com.finalproject.Model.Player;
@@ -47,7 +39,7 @@ public class MainGame implements Screen {
     private boolean isShoot;
     private int shoot = 0;
     private int clip = 0;
-Game g;
+    Game g;
     public MainGame(Game g) {
         theWorld = new World();
         player = theWorld.getPlayer();
@@ -85,9 +77,9 @@ Game g;
     @Override
     // game loop
     public void render(float deltaTime) {
-        
         AssetManager.game.play();
         AssetManager.game.setLooping(true);
+        
         if(player.getHealth() ==0){
             create();
             AssetManager.game.setLooping(false);
@@ -98,7 +90,6 @@ Game g;
             AssetManager.game.setLooping(false);
             AssetManager.game.dispose();
         }
-        
         
         //shoot button
         if(Gdx.input.isButtonPressed(Buttons.LEFT)){
@@ -112,14 +103,11 @@ Game g;
         
         //shooting
         if(!isShoot){
-            
             for (int i = 0; i < bullet.size(); i++) {
                bullet.get(i).setX(player.getX());
                bullet.get(i).setY(player.getY());
             }
-          
         }else{
-            
            fire(bullet.get(clip));
             for (int i = 1; i < 10; i++) {
                
@@ -127,19 +115,12 @@ Game g;
                bullet.get(i).setY(player.getY());
             }
            shoot++;
-           
-            
-////            
-//           clip++;
         }
-        if(shoot==1){
-           
-                
+        if(shoot==1){    
           cursorfinalx = cursor.getx();
           cursorfinaly = cursor.gety();
           playerfinalx = player.getX();
-          playerfinaly = player.getY();
-         
+          playerfinaly = player.getY();         
         }
         //zombie health
         for (int i = 0; i < theWorld.getZombie().size()-1; i++) {
@@ -172,8 +153,6 @@ Game g;
             player.setVelocityY(-2f);
             player.setVelocityX(-2f);
         } 
-        
-
 //        //if colliding with left part of screen
         if (player.getX() <= 0) {
             player.setVelocityX(0);
@@ -231,9 +210,6 @@ Game g;
                 player.setState(Player.State.RUNNING);
             }
         }
-        
-        
-        
 
         for (int i = 0; i < theWorld.getZombie().size() - 1; i++) {
 
@@ -276,53 +252,12 @@ Game g;
 
             zombie.get(i).update(deltaTime);
         }
+        
         player.update(deltaTime);
 
         collisions();
 
         try {
-            //collisions with blocks
-            // go through each block
-//        for (Block b : theWorld.getBlocks()) {
-//            // if player is hitting a block
-//            if (player.isColliding(b)) {
-//                // get overlapping amount
-//                float overX = player.getOverlapX(b);
-//                float overY = player.getOverlapY(b);
-//
-//                //just fixing y if not moving
-//                if (player.getVelocityX() == 0) {
-//                    // player is above the block
-//                    if (player.getY() > b.getY()) {
-//                        player.addToPosition(0, overY);
-//                        player.setState(Player.State.STANDING);
-//                    } else {
-//                        player.addToPosition(0, -overY);
-//                    }
-//                    player.setVelocityY(0);
-//                } else {
-//                    // fix the smallest overlap
-//                    if (overX < overY) {
-//                        // left of the block
-//                        if (player.getX() < b.getX()) {
-//                            player.addToPosition(-overX, 0);
-//                        } else {
-//                            player.addToPosition(overX, 0);
-//                        }
-//                    } else {
-//                        // above the block
-//                        if (player.getY() > b.getY()) {
-//                            player.addToPosition(0, overY);
-//
-//                        } else {
-//                            player.addToPosition(0, -overY);
-//                        }
-//                        player.setVelocityY(0);
-//                    }
-//                }
-//            }
-//        }
-            // above the block
             // draw the screen
             renderer.render(deltaTime);
         } catch (InterruptedException ex) {

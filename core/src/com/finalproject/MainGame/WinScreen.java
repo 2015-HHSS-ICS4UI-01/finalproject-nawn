@@ -46,24 +46,14 @@ public class WinScreen implements Screen {
 	Stage stage;
 	SpriteBatch batch;
         private BitmapFont font;
-        int startButtonX = 275;
-      
-        private World world;
-        private Player player;
-      private ArrayList<Zombie> zombie;
-        
+        int startButtonX = 275;        
 	Game g;
 	public WinScreen(Game g){
 		create();
 		this.g=g; 
-                
-                
 	}
 
 	public WinScreen(){
-            world = new World();
-            player = world.getPlayer();
-            zombie = world.getZombie();
 		create();
 	}
 	public void create(){
@@ -71,7 +61,6 @@ public class WinScreen implements Screen {
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
 
-		
 		skin = new Skin();
 		// Generate a 1x1 white texture and store it in the skin named "white".
 		Pixmap pixmap = new Pixmap(100, 75, Format.RGBA8888);
@@ -80,14 +69,12 @@ public class WinScreen implements Screen {
 
 		skin.add("black", new Texture(pixmap));
 
-		// Store the default libgdx font under the name "default".
 		BitmapFont bfont =new BitmapFont();
                 BitmapFont titleFont = new BitmapFont();
                 titleFont.getData().setScale(1);
 		bfont.getData().setScale(1);
 		skin.add("default",bfont);
 
-		// Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
 		textButtonStyle.up = skin.newDrawable("black", Color.DARK_GRAY);
 		textButtonStyle.down = skin.newDrawable("black", Color.DARK_GRAY);
@@ -100,34 +87,9 @@ public class WinScreen implements Screen {
 
 		skin.add("default", textButtonStyle);
                 skin.add("default", textLabelStyle);
-
-		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-		
-                
-               
-               
-                
-                
                 final Label title = new Label("  Y o u  W i n!  ", textLabelStyle ); 
                 title.setPosition(265, 300);
                 stage.addActor(title);
-                
-                       
-//               stage
-                
-                
-		
-		//stage.addActor(textButton);
-                
-              
-                
-           
-		
-                
-                                   
-                
-
-
 	}
 
 	public void render (float delta) {
@@ -136,16 +98,10 @@ public class WinScreen implements Screen {
 		stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		stage.draw();
                 stage.setDebugAll(true);
-                
-                
-               
-		//Table.drawDebug(stage);
 	}
 
 	@Override
 	public void resize (int width, int height) {
-		//stage.setViewport(width, height);
-           // stage.setViewport(new StretchViewport(width, height));
             
 	}
 
@@ -157,26 +113,21 @@ public class WinScreen implements Screen {
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-         //   Gdx.input.setInputProcessor(stage);
 
 	}
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
 
 	}
 }

@@ -46,16 +46,6 @@ public class AssetManager {
     public static TextureRegion zombieSW;
     public static TextureRegion bullet;
     public static TextureRegion cross;
-
-    //initialize all the standing positions for the zombie
-//    public static Animation zombieW;
-//    public static Animation zombieE;
-//    public static Animation zombieN;
-//    public static Animation zombieS;
-//    public static Animation zombieNW;
-//    public static Animation zombieNE;
-//    public static Animation zombieSE;
-//    public static Animation zombieSW;
     
     public static Music splash;
     public static Music game;
@@ -129,41 +119,5 @@ public class AssetManager {
         Array<AtlasRegion> runSW = atlas.findRegions("soldier_walking_sw");
         playerWalkSW = new Animation(0.1f, runSW);
         runSW = atlas.findRegions("soldier_walking_sw");
-
-//        
-//        
-//        
-//        
-//        Array<AtlasRegion> zombieNorth = atlas.findRegions("zombie_north");
-//        zombieN = new Animation(0.1f, zombieNorth);
-//        zombieNorth = atlas.findRegions("zombie_north");
-//        
-//        Array<AtlasRegion> zombieSouth = atlas.findRegions("zombie_southh");
-//        zombieS = new Animation(0.1f, zombieSouth);
-//        zombieSouth = atlas.findRegions("zombie_south");
-//        
-//        Array<AtlasRegion> zombieEast = atlas.findRegions("zombie_right");
-//        zombieE = new Animation(0.1f, zombieEast);
-//        zombieEast = atlas.findRegions("zombie_right");
-//        
-//        Array<AtlasRegion> zombieWest = atlas.findRegions("zombie_left");
-//        zombieW = new Animation(0.1f, zombieWest);
-//        zombieWest = atlas.findRegions("zombie_left");
-//        
-//        Array<AtlasRegion> zombieNorthE = atlas.findRegions("zombie_nw");
-//        zombieNE = new Animation(0.1f, zombieNorthE);
-//        zombieNorthE = atlas.findRegions("zombie_nw");
-//        
-//        Array<AtlasRegion> zombieNorthW = atlas.findRegions("zombie_ne");
-//        zombieNW = new Animation(0.1f, zombieNorthW);
-//        zombieNorthW = atlas.findRegions("zombie_ne");
-//        
-//        Array<AtlasRegion> zombieSouthE = atlas.findRegions("zombie_se");
-//        zombieSE = new Animation(0.1f, zombieSouthE);
-//        zombieSouthE = atlas.findRegions("zombie_se");
-//        
-//        Array<AtlasRegion> zombieSouthW = atlas.findRegions("zombie_sw");
-//        zombieSW = new Animation(0.1f, zombieSouthW);
-//        zombieSouthW = atlas.findRegions("zombie_sw");
     }
 }

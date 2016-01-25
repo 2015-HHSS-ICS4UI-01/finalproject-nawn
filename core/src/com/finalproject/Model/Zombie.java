@@ -17,10 +17,6 @@ public class Zombie extends Entity {
     private final float Y_MAX_VEL = 2.0f;
     private final float DAMP = 0.8f;
 
-    //make variables to communicate with other class
-    private World world;
-    private Player player;
-
     // movement variables
     private Vector2 velocity;
     private Vector2 acceleration;
@@ -33,12 +29,9 @@ public class Zombie extends Entity {
     private boolean isFacingNE;
     private boolean isFacingSW;
     private boolean isFacingSE;
-
     private boolean isAlive = true;
-
     // animation state counter
     private float stateTime;
-    
     private int health = 100;
 
     public Zombie(float x, float y, float width, float height) {
@@ -163,7 +156,6 @@ public class Zombie extends Entity {
 
         }
         }
-
     }
 
     public void setVelocityX(float x) {
@@ -225,7 +217,6 @@ public class Zombie extends Entity {
     public boolean isAlive(){
         return isAlive;
     }
-    
     
     public void sethealth(int h){
         health = h;

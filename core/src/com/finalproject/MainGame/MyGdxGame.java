@@ -14,10 +14,9 @@ public class MyGdxGame extends Game {
 
 	@Override
 	public void create () {
- // loads in the images
+        // loads in the images
         AssetManager.load();
-        
-               setScreen(new MenuScreen(this));
+        setScreen(new MenuScreen(this));
                
                 
 	}

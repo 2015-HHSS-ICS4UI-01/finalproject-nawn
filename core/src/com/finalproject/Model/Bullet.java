@@ -12,38 +12,24 @@ import com.badlogic.gdx.math.Vector2;
  * @author Walter
  */
 public class Bullet extends Entity {
-    
-    
-    
+
     private float velocityx;
     private float velocityy;
-    
-    
-    
-    
 
     public Bullet(float x, float y, float width, float height) {
         super(x, y, width, height);
-        
-        
-        
-         
     }
-    
-        public void update(float delta) {
-        
-        
-        }
-    
- public float getx(){
-     return super.getX();
- }
- 
- public float gety(){
-     return super.getY();
- }
- 
- 
-        
-    
+
+    public void update(float delta) {
+
+    }
+
+    public float getx() {
+        return super.getX();
+    }
+
+    public float gety() {
+        return super.getY();
+    }
+
 }
