@@ -28,6 +28,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.finalproject.Model.Player;
 import com.finalproject.Screens.AssetManager;
 import sun.font.TextLabel;
 
@@ -60,18 +61,17 @@ public class MenuScreen implements Screen {
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
 
-		// A skin can be loaded via JSON or defined programmatically, either is fine. Using a skin is optional but strongly
-		// recommended solely for the convenience of getting a texture, region, etc as a drawable, tinted drawable, etc.
+		
 		skin = new Skin();
 		// Generate a 1x1 white texture and store it in the skin named "white".
 		Pixmap pixmap = new Pixmap(100, 75, Format.RGBA8888);
-		pixmap.setColor(Color.GREEN);
+		pixmap.setColor(Color.BLACK);
 		pixmap.fill();
 
-		skin.add("white", new Texture(pixmap));
+		skin.add("black", new Texture(pixmap));
 
 		// Store the default libgdx font under the name "default".
-		BitmapFont bfont=new BitmapFont();
+		BitmapFont bfont =new BitmapFont();
                 BitmapFont titleFont = new BitmapFont();
                 titleFont.getData().setScale(1);
 		bfont.getData().setScale(1);
@@ -79,10 +79,10 @@ public class MenuScreen implements Screen {
 
 		// Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
-		textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
-		textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
-		textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
-		textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
+		textButtonStyle.up = skin.newDrawable("black", Color.DARK_GRAY);
+		textButtonStyle.down = skin.newDrawable("black", Color.DARK_GRAY);
+		textButtonStyle.checked = skin.newDrawable("black", Color.BLUE);
+		textButtonStyle.over = skin.newDrawable("black", Color.LIGHT_GRAY);
                 LabelStyle textLabelStyle = new LabelStyle();
                 textLabelStyle.font = skin.getFont("default");
                 
@@ -128,7 +128,7 @@ public class MenuScreen implements Screen {
 			}
 		});
                 
-
+                                   
                 
 
 
