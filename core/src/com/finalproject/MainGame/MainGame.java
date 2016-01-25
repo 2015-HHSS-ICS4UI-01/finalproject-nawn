@@ -569,6 +569,22 @@ public class MainGame implements Screen {
         if (shoot == 100) {
             reset();
         }
+        map = new TmxMapLoader().load("zombieMap.tmx");
+        //loads collision layer
+        MapLayer collisionObjectLayer = map.getLayers().get("collision");
+        //finds all objects in the collision layer
+        MapObjects objects = collisionObjectLayer.getObjects();
+        //gets all the rectangle objects on the map 
+        for (RectangleMapObject rectangleObject : objects.getByType(RectangleMapObject.class)) {
+
+            //declares all rectangle objects as rectangles 
+            Rectangle rectangle = rectangleObject.getRectangle();
+
+            //if the rectangle objects overlaps the player the speeds is decreased
+            if (Intersector.overlaps(rectangle, bullet.getBounds())) {
+                reset();
+            }
+        }
 
     }
 
