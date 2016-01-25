@@ -33,6 +33,7 @@ public class World {
         bullet = new ArrayList<Bullet>();
         Random random = new Random();
         demoLevel();
+        
 
     }
 
@@ -101,8 +102,7 @@ public class World {
                     zombie.add(d);
                 }
             //if all zombies dead
-                // if(levelonedone = true){
-            
+              
             }
 
         }
@@ -110,37 +110,41 @@ public class World {
         for (int i = 0; i < 10; i++) {
          bullet.add(new Bullet(cursor.getx(), cursor.gety(), 25, 25));
         }
-     if(zombiesLeft == 1){
-         levelTwo();
-     }
+        
+        if(zombiesLeft == 0){
+            
+            for (int i = 0; i <= 4; i++) {
+            if(i == 0){
+            Zombie a = new Zombie(300, 640, 16, 16);
+            Zombie b = new Zombie(-20, 70, 16, 16);
+            Zombie c = new Zombie(800, 100, 16, 16);
+            Zombie d = new Zombie(400, -20, 16, 16);
+            zombie.add(a);
+            zombie.add(b);
+            zombie.add(c);
+            zombie.add(d);
+            }else{
+            Zombie a = new Zombie(300, 640 * (i/10), 16, 16);
+            Zombie b = new Zombie(-20 * (i * 10), 70, 16, 16);
+            Zombie c = new Zombie(800 * (i/10), 100, 16, 16);
+            Zombie d = new Zombie(400, -20 * (i * 10), 16, 16);
+            zombie.add(a);
+            zombie.add(b);
+            zombie.add(c);
+            zombie.add(d);
+        
+    }
+    }
+        }
+ 
     }
 
     
     public void levelTwo(){
-    
-        for (int i = 0; i <= 4; i++) {
-            if(i == 0){
-            Zombie e = new Zombie(300, 640, 16, 16);
-            Zombie f = new Zombie(-20, 70, 16, 16);
-            Zombie g = new Zombie(800, 100, 16, 16);
-            Zombie h = new Zombie(400, -20, 16, 16);
-            zombie.add(e);
-            zombie.add(f);
-            zombie.add(g);
-            zombie.add(h);
-            }else{
-            Zombie e = new Zombie(300, 640 * (i/10), 16, 16);
-            Zombie f = new Zombie(-20 * (i * 10), 70, 16, 16);
-            Zombie g = new Zombie(800 * (i/10), 100, 16, 16);
-            Zombie h = new Zombie(400, -20 * (i * 10), 16, 16);
-            zombie.add(e);
-            zombie.add(f);
-            zombie.add(g);
-            zombie.add(h);
-        } 
+      
+          
+       
     }
-    }
-    
     public void update(float delta) {
 
     }

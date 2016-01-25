@@ -177,6 +177,7 @@ public class WorldRenderer {
         
         //bullet
         for (int i = 0; i < world.getBullet().size(); i++) {
+          
             batch.draw(bullet,world.getBullet().get(i).getx(), world.getBullet().get(i).gety());
         }
         
@@ -315,10 +316,9 @@ public class WorldRenderer {
         int z = 0;
         int x = 0;
         
-        for (int i = 0; i < zombie.size(); i++) {
+        for (int i = 0; i < zombie.size()-1; i++) {
             if(zombie.get(i).isAlive()){
                 z++;
-                
             }
             if(zombie.get(i).isAlive() == false){
                x ++; 

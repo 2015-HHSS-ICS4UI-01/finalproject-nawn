@@ -122,7 +122,7 @@ public class MenuScreen implements Screen {
                                 textButton.remove();
                                 startButtonX = 1000;
                                 
-				g.setScreen( new MainGame());
+				g.setScreen( new MainGame(g));
                                 AssetManager.splash.dispose();
                                 
 			}

@@ -6,6 +6,9 @@ package com.finalproject.MainGame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Input.Buttons;
+import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -42,8 +45,8 @@ public class MainGame implements Screen {
     private boolean isShoot;
     private int shoot = 0;
     private int clip = 0;
-
-    public MainGame() {
+Game g;
+    public MainGame(Game g) {
         theWorld = new World();
         player = theWorld.getPlayer();
         renderer = new WorldRenderer(theWorld);
@@ -51,8 +54,34 @@ public class MainGame implements Screen {
         bullet = theWorld.getBullet();
         cursor = theWorld.getCursor();
         isShoot = false;
+    
+        create();
+		this.g=g;
     }
-
+    
+    public MainGame(){
+        create();
+    }
+    
+     public void create(){
+         System.out.println(player.getHealth());
+        if(player.getHealth()<=10){
+            g.setScreen( new EndScreen());
+        }
+    
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @Override
     public void show() {
 
@@ -61,35 +90,44 @@ public class MainGame implements Screen {
     @Override
     // game loop
     public void render(float deltaTime) {
+        
+        if(player.getHealth() <10){
+            create();
+        }
+        
         AssetManager.game.play();
         AssetManager.game.setLooping(true);
         //shoot button
-        if(Gdx.input.isKeyPressed(Keys.SPACE)){
-            AssetManager.gunShot.play();
+        if(Gdx.input.isButtonPressed(Buttons.LEFT)){
+           
             isShoot = true;
         }
         if(clip==9){
+             
             clip = 0;
         }
         
         //shooting
         if(!isShoot){
+            
             for (int i = 0; i < bullet.size(); i++) {
                bullet.get(i).setX(player.getX());
                bullet.get(i).setY(player.getY());
             }
           
         }else{
+            
            fire(bullet.get(clip));
             for (int i = 1; i < 10; i++) {
+               
                bullet.get(i).setX(player.getX());
                bullet.get(i).setY(player.getY());
             }
            shoot++;
            
             
-            
-           //clip++;
+////            
+//           clip++;
         }
         if(shoot==1){
            
@@ -471,6 +509,7 @@ public class MainGame implements Screen {
     
     
     public void fire(Bullet bullet){
+        
     float cursorx;
     float cursory;
     float playerx;
@@ -492,6 +531,7 @@ public class MainGame implements Screen {
     bullet.setY((float) (bullet.gety()+bulletdy));
         for (int i = 0; i < theWorld.getZombie().size(); i++) {
             if(zombie.get(i).isAlive()){
+                
             if(bullet.isColliding(zombie.get(i))){
                 zombie.get(i).sethealth(zombie.get(i).getheath()-50);
                 reset();
@@ -513,7 +553,8 @@ public class MainGame implements Screen {
 }
     
     public boolean shoot(){
+        
     return isShoot;
     }
-    
+
 }
