@@ -47,6 +47,7 @@ public class EndScreen implements Screen {
 		Gdx.input.setInputProcessor(stage);
 
 		skin = new Skin();
+		// Generate a 1x1 white texture and store it in the skin named "black".                
 		Pixmap pixmap = new Pixmap(100, 75, Format.RGBA8888);
 		pixmap.setColor(Color.BLACK);
 		pixmap.fill();
@@ -68,10 +69,11 @@ public class EndScreen implements Screen {
                 textLabelStyle.font = skin.getFont("default");
                 
 		textButtonStyle.font = skin.getFont("default");
-
+                // Import the fonts for the Loose label
 		skin.add("default", textButtonStyle);
                 skin.add("default", textLabelStyle);
-
+                
+                // Add the end screen label
                 final Label title = new Label("  Y o u  L o s e !  ", textLabelStyle ); 
                 title.setPosition(265, 300);
                 stage.addActor(title);

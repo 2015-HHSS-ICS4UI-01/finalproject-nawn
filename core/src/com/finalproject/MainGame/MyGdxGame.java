@@ -10,6 +10,7 @@ public class MyGdxGame extends Game {
 	public void create () {
         // loads in the images
         AssetManager.load();
+        // Set the Screen to the menu screen when you run the game
         setScreen(new MenuScreen(this));
                
                 

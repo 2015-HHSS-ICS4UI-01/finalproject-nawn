@@ -46,13 +46,14 @@ public class MenuScreen implements Screen {
 		create();
 	}
 	public void create(){
+            // play the start screen sound
             AssetManager.splash.play();
 		batch = new SpriteBatch();
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
 
 		skin = new Skin();
-		// Generate a 1x1 white texture and store it in the skin named "white".
+		// Generate a 1x1 white texture and store it in the skin named "black".
 		Pixmap pixmap = new Pixmap(100, 75, Format.RGBA8888);
 		pixmap.setColor(Color.BLACK);
 		pixmap.fill();
@@ -74,30 +75,36 @@ public class MenuScreen implements Screen {
                 textLabelStyle.font = skin.getFont("default");
                 
 		textButtonStyle.font = skin.getFont("default");
-
+                // Import the fonts for the start button and the instructions
 		skin.add("default", textButtonStyle);
                 skin.add("default", textLabelStyle);
-
-		final TextButton textButton=new TextButton("Start",textButtonStyle);
                 
-		textButton.setPosition(startButtonX, 300);
-                
+                // Add the start button and instructions labels
+		final TextButton textButton= new TextButton("Start",textButtonStyle);  
                 final Label title = new Label("Call of Duty Ghosts - NAWN Edition", textLabelStyle );
                 final Label Instructions = new Label(" W, A, S, D keys to move the player around   ", textLabelStyle );
                 final Label Instructions2 = new Label(" Left click to shoot   ", textLabelStyle );
+                
+                //set the position of the start button and the instructions labels
                 title.setPosition(210, 400);
                 Instructions.setPosition(190, 150);
                 Instructions2.setPosition(280, 100);
+                textButton.setPosition(275, 300);
                 
+                //import the buttons and labels into the gameScreen
                 stage.addActor(title);
                 stage.addActor(Instructions);
                 stage.addActor(Instructions2);
-		stage.addActor(textButton);           
+		stage.addActor(textButton);          
                 
+                //add a listener to determine when the start button has been Clicked
                 textButton.addListener(new ChangeListener() {
                     
 		public void changed (ChangeEvent event, Actor actor) {
-		//move start button off of screen
+		//When the start button has been clicked
+                // remove the start button
+                // start the game
+                // turn of the start screen music    
                 textButton.remove();
                 g.setScreen( new MainGame(g));
                 AssetManager.splash.dispose();
