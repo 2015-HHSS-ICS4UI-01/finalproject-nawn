@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author vonhn
+ * @author nawn
  */
 public class WorldRenderer {
 
