@@ -99,10 +99,10 @@ public class MenuScreen implements Screen {
                 
                 final Label title = new Label("Call of duty ghosts", textLabelStyle );
                 final Label Instructions = new Label(" W, A, S, D keys to move the player around   ", textLabelStyle );
-                final Label Instructions2 = new Label(" Space to shoot   ", textLabelStyle );
+                final Label Instructions2 = new Label(" Left to shoot   ", textLabelStyle );
                 title.setPosition(265, 400);
                 Instructions.setPosition(190, 150);
-                Instructions2.setPosition(270, 100);
+                Instructions2.setPosition(280, 100);
                 
                 stage.addActor(title);
                 stage.addActor(Instructions);
@@ -120,7 +120,7 @@ public class MenuScreen implements Screen {
 				
                                 //move start button off of screen
                                 textButton.remove();
-                                startButtonX = 1000;
+                                
                                 
 				g.setScreen( new MainGame(g));
                                 AssetManager.splash.dispose();
