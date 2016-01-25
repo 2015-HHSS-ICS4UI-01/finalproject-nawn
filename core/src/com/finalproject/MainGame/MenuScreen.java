@@ -75,7 +75,7 @@ public class MenuScreen implements Screen {
                 textLabelStyle.font = skin.getFont("default");
                 
 		textButtonStyle.font = skin.getFont("default");
-                // Import the fonts for the start button and the instructions
+            // Import the fonts for the start button and the instructions
 		skin.add("default", textButtonStyle);
                 skin.add("default", textLabelStyle);
                 

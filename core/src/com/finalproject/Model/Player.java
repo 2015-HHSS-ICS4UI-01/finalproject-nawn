@@ -22,7 +22,6 @@ public class Player extends Entity {
     public enum State {
 
         //variables of the states of the player
-
         STANDING, RUNNING
     }
 
