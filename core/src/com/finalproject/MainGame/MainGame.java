@@ -87,7 +87,8 @@ public class MainGame implements Screen {
     public void render(float deltaTime) {
         AssetManager.game.play();
         AssetManager.game.setLooping(true);
-
+        
+        //if player dies
         if (player.getHealth() == 0) {
             create();
             AssetManager.game.setLooping(false);
@@ -104,9 +105,11 @@ public class MainGame implements Screen {
 
             isShoot = true;
             for (int i = 0; i < bullet.size(); i++) {
+                //play gun sound
                 AssetManager.gunShot.play();
             }
         }
+        //clip for bullets
         if (clip == 9) {
 
             clip = 0;
@@ -114,18 +117,22 @@ public class MainGame implements Screen {
 
         //shooting
         if (!isShoot) {
+            //keep bullet with player until shot
             for (int i = 0; i < bullet.size(); i++) {
                 bullet.get(i).setX(player.getX());
                 bullet.get(i).setY(player.getY());
             }
         } else {
+            //fire 1 bullet
             fire(bullet.get(clip));
+            //keep the rest of the bullets with the player
             for (int i = 1; i < 10; i++) {
                 bullet.get(i).setX(player.getX());
                 bullet.get(i).setY(player.getY());
             }
             shoot++;
         }
+        //after the bullet is shot, get the x and y coordinates for the trajectory(so is dosent change)
         if (shoot == 1) {
             cursorfinalx = cursor.getx();
             cursorfinaly = cursor.gety();
@@ -494,19 +501,22 @@ public class MainGame implements Screen {
         float playerx;
         float playery;
         int speed = 3;
-
+// floats for player and cursor positions 
         cursorx = cursorfinalx;
         cursory = cursorfinaly;
         playerx = playerfinalx;
         playery = playerfinaly;
-
+        
+        //creates an angle from the given positions
         double angle = Math.atan2(cursorx - playerx, cursory - playery);
-
+        //find the x value of the triangle then multiply by speed
         double bulletdx = speed * Math.sin(angle);
+        //find the y value
         double bulletdy = speed * Math.cos(angle);
-
+        //add the components to the current bullet x and y
         bullet.setX((float) (bullet.getx() + bulletdx));
         bullet.setY((float) (bullet.gety() + bulletdy));
+        //if the zombie is alive, and it collides with a zombie, reset the bullet and -50 health from the zombie
         for (int i = 0; i < theWorld.getZombie().size(); i++) {
             if (zombie.get(i).isAlive()) {
 
@@ -516,9 +526,11 @@ public class MainGame implements Screen {
                 }
             }
         }
+        //if the bullet reaches a certain distance reset
         if (shoot == 100) {
             reset();
         }
+        //collisions with walls
         map = new TmxMapLoader().load("zombieMap.tmx");
         //loads collision layer  
         MapLayer collisionObjectLayer = map.getLayers().get("collision");
@@ -539,6 +551,7 @@ public class MainGame implements Screen {
     }
 
     public void reset() {
+        //to reset the bullet
         isShoot = false;
         shoot = 0;
 
