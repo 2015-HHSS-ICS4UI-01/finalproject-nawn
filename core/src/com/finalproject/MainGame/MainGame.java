@@ -11,6 +11,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.finalproject.Model.Block;
@@ -42,7 +52,10 @@ public class MainGame implements Screen {
     private boolean isShoot;
     private int shoot = 0;
     private int clip = 0;
+    private TiledMap map;
 
+    
+    
     public MainGame() {
         theWorld = new World();
         player = theWorld.getPlayer();
@@ -61,6 +74,7 @@ public class MainGame implements Screen {
     @Override
     // game loop
     public void render(float deltaTime) {
+        
         AssetManager.game.play();
         //shoot button
         if(Gdx.input.isKeyPressed(Keys.SPACE)){
@@ -101,7 +115,9 @@ public class MainGame implements Screen {
          if(zombie.get(i).getheath()<1){
              zombie.get(i).Alive(false);
          }   
-        }
+        }        
+        
+
         //movement up down left right with keys
         if (Gdx.input.isKeyPressed(Keys.D)) {
             player.setVelocityX(2f);
@@ -127,64 +143,104 @@ public class MainGame implements Screen {
             player.setVelocityX(-2f);
         } 
         
+        
+        //loads the map
+        map = new TmxMapLoader().load("zombieMap.tmx");
+        //loads collision layer
+        MapLayer collisionObjectLayer = map.getLayers().get("collision");
+        //finds all objects in the collision layer
+        MapObjects objects = collisionObjectLayer.getObjects();
+        //gets all the rectangle objects on the map 
+        for (RectangleMapObject rectangleObject: objects.getByType(RectangleMapObject.class)) {
+            
+            //declares all rectangle objects as rectangles 
+            Rectangle rectangle = rectangleObject.getRectangle();
+            
+            //if the rectangle objects overlaps the player the speeds is decreased
+            if(Intersector.overlaps(rectangle, player.getBounds()))  {
+                
+                //find which side it intersected from and based on that slow the speed or initiate the collison
+                
+                //if hit wall from bottom up
+                if (player.getY() < rectangle.y) {
+                    player.setVelocityY(-0.5f);
+                    
+                    //if hit wall from top down
+                }else if (player.getY() > rectangle.y) {
+                    player.setVelocityY(0.5f);
+                    
+                    //if hit wall from left right
+                }
+                
+                if (player.getX() > rectangle.x) {
+                    player.setVelocityX(0.5f);
+                    
+                    //if hit wall from right left
+                }else if (player.getX() < rectangle.x) {
+                    player.setVelocityX(-0.5f);
+                }
 
-//        //if colliding with left part of screen
-        if (player.getX() <= 0) {
-            player.setVelocityX(0);
-            player.setState(Player.State.STANDING);
-            if (Gdx.input.isKeyPressed(Keys.D)) {
-                player.setVelocityX(2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-                player.setVelocityY(2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyPressed(Keys.S)) {
-                player.setVelocityY(-2f);
-                player.setState(Player.State.RUNNING);
-            }
-//            //colliding with right 
-        } else if (player.getX() >= 1570) {
-            player.setVelocityX(0);
-            player.setState(Player.State.STANDING);
-            if (Gdx.input.isKeyPressed(Keys.A)) {
-                player.setVelocityX(-2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-                player.setVelocityY(2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyPressed(Keys.S)) {
-                player.setVelocityY(-2f);
-                player.setState(Player.State.RUNNING);
-            }
-//            //colliding with bottom
-        } else if (player.getY() <= 0) {
-            player.setVelocityY(0);
-            player.setState(Player.State.STANDING);
-            if (Gdx.input.isKeyPressed(Keys.A)) {
-                player.setVelocityX(-2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-                player.setVelocityY(2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyPressed(Keys.D)) {
-                player.setVelocityX(2f);
-                player.setState(Player.State.RUNNING);
-            }
-//            //collides with top
-        } else if (player.getY() >= 1570) {
-            player.setVelocityY(0);
-            player.setState(Player.State.STANDING);
-            if (Gdx.input.isKeyPressed(Keys.S)) {
-                player.setVelocityY(-2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
-                player.setVelocityY(2f);
-                player.setState(Player.State.RUNNING);
-            } else if (Gdx.input.isKeyPressed(Keys.D)) {
-                player.setVelocityX(2f);
-                player.setState(Player.State.RUNNING);
             }
         }
+        
+
+////        //if colliding with left part of screen
+//        if (player.getX() <= 0) {
+//            player.setVelocityX(0);
+//            player.setState(Player.State.STANDING);
+//            if (Gdx.input.isKeyPressed(Keys.D)) {
+//                player.setVelocityX(2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+//                player.setVelocityY(2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyPressed(Keys.S)) {
+//                player.setVelocityY(-2f);
+//                player.setState(Player.State.RUNNING);
+//            }
+////            //colliding with right 
+//        } else if (player.getX() >= 1570) {
+//            player.setVelocityX(0);
+//            player.setState(Player.State.STANDING);
+//            if (Gdx.input.isKeyPressed(Keys.A)) {
+//                player.setVelocityX(-2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+//                player.setVelocityY(2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyPressed(Keys.S)) {
+//                player.setVelocityY(-2f);
+//                player.setState(Player.State.RUNNING);
+//            }
+////            //colliding with bottom
+//        } else if (player.getY() <= 0) {
+//            player.setVelocityY(0);
+//            player.setState(Player.State.STANDING);
+//            if (Gdx.input.isKeyPressed(Keys.A)) {
+//                player.setVelocityX(-2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+//                player.setVelocityY(2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyPressed(Keys.D)) {
+//                player.setVelocityX(2f);
+//                player.setState(Player.State.RUNNING);
+//            }
+////            //collides with top
+//        } else if (player.getY() >= 1570) {
+//            player.setVelocityY(0);
+//            player.setState(Player.State.STANDING);
+//            if (Gdx.input.isKeyPressed(Keys.S)) {
+//                player.setVelocityY(-2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyJustPressed(Keys.W)) {
+//                player.setVelocityY(2f);
+//                player.setState(Player.State.RUNNING);
+//            } else if (Gdx.input.isKeyPressed(Keys.D)) {
+//                player.setVelocityX(2f);
+//                player.setState(Player.State.RUNNING);
+//            }
+//        }
         
         
         

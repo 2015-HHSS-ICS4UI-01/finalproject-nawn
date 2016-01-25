@@ -37,7 +37,7 @@ public class World {
 
     private void demoLevel() {
 
-        player = new Player(480, 785, 16, 16);
+        player = new Player(64, 64, 16, 16);
         for (int i = 0; i <= 3; i++) {
             int rand = random.nextInt(3) + 1;
             if (i == 0) {

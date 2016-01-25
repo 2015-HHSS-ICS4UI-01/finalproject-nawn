@@ -61,8 +61,6 @@ public class WorldRenderer {
 
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    private Array<Rectangle> collisionBlocks;
-    private int levelWidth;
     private int zombiesLeft;
     private int kills = 0;
     private BitmapFont text;
@@ -70,6 +68,7 @@ public class WorldRenderer {
     private int playercomp;
 
     public WorldRenderer(World w) {
+        
         playercomp = -8;
         world = w;
         player = world.getPlayer();
@@ -101,30 +100,6 @@ public class WorldRenderer {
         map = new TmxMapLoader().load("zombieMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1f, batch);
         renderer.setView(camera);
-
-        // create the collision rectangles for our map based on the map layer
-        collisionBlocks = new Array<Rectangle>();
-        // get collision layer
-        TiledMapTileLayer solidBlocks = (TiledMapTileLayer) map.getLayers().get("walls");
-
-        // get the dimensions of the map
-        int mapWidth = map.getProperties().get("width", Integer.class);
-        int mapHeight = map.getProperties().get("height", Integer.class);
-        int tileWidth = map.getProperties().get("tilewidth", Integer.class);
-        int tileHeight = map.getProperties().get("tileheight", Integer.class);
-
-        levelWidth = mapWidth;
-
-        // loop through all of the cells, find a tile and make a rectangle
-        for (int x = 0; x < mapWidth; x++) {
-            for (int y = 0; y < mapHeight; y++) {
-                if (solidBlocks.getCell(x, y) != null) {
-                    Rectangle r = new Rectangle(x, y, tileWidth, tileHeight);
-                    System.out.println("x: " + r.x + "   y: " + r.y + "   tw: " + tileWidth + "   th: " + tileHeight);
-                    collisionBlocks.add(r);
-                }
-            }
-        }
 
     }
 
@@ -195,41 +170,6 @@ public class WorldRenderer {
         
         text.draw(batch, "Z o m b i e s  L e f t : " + zombiesLeft, camera.position.x - 370, camera.position.y +250);
         text.draw(batch, "K i l l s : " + kills, camera.position.x - 370, camera.position.y +225);
-
-        //wall collisions
-        for (Rectangle r : collisionBlocks) {
-
-            if (player.getBounds().overlaps(r)) {
-                float overX = Math.min(r.getX() + r.getWidth(), player.getX() + player.getWidth()) - Math.max(r.getX(), player.getX());
-                float overY = Math.min(r.getY() + r.getHeight(), player.getY() + player.getHeight()) - Math.max(r.getY(), player.getY());
-                if (player.getXVelocity() == 0) {
-                    if (player.getY() < r.getY()) {
-                        player.add(0, -overY);
-                    } else {
-                        player.add(0, overY);
-                        player.land();
-                    }
-                    player.setVelocityY(0);
-                }
-
-                if (overX < overY) {
-                    if (player.getX() < r.getX()) {
-                        player.add(-overX, 0);
-                    } else {
-                        player.add(overX, 0);
-                    }
-                } else {
-                    if (player.getY() < r.getY()) {
-                        player.add(0, -overY);
-                    } else {
-                        player.add(0, overY);
-                        player.land();
-                    }
-                    player.setVelocityY(0);
-                }
-            }
-        }
-    
 
         //if the player is standing
         if (player.getState() == Player.State.STANDING) {

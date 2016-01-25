@@ -60,4 +60,8 @@ public abstract class Entity {
         float overlap = Math.min(this.bounds.y + this.bounds.height, other.bounds.y + other.bounds.height) - Math.max(this.bounds.y, other.bounds.y);
         return overlap;
     }
+    
+        public Rectangle getBounds(){
+        return this.bounds;
+    }
 }
