@@ -11,27 +11,38 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.finalproject.Model.Player;
 import com.finalproject.Screens.AssetManager;
+import sun.font.TextLabel;
 
 /**
  *
- * @author alimu
+ * @author Walter
  */
-public class EndScreen implements Screen{
-        Skin skin;
+
+public class EndScreen implements Screen {
+	Skin skin;
 	Stage stage;
 	SpriteBatch batch;
         private BitmapFont font;
-        int restartButtonX = 275;
+        int startButtonX = 275;
         
         
 
@@ -45,7 +56,7 @@ public class EndScreen implements Screen{
 		create();
 	}
 	public void create(){
-            
+            AssetManager.splash.play();
 		batch = new SpriteBatch();
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
@@ -53,7 +64,7 @@ public class EndScreen implements Screen{
 		
 		skin = new Skin();
 		// Generate a 1x1 white texture and store it in the skin named "white".
-		Pixmap pixmap = new Pixmap(100, 75, Pixmap.Format.RGBA8888);
+		Pixmap pixmap = new Pixmap(100, 75, Format.RGBA8888);
 		pixmap.setColor(Color.BLACK);
 		pixmap.fill();
 
@@ -67,12 +78,12 @@ public class EndScreen implements Screen{
 		skin.add("default",bfont);
 
 		// Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
-		TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+		TextButtonStyle textButtonStyle = new TextButtonStyle();
 		textButtonStyle.up = skin.newDrawable("black", Color.DARK_GRAY);
 		textButtonStyle.down = skin.newDrawable("black", Color.DARK_GRAY);
 		textButtonStyle.checked = skin.newDrawable("black", Color.BLUE);
 		textButtonStyle.over = skin.newDrawable("black", Color.LIGHT_GRAY);
-                Label.LabelStyle textLabelStyle = new Label.LabelStyle();
+                LabelStyle textLabelStyle = new LabelStyle();
                 textLabelStyle.font = skin.getFont("default");
                 
 		textButtonStyle.font = skin.getFont("default");
@@ -81,17 +92,15 @@ public class EndScreen implements Screen{
                 skin.add("default", textLabelStyle);
 
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-		final TextButton textButton=new TextButton("Restart Game",textButtonStyle);
+		final TextButton textButton=new TextButton("Restart",textButtonStyle);
                 
                 
-		textButton.setPosition(restartButtonX, 300);
+		textButton.setPosition(startButtonX, 300);
                 
-                final Label title = new Label("You Lose!", textLabelStyle );
+                final Label title = new Label("u lose", textLabelStyle );
                 title.setPosition(265, 400);
-               
                 
                 stage.addActor(title);
-           
 		stage.addActor(textButton);
 		
 		//stage.addActor(textButton);
@@ -105,55 +114,70 @@ public class EndScreen implements Screen{
 				
                                 //move start button off of screen
                                 textButton.remove();
-                                restartButtonX = 1000;
-                                
-				g.setScreen( new MainGame());
-                                
+                                startButtonX = 1000;
+				g.setScreen( new MenuScreen());
+                                AssetManager.splash.dispose();
                                 
 			}
 		});
                 
+                                   
                 
-                
-                
-        }
-                
-        
-    @Override
-    public void show() {
-    }
 
-    @Override
-    public void render(float f) {
-            Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
+
+	}
+
+	public void render (float delta) {
+		Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		stage.draw();
                 stage.setDebugAll(true);
                 
-        }
-    
+                
+                
+		//Table.drawDebug(stage);
+	}
 
-    @Override
-    public void resize(int i, int i1) {
-    }
+	@Override
+	public void resize (int width, int height) {
+		//stage.setViewport(width, height);
+           // stage.setViewport(new StretchViewport(width, height));
+            
+	}
 
-    @Override
-    public void pause() {
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void hide() {
-    }
-
-    @Override
-    public void dispose() {
-        stage.dispose();
+	@Override
+	public void dispose () {
+		stage.dispose();
 		skin.dispose();
-    }
-    
+	}
+
+	@Override
+	public void show() {
+		// TODO Auto-generated method stub
+         //   Gdx.input.setInputProcessor(stage);
+
+	}
+
+	@Override
+	public void hide() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void resume() {
+		// TODO Auto-generated method stub
+
+	}
 }
+
+
+
+

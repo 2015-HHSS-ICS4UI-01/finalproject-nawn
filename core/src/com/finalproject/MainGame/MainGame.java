@@ -64,22 +64,13 @@ Game g;
     }
     
      public void create(){
-         System.out.println(player.getHealth());
-        if(player.getHealth()<=10){
+        if(player.getHealth()==0){
+            g.dispose();
+            AssetManager.game.dispose();
             g.setScreen( new EndScreen());
         }
     
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     @Override
@@ -91,12 +82,15 @@ Game g;
     // game loop
     public void render(float deltaTime) {
         
-        if(player.getHealth() <10){
-            create();
-        }
-        
         AssetManager.game.play();
         AssetManager.game.setLooping(true);
+        if(player.getHealth() <10){
+            create();
+            AssetManager.game.setLooping(false);
+            AssetManager.game.dispose();
+        }
+        
+        
         //shoot button
         if(Gdx.input.isButtonPressed(Buttons.LEFT)){
            
