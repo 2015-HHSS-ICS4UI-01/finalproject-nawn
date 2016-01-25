@@ -36,6 +36,7 @@ public class AssetManager {
     public static TextureRegion playerStandE;
     public static TextureRegion playerStandW;
 
+    //initialize all the positions of the zombies
     public static TextureRegion zombieW;
     public static TextureRegion zombieE;
     public static TextureRegion zombieN;
@@ -46,19 +47,21 @@ public class AssetManager {
     public static TextureRegion zombieSW;
     public static TextureRegion bullet;
     public static TextureRegion cross;
-    
+
+    //variables for the sound
     public static Music splash;
     public static Music game;
     public static Music gunShot;
-    
+
     public static void load() {
         //find the file to look at
         atlas = new TextureAtlas("zombie.atlas");
 
+        //get the sound effects for the game
         splash = Gdx.audio.newMusic(Gdx.files.internal("splash.mp3"));
         game = Gdx.audio.newMusic(Gdx.files.internal("game.mp3"));
         gunShot = Gdx.audio.newMusic(Gdx.files.internal("gunShot.mp3"));
-        
+
         //get the images of soldier in all his standing positions
         playerStandS = atlas.findRegion("soldier_standing_south");
         playerStandN = atlas.findRegion("soldier_standing_north");
@@ -74,6 +77,7 @@ public class AssetManager {
         zombieNE = atlas.findRegion("zombie_nw");
         zombieSW = atlas.findRegion("zombie_sw");
         zombieSE = atlas.findRegion("zombie_se");
+
         //bullet
         bullet = atlas.findRegion("bullet");
 
@@ -99,25 +103,5 @@ public class AssetManager {
         Array<AtlasRegion> runEast = atlas.findRegions("soldier_walking_right");
         playerWalkE = new Animation(0.1f, runEast);
         runEast = atlas.findRegions("soldier_walking_right");
-
-        //make the animation of the soldier walking NE
-        Array<AtlasRegion> runNE = atlas.findRegions("soldier_walking_ne");
-        playerWalkNE = new Animation(0.1f, runNE);
-        runNE = atlas.findRegions("soldier_walking_ne");
-
-        //make the animation of the soldier walking NW
-        Array<AtlasRegion> runNW = atlas.findRegions("soldier_walking_nw");
-        playerWalkNW = new Animation(0.1f, runNW);
-        runNW = atlas.findRegions("soldier_walking_nw");
-
-        //make the animation of the soldier walking SE
-        Array<AtlasRegion> runSE = atlas.findRegions("soldier_walking_se");
-        playerWalkSE = new Animation(0.1f, runSE);
-        runSE = atlas.findRegions("soldier_walking_se");
-
-        //make the animation of the soldier walking SW
-        Array<AtlasRegion> runSW = atlas.findRegions("soldier_walking_sw");
-        playerWalkSW = new Animation(0.1f, runSW);
-        runSW = atlas.findRegions("soldier_walking_sw");
     }
 }
