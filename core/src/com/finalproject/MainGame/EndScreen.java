@@ -137,9 +137,6 @@ public class EndScreen implements Screen {
 		stage.draw();
                 stage.setDebugAll(true);
                 
-                
-               
-		//Table.drawDebug(stage);
 	}
 
 	@Override
