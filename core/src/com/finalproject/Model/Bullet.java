@@ -11,9 +11,6 @@ package com.finalproject.Model;
  */
 public class Bullet extends Entity {
 
-    private float velocityx;
-    private float velocityy;
-
     public Bullet(float x, float y, float width, float height) {
         super(x, y, width, height);
     }

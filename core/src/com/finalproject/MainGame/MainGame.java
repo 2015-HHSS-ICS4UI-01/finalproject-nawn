@@ -67,10 +67,14 @@ public class MainGame implements Screen {
     }
 
     public void create() {
+        //if player is dead
         if (player.getHealth() == 0) {
+            //go to end screen
             g.setScreen(new EndScreen());
         }
+        //if no zombies left on the screen
         if (zombie.size() == 1) {
+            //go to win screen
             g.setScreen(new WinScreen());
         }
     }
@@ -85,15 +89,20 @@ public class MainGame implements Screen {
     public void render(float deltaTime) {
         AssetManager.game.play();
         AssetManager.game.setLooping(true);
-        
+
         //if player dies
         if (player.getHealth() == 0) {
+            //go to method that handles screen switch
             create();
+            //stop the music
             AssetManager.game.setLooping(false);
             AssetManager.game.dispose();
         }
+        //if there are no more zombies left on the screen
         if (zombie.size() == 1) {
+            //go to method that handles screen switch
             create();
+            //stop the music
             AssetManager.game.setLooping(false);
             AssetManager.game.dispose();
         }
@@ -153,7 +162,6 @@ public class MainGame implements Screen {
             player.setVelocityY(2f);
         } else if (Gdx.input.isKeyPressed(Keys.S)) {
             player.setVelocityY(-2f);
-            //diagonal movement
         }
         if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.W)) {
             player.setVelocityY(2f);
@@ -205,7 +213,7 @@ public class MainGame implements Screen {
             }
         }
 
-//        //if colliding with left part of screen
+        //if colliding with left part of screen
         if (player.getX() <= 0) {
             player.setVelocityX(0);
             player.setState(Player.State.STANDING);
@@ -219,7 +227,7 @@ public class MainGame implements Screen {
                 player.setVelocityY(-2f);
                 player.setState(Player.State.RUNNING);
             }
-//            //colliding with right 
+            //colliding with right 
         } else if (player.getX() >= 1570) {
             player.setVelocityX(0);
             player.setState(Player.State.STANDING);
@@ -233,7 +241,7 @@ public class MainGame implements Screen {
                 player.setVelocityY(-2f);
                 player.setState(Player.State.RUNNING);
             }
-//            //colliding with bottom
+            //colliding with bottom
         } else if (player.getY() <= 0) {
             player.setVelocityY(0);
             player.setState(Player.State.STANDING);
@@ -247,7 +255,7 @@ public class MainGame implements Screen {
                 player.setVelocityX(2f);
                 player.setState(Player.State.RUNNING);
             }
-//            //collides with top
+            //collides with top
         } else if (player.getY() >= 1570) {
             player.setVelocityY(0);
             player.setState(Player.State.STANDING);
@@ -306,6 +314,7 @@ public class MainGame implements Screen {
 
         player.update(deltaTime);
 
+        //check for collisions
         collisions();
 
         try {
@@ -344,10 +353,13 @@ public class MainGame implements Screen {
 
     public void collisions() {
 
+        //for each zombie
         for (int i = 0; i < theWorld.getZombie().size() - 1; i++) {
 
+            //check if player collides with zombie
             if (player.isColliding(zombie.get(i))) {
                 if (zombie.get(i).isAlive()) {
+                    //decrease the players health
                     player.setHealth((int) (player.getHealth() - 0.00001));
                 }
                 zombie.get(i).setVelocityX(0);
@@ -367,11 +379,9 @@ public class MainGame implements Screen {
                     }
                     player.setVelocityY(0);
                     zombie.get(i).setVelocityY(0);
-
-                } else // fix the smallest overlap
-                {
+                    // fix the smallest overlap
+                } else {
                     if (overX < overY) {
-
                         // left of the block
                         if (player.getX() > (zombie.get(i).getX())) {
                             player.addToPosition((overX), 0);
@@ -394,7 +404,7 @@ public class MainGame implements Screen {
             }
 
             for (int j = 0; j < i; j++) {
-
+                //check if player collides with zombie
                 if (player.isColliding(zombie.get(j))) {
                     if (zombie.get(j).isAlive()) {
                         player.setHealth((int) (player.getHealth() - 0.00001));
@@ -416,11 +426,9 @@ public class MainGame implements Screen {
                         }
                         player.setVelocityY(0);
                         zombie.get(j).setVelocityY(0);
-
-                    } else // fix the smallest overlap
-                    {
+                        // fix the smallest overlap
+                    } else {
                         if (overX < overY) {
-
                             // left of the block
                             if (player.getX() > (zombie.get(j).getX())) {
                                 player.addToPosition((overX), 0);
@@ -429,8 +437,6 @@ public class MainGame implements Screen {
                             }
 
                         } else {
-//                        player.setHealth(player.getHealth()-10);
-
                             // above the block
                             if (player.getY() > (zombie.get(j).getY())) {
                                 player.addToPosition(0, (overY));
@@ -498,12 +504,12 @@ public class MainGame implements Screen {
         float playerx;
         float playery;
         int speed = 3;
-// floats for player and cursor positions 
+        // floats for player and cursor positions 
         cursorx = cursorfinalx;
         cursory = cursorfinaly;
         playerx = playerfinalx;
         playery = playerfinaly;
-        
+
         //creates an angle from the given positions
         double angle = Math.atan2(cursorx - playerx, cursory - playery);
         //find the x value of the triangle then multiply by speed

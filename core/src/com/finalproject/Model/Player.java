@@ -13,16 +13,13 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Player extends Entity {
 
-    //variables for the maximum speeds of the player
-    private final float X_MAX_VEL = 2.0f;
-    private final float Y_MAX_VEL = 2.0f;
+     //variable for damp effect
     private final float DAMP = 0.8f;
 
     // states for player
     public enum State {
 
         //variables of the states of the player
-
         STANDING, RUNNING
     }
 
@@ -77,9 +74,9 @@ public class Player extends Entity {
         bounds.x = position.x;
         bounds.y = position.y;
 
-        // moving to the rught
+        // moving to the left
         if (velocity.x < 0) {
-            isFacingEast = true;
+            isFacingWest = true;
             isFacingSouth = false;
             isFacingEast = false;
             isFacingNorth = false;

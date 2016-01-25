@@ -12,10 +12,8 @@ import com.badlogic.gdx.math.Vector2;
  * @author alimu
  */
 public class Zombie extends Entity {
-
-    //variables for the maximum speed of the zombie
-    private final float X_MAX_VEL = 2.0f;
-    private final float Y_MAX_VEL = 2.0f;
+    
+    //variable for damp effect
     private final float DAMP = 0.8f;
 
     // movement variables
