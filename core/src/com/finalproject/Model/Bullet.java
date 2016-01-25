@@ -5,8 +5,6 @@
  */
 package com.finalproject.Model;
 
-import com.badlogic.gdx.math.Vector2;
-
 /**
  *
  * @author Walter

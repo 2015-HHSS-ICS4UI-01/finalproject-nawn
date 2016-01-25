@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Player extends Entity {
 
+    //variables for the maximum speeds of the player
     private final float X_MAX_VEL = 2.0f;
     private final float Y_MAX_VEL = 2.0f;
     private final float DAMP = 0.8f;
@@ -20,26 +21,26 @@ public class Player extends Entity {
     // states for player
     public enum State {
 
+        //variables of the states of the player
+
         STANDING, RUNNING
     }
+
     // the actual state player is in
     private State state;
     // movement variables
     private Vector2 position;
     private Vector2 velocity;
     private Vector2 acceleration;
-    // facing
+    //variables of the direction of the player
     private boolean isFacingWest;
     private boolean isFacingSouth;
     private boolean isFacingEast;
     private boolean isFacingNorth;
-    private boolean isFacingNW;
-    private boolean isFacingNE;
-    private boolean isFacingSW;
-    private boolean isFacingSE;
     // animation state counter
     private float stateTime;
     private Rectangle bounds;
+    //initialize the variable for the health
     private int health = 800;
 
     public Player(float x, float y, float width, float height) {
@@ -47,16 +48,12 @@ public class Player extends Entity {
         state = State.STANDING;
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 0);
-        //make north true so that the player will start by facing north
+        //make all the booleans false
         isFacingNorth = false;
         isFacingWest = false;
         isFacingSouth = false;
         isFacingEast = false;
-        isFacingNE = false;
-        isFacingNW = false;
-        isFacingSE = false;
-        isFacingSW = false;
-
+        //initialize the bounds and position
         bounds = new Rectangle(x, y, width, height);
         position = new Vector2(x, y);
 
@@ -64,7 +61,7 @@ public class Player extends Entity {
     }
 
     public void update(float delta) {
-        //acceleration.y = -9.8f;
+        //apply the damp effect to the player
         velocity.mulAdd(acceleration, delta);
         velocity.x = velocity.x * DAMP;
         if (velocity.x < 0.01f && velocity.x > -0.01f) {
@@ -86,10 +83,6 @@ public class Player extends Entity {
             isFacingSouth = false;
             isFacingEast = false;
             isFacingNorth = false;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSE = false;
-            isFacingSW = false;
             if (state != State.RUNNING) {
                 stateTime = 0;
                 state = State.RUNNING;
@@ -100,10 +93,6 @@ public class Player extends Entity {
             isFacingSouth = false;
             isFacingNorth = false;
             isFacingEast = true;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSE = false;
-            isFacingSW = false;
             if (state != State.RUNNING) {
                 stateTime = 0;
                 state = State.RUNNING;
@@ -114,10 +103,6 @@ public class Player extends Entity {
             isFacingWest = false;
             isFacingEast = false;
             isFacingNorth = false;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSE = false;
-            isFacingSW = false;
             if (state != State.RUNNING) {
                 stateTime = 0;
                 state = State.RUNNING;
@@ -128,154 +113,140 @@ public class Player extends Entity {
             isFacingWest = false;
             isFacingSouth = false;
             isFacingEast = false;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSE = false;
-            isFacingSW = false;
             if (state != State.RUNNING) {
                 stateTime = 0;
                 state = State.RUNNING;
             }
-
-            //is running ne direction
-        } else if (velocity.y > 0 && velocity.x > 0) {
-            isFacingNE = true;
-            isFacingWest = false;
-            isFacingSouth = false;
-            isFacingEast = false;
-            isFacingNorth = false;
-            isFacingNW = false;
-            isFacingSE = false;
-            isFacingSW = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
-            //if running in nw direction
-        } else if (velocity.y > 0 && velocity.x < 0) {
-            isFacingNW = true;
-            isFacingWest = false;
-            isFacingSouth = false;
-            isFacingEast = false;
-            isFacingNorth = false;
-            isFacingNE = false;
-            isFacingSE = false;
-            isFacingSW = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
-            //if running se
-        } else if (velocity.y < 0 && velocity.x > 0) {
-            isFacingSE = true;
-            isFacingWest = false;
-            isFacingSouth = false;
-            isFacingEast = false;
-            isFacingNorth = false;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSW = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
-            //if running sw
-        } else if (velocity.y < 0 && velocity.x < 0) {
-            isFacingSW = true;
-            isFacingWest = false;
-            isFacingSouth = false;
-            isFacingEast = false;
-            isFacingNorth = false;
-            isFacingNE = false;
-            isFacingNW = false;
-            isFacingSE = false;
-            if (state != State.RUNNING) {
-                stateTime = 0;
-                state = State.RUNNING;
-            }
-            //not moving
-        } else {
-            state = State.STANDING;
-            stateTime = 0;
         }
         stateTime += delta;
     }
 
+    /**
+     * set the velocity of the x
+     *
+     * @param x is the velocity passed in
+     */
     public void setVelocityX(float x) {
         velocity.x = x;
     }
 
+    /**
+     * set the velocity of the y
+     *
+     * @param y is the velocity passed in
+     */
     public void setVelocityY(float y) {
         velocity.y = y;
     }
 
+    /**
+     * sets the state of the player
+     *
+     * @param s is the state
+     */
     public void setState(State s) {
+        //if the state is not the state passed in
         if (state != s) {
+            //make the statetime 0
             stateTime = 0;
         }
+        //the state is the state passed in
         state = s;
     }
 
+    /**
+     * get the velocity of the x
+     *
+     */
     public float getVelocityX() {
         return velocity.x;
     }
 
+    /**
+     *
+     * @return the velocity of the y
+     */
     public float getVelocityY() {
         return velocity.y;
     }
 
+    /**
+     *
+     * @return the state
+     */
     public State getState() {
         return state;
     }
 
+    /**
+     *
+     * @return the stateTime
+     */
     public float getStateTime() {
         return stateTime;
     }
 
+    /**
+     *
+     * @return whether the player is facing east or not
+     */
     public boolean isFacingEast() {
         return isFacingEast;
     }
 
+    /**
+     *
+     * @return whether the player is facing south or not
+     */
     public boolean isFacingSouth() {
         return isFacingSouth;
     }
 
+    /**
+     *
+     * @return whether the player is facing west or not
+     */
     public boolean isFacingWest() {
         return isFacingWest;
     }
 
+    /**
+     *
+     * @return whether the player is facing north or not
+     */
     public boolean isFacingNorth() {
         return isFacingNorth;
     }
 
-    public boolean isFacingNW() {
-        return isFacingNW;
-    }
-
-    public boolean isFacingNE() {
-        return isFacingNE;
-    }
-
-    public boolean isFacingSE() {
-        return isFacingSE;
-    }
-
-    public boolean isFacingSW() {
-        return isFacingSW;
-    }
-
+    /**
+     * set the health of the player
+     *
+     * @param x the health left
+     */
     public void setHealth(int x) {
         health = x;
     }
 
+    /**
+     *
+     * @return the health of the player
+     */
     public int getHealth() {
+        //if the health is greater than 0, player is alive
         if (health > 0) {
+            //return health left
             return health;
         } else {
+            //return no health
             return 0;
         }
     }
 
+    /**
+     *
+     * @param x add x amount to the x position
+     * @param y add y amount to the y position
+     */
     public void add(float x, float y) {
         position.x += x;
         position.y += y;
@@ -283,31 +254,65 @@ public class Player extends Entity {
         bounds.y = position.y;
     }
 
+    /**
+     * get the x velocity
+     *
+     * @return the velocity of the x
+     */
     public float getXVelocity() {
         return velocity.x;
     }
 
+    /**
+     * get the bounds
+     *
+     * @return return the bounds
+     */
     public Rectangle getBounds() {
         return this.bounds;
     }
 
+    /**
+     * get the width of the bounds
+     *
+     * @return return the width of the bounds
+     */
     public float getWidth() {
         return bounds.getWidth();
     }
 
+    /**
+     * get the height of the bounds
+     *
+     * @return return the height of the bounds
+     */
     public float getHeight() {
         return bounds.getHeight();
     }
 
+    /**
+     * get the x of the player
+     *
+     * @return the x position of the player
+     */
     public float getX() {
         return position.x;
     }
 
+    /**
+     * get the y of the player
+     *
+     * @return the y position of the player
+     */
     public float getY() {
         return position.y;
     }
 
+    /**
+     * the state of the player
+     */
     public void land() {
+        //the state is standing
         state = State.STANDING;
     }
 

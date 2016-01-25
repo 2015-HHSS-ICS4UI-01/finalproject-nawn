@@ -134,7 +134,7 @@ public class MainGame implements Screen {
         }
         //zombie health
         for (int i = 0; i < theWorld.getZombie().size() - 1; i++) {
-            if (zombie.get(i).getheath() < 1) {
+            if (zombie.get(i).getHeath() < 1) {
                 zombie.get(i).Alive(false);
                 zombie.remove(i);
             }
@@ -511,7 +511,7 @@ public class MainGame implements Screen {
             if (zombie.get(i).isAlive()) {
 
                 if (bullet.isColliding(zombie.get(i))) {
-                    zombie.get(i).sethealth(zombie.get(i).getheath() - 50);
+                    zombie.get(i).sethealth(zombie.get(i).getHeath() - 50);
                     reset();
                 }
             }
